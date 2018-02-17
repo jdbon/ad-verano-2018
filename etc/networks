@@ -1,0 +1,16 @@
+# Copyright (c) 1993-1999 Microsoft Corp.
+#
+# Este archivo contiene asignaciones de red y n£mero de red para redes locales. 
+# Los n£meros de red se reconocen por el formato decimal con puntos.
+#
+# Formato:
+#
+# <nombre de red>  <n£mero de red>     [alias...]  [#<comentario>]
+#
+# Por ejemplo:
+#
+#    bucle     127
+#    campus       284.122.107
+#    londres       284.122.108
+
+bucle                 127

@@ -1,0 +1,20 @@
+# Copyright (c) 1993-1999 Microsoft Corp.
+#
+# Este archivo contiene los protocolos de Internet definidos por RFC 1700
+# (Números asignados). 
+#
+# Formato:
+#
+# <nombre de protocolo>  <número asignado>  [alias...]   [#<comentario>]
+
+ip       0     IP       # Protocolo de Internet
+icmp     1     ICMP     # Protocolo de mensajes de control de Internet
+ggp      3     GGP      # Protocolo de puerta de acceso a puerta de acceso
+tcp      6     TCP      # Protocolo de control de la transmisión
+egp      8     EGP      # Protocolo de puerta de acceso exterior
+pup      12    PUP      # Protocolo de paquete universal PARC
+udp      17    UDP      # Protocolo de datagrama del usuario
+hmp      20    HMP      # Protocolo de supervisión de host
+xns-idp  22    XNS-IDP  # Xerox NS IDP
+rdp      27    RDP      # Protocolo de "datagrama confiable"
+rvd      66    RVD      # Disco virtual remoto MIT
