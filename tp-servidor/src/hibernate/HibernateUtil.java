@@ -3,6 +3,8 @@ package hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+import entity.PedidoEntity;
+
 
 
 public class HibernateUtil
@@ -14,10 +16,10 @@ public class HibernateUtil
         try
         {
              AnnotationConfiguration config = new AnnotationConfiguration();
-//             config.addAnnotatedClass(ClubEntity.class);             
-             sessionFactory = config.buildSessionFactory();
+             config.addAnnotatedClass(PedidoEntity.class);
              
              
+             sessionFactory = config.buildSessionFactory();                         
         }
         catch (Throwable ex)
         {
