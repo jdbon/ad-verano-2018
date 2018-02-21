@@ -18,9 +18,6 @@ public class ArticuloEntity {
 	private List<Movimiento> movimientos;
 	
 	public ArticuloEntity() {
-		super();
-		lotes = new ArrayList<Lote>();
-		movimientos = new ArrayList<Movimiento>();
 	}
 
 

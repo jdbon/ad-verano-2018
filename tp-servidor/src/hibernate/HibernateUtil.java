@@ -3,6 +3,7 @@ package hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+import entity.ArticuloEntity;
 import entity.PedidoEntity;
 
 
@@ -16,7 +17,10 @@ public class HibernateUtil
         try
         {
              AnnotationConfiguration config = new AnnotationConfiguration();
-             config.addAnnotatedClass(PedidoEntity.class);
+             config.addAnnotatedClass(ArticuloEntity.class);
+             config.addAnnotatedClass(ArticuloEntity.class);
+             
+             
              
              
              sessionFactory = config.buildSessionFactory();                         

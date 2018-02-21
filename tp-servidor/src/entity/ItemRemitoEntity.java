@@ -8,7 +8,6 @@ public class ItemRemitoEntity {
 	private Integer cantidad;
 	
 	public ItemRemitoEntity() {
-		super();
 	}
 
 }
