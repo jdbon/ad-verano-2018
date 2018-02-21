@@ -14,7 +14,7 @@ public class Articulo {
 	private List<Lote> lotes;
 	private Integer cantidadReservada;
 	private List<Movimiento> movimientos;
-	
+	// constructor
 	public Articulo() {
 		super();
 		lotes = new ArrayList<Lote>();
