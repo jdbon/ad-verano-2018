@@ -2,10 +2,10 @@ package negocio;
 
 public abstract class Movimiento {
 	
-	private Integer nroMovimiento;
-	private Integer cantidad;
-	private Articulo articulo;
-	private TipoMovimiento tipo;
+	protected Integer nroMovimiento;
+	protected Integer cantidad;
+	protected Articulo articulo;
+	protected TipoMovimiento tipo;
 	
 	public Movimiento() {
 		super();
