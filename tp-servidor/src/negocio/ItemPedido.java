@@ -5,7 +5,7 @@ public class ItemPedido {
 	private Articulo articulo;
 	private Integer cantidadSolicitada;
 	private Integer cantidadReservada;
-	private float subTotal;
+	private float subTotal; 
 	
 	public ItemPedido() {
 		super();
