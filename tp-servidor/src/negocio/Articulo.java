@@ -3,7 +3,7 @@ package negocio;
 import java.util.*;
 
 public class Articulo {
-	
+
 	private Integer codigoBarra;
 	private String descripcion;
 	private Presentacion presentacion;
@@ -14,7 +14,7 @@ public class Articulo {
 	private List<Lote> lotes;
 	private Integer cantidadReservada;
 	private List<Movimiento> movimientos;
-	// constructor
+
 	public Articulo() {
 		super();
 		lotes = new ArrayList<Lote>();
@@ -83,6 +83,22 @@ public class Articulo {
 
 	public void setCantidadReservada(Integer cantidadReservada) {
 		this.cantidadReservada = cantidadReservada;
+	}
+	
+	public List<Lote> getLotes() {
+		return lotes;
+	}
+
+	public void setLotes(List<Lote> lotes) {
+		this.lotes = lotes;
+	}
+
+	public List<Movimiento> getMovimientos() {
+		return movimientos;
+	}
+
+	public void setMovimientos(List<Movimiento> movimientos) {
+		this.movimientos = movimientos;
 	}
 
 	@Override

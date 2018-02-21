@@ -18,7 +18,7 @@ public class HibernateUtil
         {
              AnnotationConfiguration config = new AnnotationConfiguration();
              config.addAnnotatedClass(ArticuloEntity.class);
-             config.addAnnotatedClass(ArticuloEntity.class);
+             config.addAnnotatedClass(PedidoEntity.class);
              
              
              
