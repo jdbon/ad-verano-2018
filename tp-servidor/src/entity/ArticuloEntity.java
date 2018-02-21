@@ -2,20 +2,20 @@ package entity;
 
 import java.util.*;
 
-import negocio.*;
+
 
 public class ArticuloEntity {
 	
 	private Integer codigoBarra;
 	private String descripcion;
-	private Presentacion presentacion;
+	private PresentacionEntity presentacion;
 	private Integer tamaño;
 	private Integer unidad;
 	private Float precioVenta;
 	private Integer cantidadOrdenDeCompra;
-	private List<Lote> lotes;
+	private List<LoteEntity> lotes;
 	private Integer cantidadReservada;
-	private List<Movimiento> movimientos;
+	private List<MovimientoEntity> movimientos;
 	
 	public ArticuloEntity() {}
 	
@@ -37,11 +37,11 @@ public class ArticuloEntity {
 		this.descripcion = descripcion;
 	}
 
-	public Presentacion getPresentacion() {
+	public PresentacionEntity getPresentacion() {
 		return presentacion;
 	}
 
-	public void setPresentacion(Presentacion presentacion) {
+	public void setPresentacion(PresentacionEntity presentacion) {
 		this.presentacion = presentacion;
 	}
 
@@ -77,11 +77,11 @@ public class ArticuloEntity {
 		this.cantidadOrdenDeCompra = cantidadOrdenDeCompra;
 	}
 
-	public List<Lote> getLotes() {
+	public List<LoteEntity> getLotes() {
 		return lotes;
 	}
 
-	public void setLotes(List<Lote> lotes) {
+	public void setLotes(List<LoteEntity> lotes) {
 		this.lotes = lotes;
 	}
 
@@ -93,11 +93,11 @@ public class ArticuloEntity {
 		this.cantidadReservada = cantidadReservada;
 	}
 
-	public List<Movimiento> getMovimientos() {
+	public List<MovimientoEntity> getMovimientos() {
 		return movimientos;
 	}
 
-	public void setMovimientos(List<Movimiento> movimientos) {
+	public void setMovimientos(List<MovimientoEntity> movimientos) {
 		this.movimientos = movimientos;
 	}
 	
