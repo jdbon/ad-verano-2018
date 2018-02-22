@@ -34,13 +34,10 @@ public class ClienteEntity {
 		return idCliente;
 	}
 
-<<<<<<< HEAD
-	public void setidCliente(Integer dni) {
-		this.idCliente = dni;
-=======
+
 	public void setidCliente(Integer idCliente) {
 		this.idCliente = idCliente;
->>>>>>> ae49097cd6dd22d7df5a631d1d89b301d2c19ed3
+
 	}
 
 	public String getApellido() {
