@@ -2,7 +2,7 @@ package negocio;
 
 public class Cliente {
 	
-	private Integer dni;
+	private Integer idCliente;
 	private String apellido;
 	private String nombre;
 	private float limiteCredito;
@@ -13,12 +13,12 @@ public class Cliente {
 		
 	}
 
-	public Integer getDni() {
-		return dni;
+	public Integer getidCliente() {
+		return idCliente;
 	}
 
-	public void setDni(Integer dni) {
-		this.dni = dni;
+	public void setidCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public String getApellido() {
