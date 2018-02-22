@@ -53,6 +53,14 @@ public class Cliente {
 	public void setSaldoActual(float saldoActual) {
 		this.saldoActual = saldoActual;
 	}
+
+	public Integer getTipoFactura() {
+		return tipoFactura;
+	}
+
+	public void setTipoFactura(Integer tipoFactura) {
+		this.tipoFactura = tipoFactura;
+	}
 	
 	
 	

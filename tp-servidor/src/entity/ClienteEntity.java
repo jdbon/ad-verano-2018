@@ -1,12 +1,24 @@
 package entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="clientes")
 public class ClienteEntity {
-	
-	private Integer dni;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="cli_id")
+	private Integer idCliente;
+	@Column(name="cli_apellido")
 	private String apellido;
+	@Column(name="cli_nombre")
 	private String nombre;
+	@Column(name="cli_limite_credito")
 	private float limiteCredito;
+	@Column(name="cli_saldo_actual")
 	private float saldoActual;
+	@Column(name="cli_tfa")
+	private Integer tipoFactura;
 	
 	public ClienteEntity() {
 		super();
@@ -14,11 +26,11 @@ public class ClienteEntity {
 	}
 
 	public Integer getDni() {
-		return dni;
+		return idCliente;
 	}
 
 	public void setDni(Integer dni) {
-		this.dni = dni;
+		this.idCliente = dni;
 	}
 
 	public String getApellido() {
