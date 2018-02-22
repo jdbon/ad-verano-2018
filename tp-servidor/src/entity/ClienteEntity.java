@@ -16,6 +16,8 @@ public class ClienteEntity {
 	private String apellido;
 	@Column(name="cli_nombre")
 	private String nombre;
+
+
 	@Column(name="cli_limite_credito")
 	private float limiteCredito;
 	@Column(name="cli_saldo_actual")
@@ -70,6 +72,14 @@ public class ClienteEntity {
 
 	public void setSaldoActual(float saldoActual) {
 		this.saldoActual = saldoActual;
+	}
+	
+	public Integer getTipoFactura() {
+		return tipoFactura;
+	}
+
+	public void setTipoFactura(Integer tipoFactura) {
+		this.tipoFactura = tipoFactura;
 	}
 /*
 	public List<FacturaEntity> getFacturasEntity() {

@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.ClienteDAO;
+import excepcion.ClienteException;
+
 public class Pedido {
 
 	private Integer idPedido;
@@ -16,13 +19,21 @@ public class Pedido {
 	private Date fechaEntregaEstimada;
 	private String motivoRechazo;
 	
-	public Pedido() {
+	public Pedido(int idCliente, String direccion) throws ClienteException {
 
+		this.direccion = direccion;
 		this.items = new ArrayList<ItemPedido>();
 		this.estado = EstadoPedido.Pendiente;
 		this.fechaCreacion = Date.valueOf(LocalDate.now());
+		this.cliente = buscarCLiente(idCliente);
 		
 		
+	}
+
+	private Cliente buscarCLiente(int idCliente) throws ClienteException {
+		Cliente cliente = ClienteDAO.getInstancia().findByID(idCliente);
+		
+		return cliente;
 	}
 
 	public Integer getIdPedido() {

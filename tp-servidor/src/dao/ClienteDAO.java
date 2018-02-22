@@ -1,6 +1,11 @@
 package dao;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 import entity.ClienteEntity;
+import excepcion.ClienteException;
+import hibernate.HibernateUtil;
 import negocio.Cliente;
 
 public class ClienteDAO {
@@ -11,7 +16,7 @@ public class ClienteDAO {
 		
 	}
 	
-	public ClienteDAO getInstancia(){
+	public static ClienteDAO getInstancia(){
 		if(instancia == null)
 			instancia = new ClienteDAO();
 		return instancia;
@@ -24,6 +29,7 @@ public class ClienteDAO {
 		ce.setNombre(cli.getNombre());
 		ce.setLimiteCredito(cli.getLimiteCredito());
 		ce.setSaldoActual(cli.getSaldoActual());
+		ce.setTipoFactura(cli.getTipoFactura());
 		return ce;
 	}
 	
@@ -34,6 +40,20 @@ public class ClienteDAO {
 		cli.setNombre(ce.getNombre());
 		cli.setLimiteCredito(ce.getLimiteCredito());
 		cli.setSaldoActual(ce.getSaldoActual());
+		cli.setTipoFactura(ce.getTipoFactura());
 		return cli;
+	}
+
+	public Cliente findByID(int idCliente) throws ClienteException {
+		Cliente resultado;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		ClienteEntity auxCliente = (ClienteEntity) s.createQuery("From ClienteEntity c where c.numero = ?").setInteger(0, idCliente).uniqueResult();
+		s.close();
+		if(auxCliente == null) {
+				throw new ClienteException("No existe un cliente con el id " + idCliente);
+		}
+		resultado = this.toNegocio(auxCliente);
+		return resultado;
 	}
 }

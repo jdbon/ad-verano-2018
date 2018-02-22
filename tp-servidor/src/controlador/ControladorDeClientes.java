@@ -2,8 +2,8 @@ package controlador;
 
 import java.util.List;
 
-import negocio.Cliente;
-import negocio.ItemPedido;
+import dto.ItemPedidoDTO;
+import excepcion.ClienteException;
 import negocio.Pedido;
 
 public class ControladorDeClientes {
@@ -18,9 +18,12 @@ public class ControladorDeClientes {
 		return instancia;
 	}
 	
-	public Integer generarNuevoPedido(Cliente cliente, List<ItemPedido> items, String direccion) {
-		Pedido pedido = new Pedido();
+	public Integer generarNuevoPedido(int idCliente, String direccion, List<ItemPedidoDTO> items ) throws ClienteException {
+		Pedido pedido = new Pedido(idCliente, direccion);
 		
-		return null;
+		
+		
+		
+		return pedido.getIdPedido();
 	}
 }
