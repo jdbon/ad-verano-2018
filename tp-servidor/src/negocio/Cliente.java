@@ -7,6 +7,7 @@ public class Cliente {
 	private String nombre;
 	private float limiteCredito;
 	private float saldoActual;
+	private Integer tipoFactura;
 	
 	public Cliente() {
 		super();
