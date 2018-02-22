@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,16 +22,18 @@ public class ClienteEntity {
 	@Column(name="cli_tfa")
 	private Integer tipoFactura;
 	
+	//private List<FacturaEntity> facturasEntity;
+	
 	public ClienteEntity() {
 		super();
 		
 	}
 
-	public Integer getDni() {
+	public Integer getidCliente() {
 		return idCliente;
 	}
 
-	public void setDni(Integer dni) {
+	public void setidCliente(Integer dni) {
 		this.idCliente = dni;
 	}
 
@@ -64,6 +68,14 @@ public class ClienteEntity {
 	public void setSaldoActual(float saldoActual) {
 		this.saldoActual = saldoActual;
 	}
+/*
+	public List<FacturaEntity> getFacturasEntity() {
+		return facturasEntity;
+	}
 
+	public void setFacturasEntity(List<FacturaEntity> facturasEntity) {
+		this.facturasEntity = facturasEntity;
+	}
+*/
 
 }
