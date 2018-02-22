@@ -3,7 +3,7 @@ package entity;
 import negocio.Articulo;
 import negocio.TipoMovimiento;
 
-public class MovimientoEntity {
+public abstract class MovimientoEntity {
 	
 	protected Integer nroMovimiento;
 	protected Integer cantidad;

@@ -1,6 +1,6 @@
 package entity;
 
-public enum TipoMovimiento {
+public enum TipoMovimientoEntity {
 
 	Alta,
 	Baja,

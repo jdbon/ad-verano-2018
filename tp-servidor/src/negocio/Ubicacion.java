@@ -2,7 +2,6 @@ package negocio;
 
 public class Ubicacion {
 	
-	private static int maxCantidad;
 	private static int cantidadActual;
 	private Articulo articulo;
 	private String codigo;
@@ -16,13 +15,7 @@ public class Ubicacion {
 		
 	}
 
-	public static int getMaxCantidad() {
-		return maxCantidad;
-	}
-
-	public static void setMaxCantidad(int maxCantidad) {
-		Ubicacion.maxCantidad = maxCantidad;
-	}
+	
 
 	public static int getCantidadActual() {
 		return cantidadActual;
