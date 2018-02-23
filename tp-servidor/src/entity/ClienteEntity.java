@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import negocio.TipoFactura;
+
 @Entity
 @Table(name="clientes")
 public class ClienteEntity {
@@ -23,7 +25,7 @@ public class ClienteEntity {
 	@Column(name="cli_saldo_actual")
 	private float saldoActual;
 	@Column(name="cli_tfa")
-	private TipoFacturaEntity tipoFactura;
+	private TipoFactura tipoFactura;
 	
 	//private List<FacturaEntity> facturasEntity;
 	
@@ -74,11 +76,11 @@ public class ClienteEntity {
 		this.saldoActual = saldoActual;
 	}
 	
-	public Integer getTipoFactura() {
+	public TipoFactura getTipoFactura() {
 		return tipoFactura;
 	}
 
-	public void setTipoFactura(Integer tipoFactura) {
+	public void setTipoFactura(TipoFactura tipoFactura) {
 		this.tipoFactura = tipoFactura;
 	}
 /*

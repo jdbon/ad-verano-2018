@@ -3,8 +3,7 @@ package hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-import entity.ArticuloEntity;
-import entity.PedidoEntity;
+import entity.*;
 
 
 
@@ -17,6 +16,14 @@ public class HibernateUtil
         try
         {
              AnnotationConfiguration config = new AnnotationConfiguration();
+             //mapeados
+             
+             config.addAnnotatedClass(ClienteEntity.class);
+             config.addAnnotatedClass(FacturaEntity.class);
+             
+             
+             
+             //faltan mapear
              config.addAnnotatedClass(ArticuloEntity.class);
              config.addAnnotatedClass(PedidoEntity.class);
              

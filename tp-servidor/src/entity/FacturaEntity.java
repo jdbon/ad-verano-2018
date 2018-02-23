@@ -4,10 +4,14 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import negocio.TipoFactura;
+
 @Entity
 @Table(name="faturas")
 public class FacturaEntity {
+
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	@Column(name="fac_id")
 	private Integer nroFactura;
 	@ManyToOne
@@ -16,8 +20,9 @@ public class FacturaEntity {
 	@OneToMany
 	@JoinColumn(name="itf_fac")
 	private List<ItemFacturaEntity> itemsEntity;
+	@Column(name="fac_tfa")
 	@Enumerated(EnumType.STRING)
-	private TipoFacturaEntity tipoEntity;
+	private TipoFactura tipo;
 	@Column(name="fac_tot")
 	private float total;
 	@OneToOne
@@ -55,12 +60,12 @@ public class FacturaEntity {
 		this.itemsEntity = items;
 	}
 
-	public TipoFacturaEntity getTipo() {
-		return tipoEntity;
+	public TipoFactura getTipo() {
+		return tipo;
 	}
 
-	public void setTipo(TipoFacturaEntity tipo) {
-		this.tipoEntity = tipo;
+	public void setTipo(TipoFactura tipo) {
+		this.tipo = tipo;
 	}
 
 	public float getTotal() {
