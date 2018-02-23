@@ -23,7 +23,7 @@ public class ClienteEntity {
 	@Column(name="cli_saldo_actual")
 	private float saldoActual;
 	@Column(name="cli_tfa")
-	private Integer tipoFactura;
+	private TipoFacturaEntity tipoFactura;
 	
 	//private List<FacturaEntity> facturasEntity;
 	
@@ -74,11 +74,11 @@ public class ClienteEntity {
 		this.saldoActual = saldoActual;
 	}
 	
-	public Integer getTipoFactura() {
+	public TipoFacturaEntity getTipoFactura() {
 		return tipoFactura;
 	}
 
-	public void setTipoFactura(Integer tipoFactura) {
+	public void setTipoFactura(TipoFacturaEntity tipoFactura) {
 		this.tipoFactura = tipoFactura;
 	}
 /*
