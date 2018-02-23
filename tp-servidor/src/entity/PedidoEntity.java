@@ -17,7 +17,7 @@ public class PedidoEntity {
 	//private List<ItemPedidoEntity> items;
 	
 	@OneToOne
-	@JoinColumn(name="ped_cli")
+	@JoinColumn(name="cli_id")
 	private ClienteEntity cliente;
 	
 	@Column(name="ped_direc")
