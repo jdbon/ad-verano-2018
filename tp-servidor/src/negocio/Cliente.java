@@ -1,5 +1,8 @@
 package negocio;
 
+import dao.ClienteDAO;
+import excepcion.ClienteException;
+
 public class Cliente {
 	
 	private Integer idCliente;
@@ -60,6 +63,11 @@ public class Cliente {
 
 	public void setTipoFactura(TipoFactura tipoFactura) {
 		this.tipoFactura = tipoFactura;
+	}
+
+	public void save() throws ClienteException {
+		ClienteDAO.getInstancia().save(this);
+		
 	}
 	
 	
