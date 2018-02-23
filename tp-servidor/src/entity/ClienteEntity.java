@@ -25,6 +25,7 @@ public class ClienteEntity {
 	@Column(name="cli_saldo_actual")
 	private float saldoActual;
 	@Column(name="cli_tfa")
+	@Enumerated(EnumType.STRING)
 	private TipoFactura tipoFactura;
 	
 	//private List<FacturaEntity> facturasEntity;
