@@ -56,4 +56,16 @@ public class ClienteDAO {
 		resultado = this.toNegocio(auxCliente);
 		return resultado;
 	}
+	
+	public void save(Cliente cli){
+		ClienteEntity ce = this.toEntity(cli);
+		
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.getCurrentSession();
+		s.beginTransaction();
+		s.save(ce);
+		s.getTransaction().commit();
+		s.close();
+		
+	}
 }
