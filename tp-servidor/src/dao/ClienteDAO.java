@@ -57,14 +57,19 @@ public class ClienteDAO {
 		return resultado;
 	}
 	
-	public void save(Cliente cli){
+	public void save(Cliente cli) throws  ClienteException{
 		ClienteEntity ce = this.toEntity(cli);
 		
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.getCurrentSession();
 		s.beginTransaction();
+		try {
 		s.save(ce);
 		s.getTransaction().commit();
+		} catch (Exception e) {
+			s.getTransaction().rollback();
+			throw new ClienteException("El cliente " + ce.getidCliente() + " ya existe.");
+		}
 		s.close();
 		
 	}
