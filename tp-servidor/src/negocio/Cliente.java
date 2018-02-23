@@ -7,7 +7,7 @@ public class Cliente {
 	private String nombre;
 	private float limiteCredito;
 	private float saldoActual;
-	private Integer tipoFactura;
+	private TipoFactura tipoFactura;
 	
 	public Cliente() {
 		super();
@@ -54,11 +54,11 @@ public class Cliente {
 		this.saldoActual = saldoActual;
 	}
 
-	public Integer getTipoFactura() {
+	public TipoFactura getTipoFactura() {
 		return tipoFactura;
 	}
 
-	public void setTipoFactura(Integer tipoFactura) {
+	public void setTipoFactura(TipoFactura tipoFactura) {
 		this.tipoFactura = tipoFactura;
 	}
 	
