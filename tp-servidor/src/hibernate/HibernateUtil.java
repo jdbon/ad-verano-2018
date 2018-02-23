@@ -19,7 +19,8 @@ public class HibernateUtil
              //mapeados
              
              config.addAnnotatedClass(ClienteEntity.class);
-             config.addAnnotatedClass(FacturaEntity.class);
+             //config.addAnnotatedClass(FacturaEntity.class);
+             //config.addAnnotatedClass(PEntity.class);
              
              
              

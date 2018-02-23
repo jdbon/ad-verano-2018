@@ -61,7 +61,7 @@ public class ClienteDAO {
 		ClienteEntity ce = this.toEntity(cli);
 		
 		SessionFactory sf = HibernateUtil.getSessionFactory();
-		Session s = sf.getCurrentSession();
+		Session s = sf.openSession();
 		s.beginTransaction();
 		try {
 		s.save(ce);
