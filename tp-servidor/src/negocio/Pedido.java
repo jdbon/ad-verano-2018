@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.ClienteDAO;
+import excepcion.ArticuloException;
 import excepcion.ClienteException;
 
 public class Pedido {
@@ -25,9 +26,13 @@ public class Pedido {
 		this.items = new ArrayList<ItemPedido>();
 		this.estado = EstadoPedido.Pendiente;
 		this.fechaCreacion = Date.valueOf(LocalDate.now());
-		this.cliente = buscarCLiente(idCliente);
+		this.cliente = buscarCLiente(idCliente);		
 		
-		
+	}
+	
+	public void agregarItemPedido(int articuloSolicitado, int cantidadSolicitada) throws ArticuloException {
+		ItemPedido itemPedido = new ItemPedido(articuloSolicitado, cantidadSolicitada);
+		this.items.add(itemPedido);
 	}
 
 	private Cliente buscarCLiente(int idCliente) throws ClienteException {

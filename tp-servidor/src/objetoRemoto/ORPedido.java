@@ -14,4 +14,10 @@ public class ORPedido extends UnicastRemoteObject implements IPedido{
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public int crearPedido() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

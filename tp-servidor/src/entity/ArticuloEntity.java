@@ -1,6 +1,8 @@
 package entity;
 
-import java.util.*;
+import java.util.List;
+
+import negocio.Presentacion;
 
 
 
@@ -8,7 +10,7 @@ public class ArticuloEntity {
 	
 	private Integer codigoBarra;
 	private String descripcion;
-	private PresentacionEntity presentacion;
+	private Presentacion presentacion;
 	private Integer tamaño;
 	private Integer unidad;
 	private Float precioVenta;
@@ -37,11 +39,11 @@ public class ArticuloEntity {
 		this.descripcion = descripcion;
 	}
 
-	public PresentacionEntity getPresentacion() {
+	public Presentacion getPresentacion() {
 		return presentacion;
 	}
 
-	public void setPresentacion(PresentacionEntity presentacion) {
+	public void setPresentacion(Presentacion presentacion) {
 		this.presentacion = presentacion;
 	}
 

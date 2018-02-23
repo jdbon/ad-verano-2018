@@ -2,13 +2,15 @@ package entity;
 
 import java.util.Date;
 
+import negocio.EstadoOC;
+
 
 public class OrdenDeCompraEntity {
 	
 	private Integer nroOrdenDeCompra;
 	private ArticuloEntity articulo;
 	private int cantidadXcomprar;
-	private EstadoOCEntity estado;
+	private EstadoOC estado;
 	private Date fechaEntrega;
 	private int cantidadReservada;
 
@@ -40,11 +42,11 @@ public class OrdenDeCompraEntity {
 		this.cantidadXcomprar = cantidadXcomprar;
 	}
 
-	public EstadoOCEntity getEstado() {
+	public EstadoOC getEstado() {
 		return estado;
 	}
 
-	public void setEstado(EstadoOCEntity estado) {
+	public void setEstado(EstadoOC estado) {
 		this.estado = estado;
 	}
 

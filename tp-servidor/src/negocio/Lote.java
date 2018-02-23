@@ -2,14 +2,14 @@ package negocio;
 
 import java.util.Date;
 
+import entity.LoteEntity;
+
 public class Lote {
 	
 	private Integer nroLote;
 	private Date vencimiento;
 	
-	public Lote() {
-		super();
-		
+	public Lote() {		
 	}
 
 	public Integer getNroLote() {
@@ -28,7 +28,13 @@ public class Lote {
 		this.vencimiento = vencimiento;
 	}
 	
-	
+	public LoteEntity toEntity(Lote lote) {
+		LoteEntity loteEntity = new LoteEntity();
+		loteEntity.setNroLote(lote.getNroLote());
+		loteEntity.setVencimiento(lote.getVencimiento());
+		
+		return loteEntity;
+	}
 	
 
 }

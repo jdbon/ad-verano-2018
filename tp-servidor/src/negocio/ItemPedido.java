@@ -1,5 +1,8 @@
 package negocio;
 
+import dao.ArticuloDAO;
+import excepcion.ArticuloException;
+
 public class ItemPedido {
 	
 	private Articulo articulo;
@@ -7,9 +10,10 @@ public class ItemPedido {
 	private Integer cantidadReservada;
 	private float subTotal; 
 	
-	public ItemPedido() {
-		super();
-		
+	public ItemPedido(Integer art, int cant) throws ArticuloException {
+		Articulo articulo = ArticuloDAO.getInstancia().findByID(art);
+		this.articulo = articulo;
+		this.cantidadSolicitada = cant;
 	}
 	
 	public Articulo getArticulo() {
