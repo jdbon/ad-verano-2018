@@ -33,7 +33,7 @@ public class OrdenDeCompraDAO {
 		oc.setCantidadReservada(oce.getCantidadReservada());
 		oc.setCantidadXcomprar(oce.getCantidadXcomprar());
 		oc.setEstado(oce.getEstado());
-		oc.setFechaEntrega(oce.getFechaEntrega());
+		oc.setFechaRecepcion(oce.getFechaRecepcion());
 		oc.setNroOrdenDeCompra(oce.getNroOrdenDeCompra());
 		
 		return oc;
@@ -46,7 +46,7 @@ public class OrdenDeCompraDAO {
 		oce.setCantidadReservada(oc.getCantidadReservada());
 		oce.setCantidadXcomprar(oc.getCantidadXcomprar());
 		oce.setEstado(oc.getEstado());
-		oce.setFechaEntrega(oc.getFechaEntrega());
+		oce.setFechaRecepcion(oc.getFechaRecepcion());
 		oce.setNroOrdenDeCompra(oc.getNroOrdenDeCompra());
 		
 		

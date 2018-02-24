@@ -12,7 +12,7 @@ public class OrdenDeCompra {
 	private Articulo articulo;
 	private int cantidadXcomprar;
 	private EstadoOC estado;
-	private Date fechaEntrega;
+	private Date fechaRecepcion;
 	private int cantidadReservada;
 	
 	public OrdenDeCompra() {
@@ -56,12 +56,12 @@ public class OrdenDeCompra {
 		this.estado = estado;
 	}
 
-	public Date getFechaEntrega() {
-		return fechaEntrega;
+	public Date getFechaRecepcion() {
+		return fechaRecepcion;
 	}
 
-	public void setFechaEntrega(Date fechaEntrega) {
-		this.fechaEntrega = fechaEntrega;
+	public void setFechaRecepcion(Date fechaRecepcion) {
+		this.fechaRecepcion = fechaRecepcion;
 	}
 
 	public int getCantidadReservada() {
