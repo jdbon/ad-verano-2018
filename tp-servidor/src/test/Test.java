@@ -55,9 +55,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-			
+				
 			try {
 				List<PedidoDTO> pendientes = ControladorDeDespacho.getInstancia().buscarPedidosPendiente();
 				
@@ -77,10 +75,7 @@ public class Test {
 			
 			} catch (PedidoException e) {
 				e.printStackTrace();
-			}
-		
-
-		
+			}	
 	}
 
 }
