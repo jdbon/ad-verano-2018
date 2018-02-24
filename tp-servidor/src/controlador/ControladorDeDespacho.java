@@ -61,9 +61,11 @@ public class ControladorDeDespacho {
 		
 		public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException{
 
-			pedidoPendiente.setEstado(EstadoPedido.Rechazado);
-			PedidoDAO.getInstancia().save(pedidoPendiente);
-			
+			Pedido pedido;
+			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdCliente());
+			pedido.setEstado(EstadoPedido.Rechazado);
+			PedidoDAO.getInstancia().update(pedido);
+
 		}
 
 

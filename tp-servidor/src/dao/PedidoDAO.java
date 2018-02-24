@@ -60,6 +60,22 @@ public class PedidoDAO {
 		s.close();
 		
 	}
+	
+	public void update(Pedido p) throws PedidoException{
+		PedidoEntity pe = this.toEntity(p);
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		try {
+		s.update(pe);
+		s.getTransaction().commit();
+		} catch (Exception e) {
+			s.getTransaction().rollback();
+			throw new PedidoException("Error al actualizar el pedido" + pe.getIdPedido());
+		}
+		s.close();
+		
+	}
 
 	public Pedido toNegocio(PedidoEntity pe) {
 		Pedido p = new Pedido();
