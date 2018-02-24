@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.ClienteDAO;
+import dao.PedidoDAO;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
+import excepcion.PedidoException;
 
 public class Pedido {
 
@@ -19,6 +21,8 @@ public class Pedido {
 	private Date fechaCreacion;
 	private Date fechaEntregaEstimada;
 	private String motivoRechazo;
+	
+	public Pedido () {}
 	
 	public Pedido(int idCliente, String direccion) throws ClienteException {
 
@@ -103,5 +107,11 @@ public class Pedido {
 
 	public void setMotivoRechazo(String motivoRechazo) {
 		this.motivoRechazo = motivoRechazo;
+	}
+
+	public void save() throws PedidoException {
+		// TODO Auto-generated method stub
+		PedidoDAO.getInstancia().save(this);
+		
 	}
 }
