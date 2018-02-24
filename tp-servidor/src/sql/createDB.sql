@@ -137,7 +137,7 @@ GO
 CREATE TABLE [dbo].[movimientos](
 	[mov_id] [int] IDENTITY(1,1) NOT NULL,
 	[mov_art] [int] NOT NULL,
-	[mov_tmo] [int] NOT NULL,
+	[mov_tmo] [nvarchar](50) NOT NULL,
 	[mov_destino] [nvarchar](50) NULL,
 	[mov_autorizado] [nvarchar](50) NULL,
 	[mov_encargado] [nvarchar](50) NULL,
