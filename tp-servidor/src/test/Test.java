@@ -14,7 +14,6 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		
 		//CargaDeDatos.cargarClientes();
 		//CargaDeDatos.cargarPedidos();
 		
@@ -26,7 +25,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		//Buscar pedido 1
 		Pedido p1 = null;
 		try {

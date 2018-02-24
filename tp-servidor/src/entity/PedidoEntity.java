@@ -1,9 +1,19 @@
 package entity;
 
 import java.sql.Date;
+import java.util.List;
 
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import negocio.EstadoPedido;
 
@@ -16,7 +26,9 @@ public class PedidoEntity {
 	@Column(name="ped_id")
 	private Integer idPedido;
 	
-	//private List<ItemPedidoEntity> items;
+	@OneToMany
+	@JoinColumn(name="ped_id")
+	private List<ItemPedidoEntity> items;
 	
 	@OneToOne
 	@JoinColumn(name="ped_cli")
@@ -26,7 +38,7 @@ public class PedidoEntity {
 	private String direccion;
 	
 	@Column(name="ped_tep")
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.ORDINAL)
 	private EstadoPedido estado;
 	
 	@Column(name="ped_fec_generacion")
