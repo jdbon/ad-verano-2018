@@ -22,14 +22,13 @@ public class HibernateUtil
              config.addAnnotatedClass(PedidoEntity.class);
              config.addAnnotatedClass(ItemPedidoEntity.class);
              config.addAnnotatedClass(FacturaEntity.class);
+             config.addAnnotatedClass(ArticuloEntity.class);
+             config.addAnnotatedClass(OrdenDeCompraEntity.class);
              
              
              //faltan mapear
              //config.addAnnotatedClass(ArticuloEntity.class);
-             
-             
-             
-             
+
              sessionFactory = config.buildSessionFactory();                         
         }
         catch (Throwable ex)
