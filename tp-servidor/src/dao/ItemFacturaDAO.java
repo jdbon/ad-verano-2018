@@ -1,6 +1,12 @@
 package dao;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 import entity.*;
+import excepcion.ClienteException;
+import excepcion.ItemFacturaException;
+import hibernate.HibernateUtil;
 import negocio.*;
 
 public class ItemFacturaDAO {
@@ -33,7 +39,22 @@ public class ItemFacturaDAO {
 		return item;
 	}
 	
-	
+	public void save(ItemFactura it) throws  ItemFacturaException{
+		ItemFacturaEntity item = this.toEntity(it);
+		
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		try {
+		s.save(item);
+		s.getTransaction().commit();
+		} catch (Exception e) {
+			s.getTransaction().rollback();
+			throw new ItemFacturaException("El item factura " + item.getItf_id() + " ya existe.");
+		}
+		s.close();
+		
+	}
 	
 	
 	

@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Table(name="items_facturas")
 public class ItemFacturaEntity {
 
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Integer itf_id;
@@ -41,7 +42,13 @@ public class ItemFacturaEntity {
 	}
 	
 	
+	public Integer getItf_id() {
+		return itf_id;
+	}
 
+	public void setItf_id(Integer itf_id) {
+		this.itf_id = itf_id;
+	}
 	
 	
 	
