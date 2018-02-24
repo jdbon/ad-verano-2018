@@ -1,9 +1,9 @@
 package entity;
 
-import negocio.Bloque;
-import negocio.Calle;
-import negocio.Estanteria;
-import negocio.Posicion;
+import enumerator.Bloque;
+import enumerator.Calle;
+import enumerator.Estanteria;
+import enumerator.Posicion;
 
 public class UbicacionEntity {
 	

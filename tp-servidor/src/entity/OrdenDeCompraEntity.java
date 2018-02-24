@@ -2,16 +2,39 @@ package entity;
 
 import java.util.Date;
 
-import negocio.EstadoOC;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import enumerator.EstadoOC;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="ordenes_compras")
 public class OrdenDeCompraEntity {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="odc_id")
 	private Integer nroOrdenDeCompra;
+	
+	@OneToOne
+	@JoinColumn(name="odc_art")
 	private ArticuloEntity articulo;
+	
+	@Column(name="odc_cant_x_comprar")
 	private int cantidadXcomprar;
+	
+	@Enumerated(EnumType.STRING)
 	private EstadoOC estado;
-	private Date fechaEntrega;
+	
+	@Column(name="odc_fec_recepcion")
+	private Date fechaRecepcion;
+	
+	@Column(name="odc_cant_res")
 	private int cantidadReservada;
 
 	public OrdenDeCompraEntity() {
@@ -50,12 +73,12 @@ public class OrdenDeCompraEntity {
 		this.estado = estado;
 	}
 
-	public Date getFechaEntrega() {
-		return fechaEntrega;
+	public Date getFechaRecepcion() {
+		return fechaRecepcion;
 	}
 
-	public void setFechaEntrega(Date fechaEntrega) {
-		this.fechaEntrega = fechaEntrega;
+	public void setFechaRecepcion(Date fechaRecepcion) {
+		this.fechaRecepcion = fechaRecepcion;
 	}
 
 	public int getCantidadReservada() {

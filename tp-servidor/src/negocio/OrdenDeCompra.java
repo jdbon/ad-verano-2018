@@ -2,18 +2,26 @@ package negocio;
 
 import java.util.Date;
 
+import dao.OrdenDeCompraDAO;
+import enumerator.EstadoOC;
+import excepcion.OrdenDeCompraException;
+
 public class OrdenDeCompra {
 	
 	private Integer nroOrdenDeCompra;
 	private Articulo articulo;
 	private int cantidadXcomprar;
 	private EstadoOC estado;
-	private Date fechaEntrega;
+	private Date fechaRecepcion;
 	private int cantidadReservada;
 	
 	public OrdenDeCompra() {
 		super();
 		
+	}
+	
+	public void save() throws OrdenDeCompraException{
+		OrdenDeCompraDAO.getInstancia().save(this);
 	}
 
 	public Integer getNroOrdenDeCompra() {
@@ -48,12 +56,12 @@ public class OrdenDeCompra {
 		this.estado = estado;
 	}
 
-	public Date getFechaEntrega() {
-		return fechaEntrega;
+	public Date getFechaRecepcion() {
+		return fechaRecepcion;
 	}
 
-	public void setFechaEntrega(Date fechaEntrega) {
-		this.fechaEntrega = fechaEntrega;
+	public void setFechaRecepcion(Date fechaRecepcion) {
+		this.fechaRecepcion = fechaRecepcion;
 	}
 
 	public int getCantidadReservada() {

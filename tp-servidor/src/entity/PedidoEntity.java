@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import negocio.EstadoPedido;
+import enumerator.EstadoPedido;
 
 @Entity
 @Table(name="pedidos")

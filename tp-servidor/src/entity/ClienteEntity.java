@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import negocio.TipoFactura;
+import enumerator.TipoFactura;
 
 @Entity
 @Table(name="clientes")

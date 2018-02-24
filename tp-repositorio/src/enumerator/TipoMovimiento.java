@@ -1,4 +1,4 @@
-package negocio;
+package enumerator;
 
 public enum TipoMovimiento {
 
