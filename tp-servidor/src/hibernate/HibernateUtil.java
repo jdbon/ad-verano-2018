@@ -20,6 +20,7 @@ public class HibernateUtil
              
              config.addAnnotatedClass(ClienteEntity.class);    
              config.addAnnotatedClass(PedidoEntity.class);
+             config.addAnnotatedClass(ItemPedidoEntity.class);
              config.addAnnotatedClass(FacturaEntity.class);
              
              
