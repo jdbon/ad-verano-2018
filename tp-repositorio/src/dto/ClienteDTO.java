@@ -18,7 +18,7 @@ public class ClienteDTO implements Serializable {
 	private String tipoFactura;	
 
 	public ClienteDTO() {
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	public Integer getIdCliente() {

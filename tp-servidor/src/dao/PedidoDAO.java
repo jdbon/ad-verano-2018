@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entity.PedidoEntity;
+import enumerator.EstadoPedido;
 import excepcion.PedidoException;
 import hibernate.HibernateUtil;
-import negocio.EstadoPedido;
 import negocio.Pedido;
 
 public class PedidoDAO {

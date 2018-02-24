@@ -7,6 +7,9 @@ import java.util.List;
 
 import dao.ClienteDAO;
 import dao.PedidoDAO;
+import dto.ClienteDTO;
+import dto.PedidoDTO;
+import entity.PedidoEntity;
 import enumerator.EstadoPedido;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
@@ -17,6 +20,8 @@ public class Pedido {
 	private Integer idPedido;
 	private List<ItemPedido> items;
 	private Cliente cliente;
+	private String idCliente;
+	private String nombreCliente;
 	private String direccion;
 	private EstadoPedido estado;
 	private Date fechaCreacion;
@@ -33,6 +38,19 @@ public class Pedido {
 		this.fechaCreacion = Date.valueOf(LocalDate.now());
 		this.cliente = buscarCLiente(idCliente);		
 		
+	}
+	
+	public PedidoDTO toDTO () {
+		PedidoDTO pe = new PedidoDTO();
+		pe.setIdPedido(this.idPedido);
+		pe.setDireccion(this.direccion);
+		pe.setEstado(this.estado);
+		pe.setFechaCreacion(this.fechaCreacion);
+		pe.setFechaEntregaEstimada(this.fechaEntregaEstimada);
+		pe.setMotivoRechazo(this.motivoRechazo);
+        pe.setIdCliente(this.cliente.getidCliente());
+        pe.setNombreCliente(this.cliente.getNombre());
+		return pe;
 	}
 	
 	public void agregarItemPedido(int articuloSolicitado, int cantidadSolicitada) throws ArticuloException {

@@ -2,9 +2,12 @@ package test;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
+import controlador.ControladorDeDespacho;
 import dao.ClienteDAO;
 import dao.PedidoDAO;
+import dto.PedidoDTO;
 import enumerator.TipoFactura;
 import excepcion.ClienteException;
 import excepcion.FacturaException;
@@ -52,7 +55,17 @@ public class Test {
 		}
 		
 		
-		
+			
+			try {
+				List<PedidoDTO> pendientes = ControladorDeDespacho.getInstancia().buscarPedidosPendiente();
+				System.out.println("Pedidos Pendientes:");
+				System.out.println("Cliente: "+ pendientes.get(0).getNombreCliente());
+				System.out.println("Cliente: "+ pendientes.get(0).getEstado());
+				
+			
+			} catch (PedidoException e) {
+				e.printStackTrace();
+			}
 		
 
 		
