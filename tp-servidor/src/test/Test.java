@@ -48,22 +48,23 @@ public class Test {
 		ped1.setEstado(EstadoPedido.Pendiente);
 		ped1.setFechaCreacion(Date.valueOf(LocalDate.now()));
 		
-		System.out.println("Grabo el primer pedido");
 		
 		ped2.setDireccion("lima 2");
 		ped2.setEstado(EstadoPedido.Pendiente);
 		ped2.setFechaCreacion(Date.valueOf(LocalDate.now()));
 		
-		System.out.println("Grabo el segundo pedido");
+
 		
 		try {
 			ped1.save();
+			System.out.println("Grabo el primer pedido");
 		} catch (PedidoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			ped2.save();
+			System.out.println("Grabo el segundo pedido");
 		} catch (PedidoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
