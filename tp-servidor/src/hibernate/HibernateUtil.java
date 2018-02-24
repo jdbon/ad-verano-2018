@@ -22,10 +22,7 @@ public class HibernateUtil
              config.addAnnotatedClass(PedidoEntity.class);
              config.addAnnotatedClass(ItemPedidoEntity.class);
              config.addAnnotatedClass(FacturaEntity.class);
-             
-             
-             //faltan mapear
-             //config.addAnnotatedClass(ArticuloEntity.class);
+             config.addAnnotatedClass(ArticuloEntity.class);
              
              
              
