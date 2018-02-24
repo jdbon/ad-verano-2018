@@ -59,9 +59,10 @@ public class ControladorDeDespacho {
 			return pedidos_pen_DTO;
 		}
 		
-		public void aprobarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException{
+		public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException{
 
 			pedidoPendiente.setEstado(EstadoPedido.Rechazado);
+			PedidoDAO.getInstancia().save(pedidoPendiente);
 			
 		}
 
