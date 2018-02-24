@@ -1,14 +1,15 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entity.ClienteEntity;
 import entity.PedidoEntity;
-import excepcion.ClienteException;
 import excepcion.PedidoException;
 import hibernate.HibernateUtil;
-import negocio.Cliente;
+import negocio.EstadoPedido;
 import negocio.Pedido;
 
 public class PedidoDAO {
@@ -24,6 +25,8 @@ public class PedidoDAO {
 		
 	}
 	
+	
+		
 	public PedidoEntity toEntity(Pedido p){
 		
 		PedidoEntity pe = new PedidoEntity();
@@ -89,6 +92,21 @@ public class PedidoDAO {
 		return p;
 	}
 	
+	public List<Pedido> getPendientes() throws PedidoException{
+		List<Pedido> pedidos_pen = new ArrayList();
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		List<PedidoEntity> auxPedidos = (List<PedidoEntity>) s.createQuery("From PedidoEntity p where p.EstadoPedido = ?").setString(0, EstadoPedido.Pendiente.toString());
+		s.close();
+		if(auxPedidos == null) {
+				throw new PedidoException("No existen Pedidos Pendientes");
+		}
+		for (PedidoEntity p : auxPedidos) {
+			pedidos_pen.add(this.toNegocio(p));
+		}
+		
+		return pedidos_pen;
+	}
 	
 
 	
