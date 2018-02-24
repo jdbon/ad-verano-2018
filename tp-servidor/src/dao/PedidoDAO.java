@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import entity.PedidoEntity;
 import excepcion.PedidoException;
 import hibernate.HibernateUtil;
-import negocio.EstadoPedido;
+import enumerator.EstadoPedido;
 import negocio.Pedido;
 
 public class PedidoDAO {
@@ -93,9 +93,10 @@ public class PedidoDAO {
 	}
 	
 	public List<Pedido> getPendientes() throws PedidoException{
-		List<Pedido> pedidos_pen = new ArrayList();
+		List<Pedido> pedidos_pen = new ArrayList<Pedido>();
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
+		@SuppressWarnings("unchecked")
 		List<PedidoEntity> auxPedidos = (List<PedidoEntity>) s.createQuery("From PedidoEntity p where p.EstadoPedido = ?").setString(0, EstadoPedido.Pendiente.toString());
 		s.close();
 		if(auxPedidos == null) {
