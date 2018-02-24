@@ -14,8 +14,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		//CargaDeDatos.cargarClientes();
-		//CargaDeDatos.cargarPedidos();
+		CargaDeDatos.cargarClientes();
+		CargaDeDatos.cargarPedidos();
 		
 		//Buscar cliente 1
 		Cliente c1 = null;
