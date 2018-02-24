@@ -33,6 +33,18 @@ public class ControladorDeDespacho {
 		
 		return pedidos_pen_DTO;
 	}
+	
+	//devuelve todos los pedidos completados de la base de datos
+		public List<PedidoDTO> buscarPedidosCompletados() throws PedidoException{
+			
+			List<Pedido> pedidos_pen = PedidoDAO.getInstancia().getCompletados();
+			List<PedidoDTO> pedidos_pen_DTO = new ArrayList<PedidoDTO>();
+			for (Pedido p : pedidos_pen) {
+				pedidos_pen_DTO.add(p.toDTO());   
+			}
+			
+			return pedidos_pen_DTO;
+		}
 
 
 

@@ -108,6 +108,22 @@ public class PedidoDAO {
 		
 		return pedidos_pen;
 	}
+
+	public List<Pedido> getCompletados()throws PedidoException {
+		List<Pedido> pedidos_com = new ArrayList<Pedido>();
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		List<PedidoEntity> auxPedidos = s.createQuery("From PedidoEntity pe where pe.estado = ? order by pe.fechaCreacion asc").setString(0, EstadoPedido.Completo.name()).list();
+		s.close();
+		if(auxPedidos == null) {
+				throw new PedidoException("No existen pedidos completados");
+		}
+		for (PedidoEntity pe : auxPedidos) {
+			pedidos_com.add(this.toNegocio(pe));
+		}
+		
+		return pedidos_com;
+	}
 	
 
 	
