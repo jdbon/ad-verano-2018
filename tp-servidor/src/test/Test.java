@@ -14,8 +14,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		//CargaDeDatos.cargarClientes();
-		//CargaDeDatos.cargarPedidos();
+		CargaDeDatos.cargarClientes();
+		CargaDeDatos.cargarPedidos();
 		
 		//Buscar cliente 1
 		Cliente c1 = null;
@@ -25,11 +25,13 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		System.out.println("antes del Try del test");
 		//Buscar pedido 1
 		Pedido p1 = null;
 		try {
+				System.out.println("******hasta aca el pedido es null --> " +p1.getIdPedido());
 			p1 = PedidoDAO.getInstancia().findById(1);
+				System.out.println("******luego se recupera el pedido con idPedido de valor: " + p1.getIdPedido() + "para setearlo en la factura");
 		} catch (PedidoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
