@@ -4,11 +4,10 @@ package dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entity.*;
-import excepcion.ClienteException;
+import entity.ItemFacturaEntity;
 import excepcion.ItemFacturaException;
 import hibernate.HibernateUtil;
-import negocio.*;
+import negocio.ItemFactura;
 
 public class ItemFacturaDAO {
 	
