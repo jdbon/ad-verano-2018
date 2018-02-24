@@ -8,6 +8,7 @@ import javax.persistence.*;
 import negocio.EstadoPedido;
 
 @Entity
+@Table(name="pedidos")
 public class PedidoEntity {
 	
 	@Id
@@ -18,7 +19,7 @@ public class PedidoEntity {
 	//private List<ItemPedidoEntity> items;
 	
 	@OneToOne
-	@JoinColumn(name="cli_id")
+	@JoinColumn(name="ped_cli")
 	private ClienteEntity cliente;
 	
 	@Column(name="ped_direc")
@@ -35,7 +36,7 @@ public class PedidoEntity {
 	@Column(name="ped_fec_entrega")
 	private Date fechaEntregaEstimada;
 	
-	@Column(name="ped_fec_motivo_rechazo")
+	@Column(name="ped_motivo_rechazo")
 	private String motivoRechazo;
 
 	
