@@ -16,7 +16,7 @@ public class PedidoDTO implements Serializable {
 
 	private Integer idPedido;
 	private List<ItemPedidoDTO> items;
-	private Integer idCliente;
+	private ClienteDTO cliente;
 	private String nombreCliente;
 	private String direccion;
 	private EstadoPedido estado;
@@ -51,18 +51,6 @@ public class PedidoDTO implements Serializable {
 
 	public void setItems(List<ItemPedidoDTO> items) {
 		this.items = items;
-	}
-
-
-
-	public Integer getIdCliente() {
-		return idCliente;
-	}
-
-
-
-	public void setIdCliente(Integer idCliente) {
-		this.idCliente = idCliente;
 	}
 
 

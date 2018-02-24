@@ -18,8 +18,6 @@ public class Pedido {
 	private Integer idPedido;
 	private List<ItemPedido> items;
 	private Cliente cliente;
-	private String idCliente;
-	private String nombreCliente;
 	private String direccion;
 	private EstadoPedido estado;
 	private Date fechaCreacion;
