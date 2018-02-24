@@ -13,10 +13,7 @@ import negocio.TipoFactura;
 public class CargaDeDatos {
 	
 	public static void cargarClientes(){
-		
-		// TODO Auto-generated method stub
-				// prueba enzo
-				
+						
 				// prueba para insertar 2 clientes en la BD
 				
 				Cliente cli = new Cliente();

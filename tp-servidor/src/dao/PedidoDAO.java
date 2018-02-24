@@ -52,7 +52,7 @@ public class PedidoDAO {
 		s.getTransaction().commit();
 		} catch (Exception e) {
 			s.getTransaction().rollback();
-			throw new PedidoException("El pedido " + pe.getIdPedido() + " ya existe.");
+			throw new PedidoException("Error al grabar pedido, o el pedido " + pe.getIdPedido() + " ya existe.");
 		}
 		s.close();
 		
