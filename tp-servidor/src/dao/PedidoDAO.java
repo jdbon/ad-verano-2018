@@ -12,7 +12,7 @@ import negocio.Pedido;
 
 public class PedidoDAO {
 
-private static PedidoDAO instancia;
+	private static PedidoDAO instancia;
 	
 	private PedidoDAO() {}
 	
@@ -32,14 +32,13 @@ private static PedidoDAO instancia;
 		pe.setFechaCreacion(p.getFechaCreacion());
 		pe.setFechaEntregaEstimada(p.getFechaEntregaEstimada());
 		pe.setMotivoRechazo(p.getMotivoRechazo());
-		if(p.getCliente() != null)
-			pe.setCliente(ClienteDAO.getInstancia().toEntity(p.getCliente()));
-		else
-			pe.setCliente(null);
+        pe.setCliente(ClienteDAO.getInstancia().toEntity(p.getCliente()));
+        //itemPedidoEntity esta comentado en la Entity por ahora
 		
 		return pe;
 		
 	}
+	
 	
 	public void save(Pedido p) throws PedidoException{
 		PedidoEntity pe = this.toEntity(p);
@@ -56,6 +55,24 @@ private static PedidoDAO instancia;
 		}
 		s.close();
 		
+	}
+
+	public Pedido toNegocio(PedidoEntity pe) {
+		Pedido p = new Pedido();
+		
+		p.setIdPedido(pe.getIdPedido());
+		p.setDireccion(pe.getDireccion());
+		p.setEstado(pe.getEstado());
+		p.setFechaCreacion(pe.getFechaCreacion());
+		p.setFechaEntregaEstimada(pe.getFechaEntregaEstimada());
+		
+		p.setMotivoRechazo(pe.getMotivoRechazo());
+		
+		p.setCliente(ClienteDAO.getInstancia().toNegocio(pe.getCliente()));
+		//Falta convertir ItemPedido a Negocio
+		p.setItems(null);
+		
+		return p;
 	}
 	
 	
