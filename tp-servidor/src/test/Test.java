@@ -73,8 +73,7 @@ public class Test {
 				System.out.println("Cliente: "+ pendientes.get(1).getNombreCliente());
 				System.out.println("Estado: "+ pendientes.get(1).getEstado());
 				System.out.println("Fecha de Creacion: "+ pendientes.get(1).getFechaCreacion());
-				
-							
+											
 			
 			} catch (PedidoException e) {
 				e.printStackTrace();
