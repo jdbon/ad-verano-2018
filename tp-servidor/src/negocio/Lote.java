@@ -6,17 +6,26 @@ import entity.LoteEntity;
 
 public class Lote {
 	
-	private Integer nroLote;
+	private Integer idLote;
+	private String nroLote;
 	private Date vencimiento;
 	
 	public Lote() {		
 	}
+	
+	public Integer getIdLote() {
+		return idLote;
+	}
 
-	public Integer getNroLote() {
+	public void setIdLote(Integer idLote) {
+		this.idLote = idLote;
+	}
+
+	public String getNroLote() {
 		return nroLote;
 	}
 
-	public void setNroLote(Integer nroLote) {
+	public void setNroLote(String nroLote) {
 		this.nroLote = nroLote;
 	}
 
@@ -27,7 +36,7 @@ public class Lote {
 	public void setVencimiento(Date vencimiento) {
 		this.vencimiento = vencimiento;
 	}
-	
+
 	public LoteEntity toEntity(Lote lote) {
 		LoteEntity loteEntity = new LoteEntity();
 		loteEntity.setNroLote(lote.getNroLote());
