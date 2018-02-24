@@ -2,10 +2,14 @@ package entity;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import negocio.Presentacion;
 
 
-
+@Entity
+@Table(name="articulos")
 public class ArticuloEntity {
 	
 	private Integer codigoBarra;
