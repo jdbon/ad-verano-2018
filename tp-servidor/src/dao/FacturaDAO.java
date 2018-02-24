@@ -68,7 +68,7 @@ public class FacturaDAO {
 		s.getTransaction().commit();
 		} catch (Exception e) {
 			s.getTransaction().rollback();
-			throw new FacturaException("La factura " + fe.getNroFactura() + " ya existe.");
+			throw new FacturaException("Error al grabar factura, o la factura " + fe.getNroFactura() + " ya existe.");
 		}
 		s.close();
 	}

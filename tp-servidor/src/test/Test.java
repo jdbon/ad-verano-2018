@@ -45,7 +45,7 @@ public class Test {
 		
 		try {
 			f.save();
-			System.out.println("Se grabò la factura.");
+			System.out.println("Se grabó la factura.");
 		} catch (FacturaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

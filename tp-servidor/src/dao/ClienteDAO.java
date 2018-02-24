@@ -68,7 +68,7 @@ public class ClienteDAO {
 		s.getTransaction().commit();
 		} catch (Exception e) {
 			s.getTransaction().rollback();
-			throw new ClienteException("El cliente " + ce.getidCliente() + " ya existe.");
+			throw new ClienteException("Error al grabar cliente, o cliente " + ce.getidCliente() + " ya existe.");
 		}
 		s.close();
 		
