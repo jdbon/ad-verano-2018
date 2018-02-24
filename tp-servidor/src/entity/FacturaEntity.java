@@ -17,9 +17,9 @@ public class FacturaEntity {
 	@ManyToOne
 	@JoinColumn(name="cli_id")
 	private ClienteEntity clienteEntity;
-	@OneToMany
-	@JoinColumn(name="itf_fac")
-	private List<ItemFacturaEntity> itemsEntity;
+//	@OneToMany
+//	@JoinColumn(name="itf_fac")
+//	private List<ItemFacturaEntity> itemsEntity;
 	@Column(name="fac_tfa")
 	@Enumerated(EnumType.STRING)
 	private TipoFactura tipo;
@@ -52,13 +52,13 @@ public class FacturaEntity {
 		this.clienteEntity = cliente;
 	}
 
-	public List<ItemFacturaEntity> getItems() {
-		return itemsEntity;
-	}
-
-	public void setItems(List<ItemFacturaEntity> items) {
-		this.itemsEntity = items;
-	}
+//	public List<ItemFacturaEntity> getItems() {
+//		return itemsEntity;
+//	}
+//
+//	public void setItems(List<ItemFacturaEntity> items) {
+//		this.itemsEntity = items;
+//	}
 
 	public TipoFactura getTipo() {
 		return tipo;

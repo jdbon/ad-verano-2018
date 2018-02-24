@@ -35,7 +35,7 @@ public class FacturaDAO {
 		fe.setPedido(PedidoDAO.getInstancia().toEntity(f.getPedido()));
 		
 		//Falta llamar a ItemPedidoDAO.getInstancia().toEntity
-		fe.setItems(null);
+		//fe.setItems(null);
 		
 		
 		return fe;
