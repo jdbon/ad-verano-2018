@@ -32,7 +32,10 @@ private static PedidoDAO instancia;
 		pe.setFechaCreacion(p.getFechaCreacion());
 		pe.setFechaEntregaEstimada(p.getFechaEntregaEstimada());
 		pe.setMotivoRechazo(p.getMotivoRechazo());
-		pe.setCliente(ClienteDAO.getInstancia().toEntity(p.getCliente()));
+		if(p.getCliente() != null)
+			pe.setCliente(ClienteDAO.getInstancia().toEntity(p.getCliente()));
+		else
+			pe.setCliente(null);
 		
 		return pe;
 		

@@ -48,7 +48,7 @@ public class ClienteDAO {
 		Cliente resultado;
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
-		ClienteEntity auxCliente = (ClienteEntity) s.createQuery("From ClienteEntity c where c.numero = ?").setInteger(0, idCliente).uniqueResult();
+		ClienteEntity auxCliente = (ClienteEntity) s.createQuery("From ClienteEntity c where c.idCliente = ?").setInteger(0, idCliente).uniqueResult();
 		s.close();
 		if(auxCliente == null) {
 				throw new ClienteException("No existe un cliente con el id " + idCliente);

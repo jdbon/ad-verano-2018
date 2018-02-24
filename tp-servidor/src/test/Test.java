@@ -41,33 +41,35 @@ public class Test {
 		
 		// prueba para insertar un pedido asociado a cliente en la BD
 		
-		Pedido ped1 = new Pedido();
-		Pedido ped2 = new Pedido();
-		
-		ped1.setDireccion("lima 1");
-		ped1.setEstado(EstadoPedido.Pendiente);
-		ped1.setFechaCreacion(Date.valueOf(LocalDate.now()));
-		
-		System.out.println("Grabo el primer pedido");
-		
-		ped2.setDireccion("lima 2");
-		ped2.setEstado(EstadoPedido.Pendiente);
-		ped2.setFechaCreacion(Date.valueOf(LocalDate.now()));
-		
-		System.out.println("Grabo el segundo pedido");
-		
+		Pedido ped1;
+		Pedido ped2;
 		try {
-			ped1.save();
-		} catch (PedidoException e) {
+			ped1 = new Pedido(1, "Lima 1");
+			ped2 = new Pedido(2, "Lima 2");
+			//ped1.setDireccion("lima 1");
+			ped1.setEstado(EstadoPedido.Pendiente);
+			ped1.setFechaCreacion(Date.valueOf(LocalDate.now()));
+
+			//ped2.setDireccion("lima 2");
+			ped2.setEstado(EstadoPedido.Pendiente);
+			ped2.setFechaCreacion(Date.valueOf(LocalDate.now()));
+			
+			try {
+				ped1.save();
+				System.out.println("Grabo el primer pedido");
+				ped2.save();
+				System.out.println("Grabo el segundo pedido");
+			} catch (PedidoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		} catch (ClienteException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-		try {
-			ped2.save();
-		} catch (PedidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		
 		
 		
