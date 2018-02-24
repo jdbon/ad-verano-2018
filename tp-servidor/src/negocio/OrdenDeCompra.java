@@ -3,6 +3,7 @@ package negocio;
 import java.util.Date;
 
 import dao.OrdenDeCompraDAO;
+import enumerator.EstadoOC;
 import excepcion.OrdenDeCompraException;
 
 public class OrdenDeCompra {
