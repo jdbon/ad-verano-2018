@@ -26,7 +26,7 @@ private static PedidoDAO instancia;
 	public PedidoEntity toEntity(Pedido p){
 		
 		PedidoEntity pe = new PedidoEntity();
-		pe.setIdPedido(p.getIdPedido());
+		//pe.setIdPedido(p.getIdPedido()); //En teoria lo genera la BD
 		pe.setDireccion(p.getDireccion());
 		pe.setEstado(p.getEstado());
 		pe.setFechaCreacion(p.getFechaCreacion());

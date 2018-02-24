@@ -11,6 +11,7 @@ import negocio.EstadoPedido;
 public class PedidoEntity {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ped_id")
 	private Integer idPedido;
 	
