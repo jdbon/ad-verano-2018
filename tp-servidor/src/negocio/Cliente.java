@@ -17,6 +17,8 @@ public class Cliente {
 		super();
 		
 	}
+	
+	
 
 	public Integer getidCliente() {
 		return idCliente;
