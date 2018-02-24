@@ -105,6 +105,7 @@ CREATE TABLE [dbo].[items_remitos](
 	[itr_id] [int] IDENTITY(1,1) NOT NULL,
 	[itr_rem] [int] NOT NULL,
 	[itr_art] [int] NOT NULL,
+	[itr_cant] [int] NOT NULL,
  CONSTRAINT [PK_items_remitos] PRIMARY KEY CLUSTERED 
 (
 	[itr_id] ASC
@@ -198,6 +199,7 @@ CREATE TABLE [dbo].[remitos](
 	[rem_id] [int] IDENTITY(1,1) NOT NULL,
 	[rem_cli] [int] NOT NULL,
 	[rem_ped] [int] NOT NULL,
+	[rem_fec] [datetime] NOT NULL,
  CONSTRAINT [PK_remitos] PRIMARY KEY CLUSTERED 
 (
 	[rem_id] ASC
@@ -215,10 +217,10 @@ CREATE TABLE [dbo].[ubicaciones](
 	[ubi_id] [int] IDENTITY(1,1) NOT NULL,
 	[ubi_cod] [nvarchar](50) NOT NULL,
 	[ubi_art] [int] NOT NULL,
-	[ubi_tca] [int] NOT NULL,
-	[ubi_tbl] [int] NOT NULL,
-	[ubi_tes] [int] NOT NULL,
-	[ubi_tpo] [int] NOT NULL,
+	[ubi_cal] [nvarchar](50) NOT NULL,
+	[ubi_blo] [nvarchar](50) NOT NULL,
+	[ubi_est] [nvarchar](50) NOT NULL,
+	[ubi_pos] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_ubicaciones] PRIMARY KEY CLUSTERED 
 (
 	[ubi_id] ASC
@@ -295,3 +297,6 @@ GO
 /*se agrega la FK de movimientos contra Articulos*/
 ALTER TABLE [dbo].[movimientos]  WITH CHECK ADD  CONSTRAINT [FK_movimientos_articulos] FOREIGN KEY([mov_art])
 REFERENCES [dbo].[articulos] ([art_id])
+/*se agrega la FK de remitos contra clientes*/
+ALTER TABLE [dbo].[remitos]  WITH CHECK ADD  CONSTRAINT [FK_remitos_clientes] FOREIGN KEY([rem_cli])
+REFERENCES [dbo].[clientes] ([cli_id])
