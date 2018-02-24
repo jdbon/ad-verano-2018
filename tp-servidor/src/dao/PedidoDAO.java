@@ -3,11 +3,12 @@ package dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-
+import entity.ClienteEntity;
 import entity.PedidoEntity;
-
+import excepcion.ClienteException;
 import excepcion.PedidoException;
 import hibernate.HibernateUtil;
+import negocio.Cliente;
 import negocio.Pedido;
 
 public class PedidoDAO {
@@ -26,7 +27,7 @@ public class PedidoDAO {
 	public PedidoEntity toEntity(Pedido p){
 		
 		PedidoEntity pe = new PedidoEntity();
-		//pe.setIdPedido(p.getIdPedido()); //En teoria lo genera la BD
+		pe.setIdPedido(p.getIdPedido());
 		pe.setDireccion(p.getDireccion());
 		pe.setEstado(p.getEstado());
 		pe.setFechaCreacion(p.getFechaCreacion());
@@ -72,6 +73,19 @@ public class PedidoDAO {
 		//Falta convertir ItemPedido a Negocio
 		p.setItems(null);
 		
+		return p;
+	}
+	
+	public Pedido findById(int idPedido) throws PedidoException{
+		Pedido p;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		PedidoEntity auxPedido = (PedidoEntity) s.createQuery("From PedidoEntity c where c.idPedido = ?").setInteger(0, idPedido).uniqueResult();
+		s.close();
+		if(auxPedido == null) {
+				throw new PedidoException("No existe un cliente con el id " + idPedido);
+		}
+		p = this.toNegocio(auxPedido);
 		return p;
 	}
 	

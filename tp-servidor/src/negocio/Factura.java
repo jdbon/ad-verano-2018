@@ -3,6 +3,9 @@ package negocio;
 import java.util.Date;
 import java.util.List;
 
+import dao.FacturaDAO;
+import excepcion.FacturaException;
+
 public class Factura {
 	
 	private Integer nroFactura;
@@ -16,6 +19,10 @@ public class Factura {
 	public Factura() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void save() throws FacturaException{
+		FacturaDAO.getInstancia().save(this);
 	}
 
 	public Integer getNroFactura() {
