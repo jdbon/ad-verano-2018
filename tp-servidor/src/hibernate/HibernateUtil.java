@@ -18,16 +18,14 @@ public class HibernateUtil
              AnnotationConfiguration config = new AnnotationConfiguration();
              //mapeados
              
-             config.addAnnotatedClass(ClienteEntity.class);
-             //config.addAnnotatedClass(FacturaEntity.class);
-             //config.addAnnotatedClass(PEntity.class);
+             config.addAnnotatedClass(ClienteEntity.class);    
+             config.addAnnotatedClass(PedidoEntity.class);
              
              
              
              //faltan mapear
-             config.addAnnotatedClass(ArticuloEntity.class);
-             config.addAnnotatedClass(PedidoEntity.class);
-             
+             //config.addAnnotatedClass(ArticuloEntity.class);
+             //config.addAnnotatedClass(FacturaEntity.class);
              
              
              
