@@ -14,7 +14,7 @@ public class Test {
 		// prueba enzo
 		
 		// prueba para insertar 2 clientes en la BD
-		
+/*		
 		Cliente cli = new Cliente();
 		Cliente cli2 = new Cliente();
 		
@@ -39,13 +39,13 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+*/		
 		// prueba para insertar un pedido asociado a cliente en la BD
 
 		try {
 
-			Pedido ped1 = new Pedido(11, "Lima 1");
-			Pedido ped2 = new Pedido(12, "Lima 2");
+			Pedido ped1 = new Pedido(1, "Lima 1");
+			Pedido ped2 = new Pedido(2, "Lima 2");
 			//ped1.setDireccion("lima 1");
 			ped1.setEstado(EstadoPedido.Pendiente);
 			ped1.setFechaCreacion(Date.valueOf(LocalDate.now()));
