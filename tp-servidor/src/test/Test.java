@@ -40,12 +40,11 @@ public class Test {
 		}
 		
 		// prueba para insertar un pedido asociado a cliente en la BD
-		
-		Pedido ped1;
-		Pedido ped2;
+
 		try {
-			ped1 = new Pedido(1, "Lima 1");
-			ped2 = new Pedido(2, "Lima 2");
+
+			Pedido ped1 = new Pedido(1, "Lima 1");
+			Pedido ped2 = new Pedido(2, "Lima 2");
 			//ped1.setDireccion("lima 1");
 			ped1.setEstado(EstadoPedido.Pendiente);
 			ped1.setFechaCreacion(Date.valueOf(LocalDate.now()));
@@ -63,23 +62,12 @@ public class Test {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-		} catch (ClienteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+	
+		} catch (ClienteException e) {
+			e.printStackTrace();
 		}
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 
 }
+
