@@ -9,6 +9,7 @@ public class Remito {
 	private Date fecha;
 	private Pedido pedido;
 	private List<ItemRemito> items;
+	private Cliente cliente;
 	
 	public Remito() {
 		super();
@@ -17,6 +18,14 @@ public class Remito {
 
 	public int getNroRemito() {
 		return nroRemito;
+	}
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public void setNroRemito(int nroRemito) {
