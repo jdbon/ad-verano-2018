@@ -4,9 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entity.FacturaEntity;
-import entity.PedidoEntity;
 import excepcion.FacturaException;
-import excepcion.PedidoException;
 import hibernate.HibernateUtil;
 import negocio.Factura;
 
