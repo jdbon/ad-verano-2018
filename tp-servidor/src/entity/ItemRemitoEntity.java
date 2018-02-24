@@ -20,7 +20,7 @@ public class ItemRemitoEntity {
 	@Column(name="itr_id")
 	private Integer idItemRemito;
 	
-	@OneToOne
+	@OneToOne 
 	@JoinColumn(name="itr_art")
 	private Articulo articulo;
 	
