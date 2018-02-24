@@ -11,7 +11,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 
 import enumerator.TipoMovimiento;
-import negocio.Articulo;
 
 @MappedSuperclass
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
