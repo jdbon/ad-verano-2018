@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import dao.FacturaDAO;
+import enumerator.TipoFactura;
 import excepcion.FacturaException;
 
 public class Factura {

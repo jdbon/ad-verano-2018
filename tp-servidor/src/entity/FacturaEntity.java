@@ -4,7 +4,7 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import negocio.TipoFactura;
+import enumerator.TipoFactura;
 
 @Entity
 @Table(name="facturas")

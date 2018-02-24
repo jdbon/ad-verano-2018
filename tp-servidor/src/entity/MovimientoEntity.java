@@ -1,7 +1,7 @@
 package entity;
 
+import enumerator.TipoMovimiento;
 import negocio.Articulo;
-import negocio.TipoMovimiento;
 
 public abstract class MovimientoEntity {
 	

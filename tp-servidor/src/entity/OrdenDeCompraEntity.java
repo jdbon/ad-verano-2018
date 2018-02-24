@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.*;
 
-import negocio.EstadoOC;
+import enumerator.EstadoOC;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="ordenes_compras")

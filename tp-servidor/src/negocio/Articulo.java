@@ -2,6 +2,8 @@ package negocio;
 
 import java.util.*;
 
+import enumerator.Presentacion;
+
 public class Articulo {
 
 	private Integer codigoBarra;

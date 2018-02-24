@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import dao.ClienteDAO;
 import dao.PedidoDAO;
+import enumerator.TipoFactura;
 import excepcion.ClienteException;
 import excepcion.FacturaException;
 import excepcion.PedidoException;

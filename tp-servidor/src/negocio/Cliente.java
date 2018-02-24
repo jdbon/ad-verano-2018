@@ -1,6 +1,7 @@
 package negocio;
 
 import dao.ClienteDAO;
+import enumerator.TipoFactura;
 import excepcion.ClienteException;
 
 public class Cliente {
