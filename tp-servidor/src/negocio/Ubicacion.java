@@ -7,7 +7,7 @@ import enumerator.Posicion;
 
 public class Ubicacion {
 	
-	private static int cantidadActual;
+	private int cantidadActual;
 	private Articulo articulo;
 	private String codigo;
 	private Calle calle;
@@ -20,14 +20,12 @@ public class Ubicacion {
 		
 	}
 
-	
-
-	public static int getCantidadActual() {
+	public int getCantidadActual() {
 		return cantidadActual;
 	}
 
-	public static void setCantidadActual(int cantidadActual) {
-		Ubicacion.cantidadActual = cantidadActual;
+	public void setCantidadActual(int cantidadActual) {
+		this.cantidadActual = cantidadActual;
 	}
 
 	public Articulo getArticulo() {
