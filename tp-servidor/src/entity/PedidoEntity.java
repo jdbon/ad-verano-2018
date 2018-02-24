@@ -28,7 +28,7 @@ public class PedidoEntity {
 	private EstadoPedido estado;
 	
 	@Column(name="ped_fec_generacion")
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaCreacion;
 	
 	@Column(name="ped_fec_entrega")
