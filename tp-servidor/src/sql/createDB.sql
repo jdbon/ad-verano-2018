@@ -142,6 +142,7 @@ CREATE TABLE [dbo].[movimientos](
 	[mov_autorizado] [nvarchar](50) NULL,
 	[mov_encargado] [nvarchar](50) NULL,
 	[mov_cant] [int] NOT NULL,
+	[mov_tipoEnum] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_movimientos] PRIMARY KEY CLUSTERED 
 (
 	[mov_id] ASC
@@ -291,3 +292,6 @@ REFERENCES [dbo].[articulos] ([art_id])
 GO
 ALTER TABLE [dbo].[ubicaciones] CHECK CONSTRAINT [FK_ubicaciones_articulos1]
 GO
+/*se agrega la FK de movimientos contra Articulos*/
+ALTER TABLE [dbo].[movimientos]  WITH CHECK ADD  CONSTRAINT [FK_movimientos_articulos] FOREIGN KEY([mov_art])
+REFERENCES [dbo].[articulos] ([art_id])

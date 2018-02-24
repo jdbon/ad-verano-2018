@@ -1,12 +1,18 @@
 package entity;
 
-public class MovimientoAjuste extends MovimientoEntity {
-	
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+
+@DiscriminatorValue("MovimientoAjuste")
+public class MovimientoAjusteEntity extends MovimientoEntity {
+	@Column(name="mov_encargado")
 	private String encargado;
+	@Column(name="mov_autorizado")
 	private String autorizadoPor;
+	@Column(name="mov_destino")
 	private String destinoArticulos;
 
-	public MovimientoAjuste() {
+	public MovimientoAjusteEntity() {
 		
 	}
 
