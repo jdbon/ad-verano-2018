@@ -214,10 +214,10 @@ CREATE TABLE [dbo].[ubicaciones](
 	[ubi_id] [int] IDENTITY(1,1) NOT NULL,
 	[ubi_cod] [nvarchar](50) NOT NULL,
 	[ubi_art] [int] NOT NULL,
-	[ubi_tca] [int] NOT NULL,
-	[ubi_tbl] [int] NOT NULL,
-	[ubi_tes] [int] NOT NULL,
-	[ubi_tpo] [int] NOT NULL,
+	[ubi_cal] [nvarchar](50) NOT NULL,
+	[ubi_blo] [nvarchar](50) NOT NULL,
+	[ubi_est] [nvarchar](50) NOT NULL,
+	[ubi_pos] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_ubicaciones] PRIMARY KEY CLUSTERED 
 (
 	[ubi_id] ASC
