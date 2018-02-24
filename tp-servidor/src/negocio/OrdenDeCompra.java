@@ -2,6 +2,10 @@ package negocio;
 
 import java.util.Date;
 
+import dao.OrdenDeCompraDAO;
+import enumerator.EstadoOC;
+import excepcion.OrdenDeCompraException;
+
 public class OrdenDeCompra {
 	
 	private Integer nroOrdenDeCompra;
@@ -14,6 +18,10 @@ public class OrdenDeCompra {
 	public OrdenDeCompra() {
 		super();
 		
+	}
+	
+	public void save() throws OrdenDeCompraException{
+		OrdenDeCompraDAO.getInstancia().save(this);
 	}
 
 	public Integer getNroOrdenDeCompra() {

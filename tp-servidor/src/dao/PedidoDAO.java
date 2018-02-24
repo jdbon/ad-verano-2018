@@ -83,10 +83,10 @@ public class PedidoDAO {
 		Pedido p;
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
-		PedidoEntity auxPedido = (PedidoEntity) s.createQuery("From PedidoEntity c where c.idPedido = ?").setInteger(0, idPedido).uniqueResult();
+		PedidoEntity auxPedido = (PedidoEntity) s.createQuery("From PedidoEntity pe where pe.idPedido = ?").setInteger(0, idPedido).uniqueResult();
 		s.close();
 		if(auxPedido == null) {
-				throw new PedidoException("No existe un cliente con el id " + idPedido);
+				throw new PedidoException("No existe un pedido con el id " + idPedido);
 		}
 		p = this.toNegocio(auxPedido);
 		return p;

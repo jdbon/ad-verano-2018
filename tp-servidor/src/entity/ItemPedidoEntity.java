@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import negocio.Articulo;
@@ -20,7 +20,7 @@ public class ItemPedidoEntity {
 	@Column(name="ite_id")
 	private Integer idItemPedido;
 	
-//	@ManyToOne
+//	@OneToOne
 //	@JoinColumn(name="ite_art")
 //	private Articulo articulo;
 	

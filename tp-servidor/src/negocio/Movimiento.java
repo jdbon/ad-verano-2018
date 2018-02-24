@@ -1,5 +1,7 @@
 package negocio;
 
+import enumerator.TipoMovimiento;
+
 public abstract class Movimiento {
 	
 	protected Integer nroMovimiento;

@@ -2,13 +2,25 @@ package entity;
 
 import java.util.List;
 
-import negocio.Presentacion;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import enumerator.Presentacion;
 
 
-
+@Entity
+@Table(name="articulos")
 public class ArticuloEntity {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="art_id")
 	private Integer codigoBarra;
+
 	private String descripcion;
 	private Presentacion presentacion;
 	private Integer tamaño;
