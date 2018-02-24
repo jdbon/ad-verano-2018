@@ -9,22 +9,24 @@ public class ItemFacturaEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Integer itf_id;
-	@OneToOne
-	@JoinColumn(name="art_id")
-	@Column(name="itf_art")
-	private ArticuloEntity articulo;
+//	@OneToOne
+//	@JoinColumn(name="art_id")
+//	@Column(name="itf_art")
+//	private ArticuloEntity articulo;
+	@Column(name="itf_cant")
 	private Integer cantidad;
+	@Column(name="itf_sub_tot")
 	private float subTotal;
 	
 	public ItemFacturaEntity(){
 	}
 	
-	public ArticuloEntity getArticulo() {
-		return articulo;
-	}
-	public void setArticulo(ArticuloEntity articulo) {
-		this.articulo = articulo;
-	}
+//	public ArticuloEntity getArticulo() {
+//		return articulo;
+//	}
+//	public void setArticulo(ArticuloEntity articulo) {
+//		this.articulo = articulo;
+//	}
 	public Integer getCantidad() {
 		return cantidad;
 	}

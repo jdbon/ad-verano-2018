@@ -7,7 +7,7 @@ import javax.persistence.*;
 import negocio.TipoFactura;
 
 @Entity
-@Table(name="faturas")
+@Table(name="facturas")
 public class FacturaEntity {
 
 	@Id
@@ -15,7 +15,7 @@ public class FacturaEntity {
 	@Column(name="fac_id")
 	private Integer nroFactura;
 	@ManyToOne
-	@JoinColumn(name="cli_id")
+	@JoinColumn(name="fac_cli")
 	private ClienteEntity clienteEntity;
 //	@OneToMany
 //	@JoinColumn(name="itf_fac")

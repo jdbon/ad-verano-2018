@@ -26,7 +26,7 @@ public class PedidoEntity {
 	private String direccion;
 	
 	@Column(name="ped_tep")
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.ORDINAL)
 	private EstadoPedido estado;
 	
 	@Column(name="ped_fec_generacion")
