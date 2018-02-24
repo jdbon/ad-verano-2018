@@ -45,12 +45,17 @@ public class ClienteDAO {
 	}
 
 	public Cliente findByID(int idCliente) throws ClienteException {
+		
+		System.out.println("el idCliente es = "+ idCliente);
+		
 		Cliente resultado;
+		
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 		ClienteEntity auxCliente = (ClienteEntity) s.createQuery("From ClienteEntity c where c.idCliente = ?").setInteger(0, idCliente).uniqueResult();
 		s.close();
 		if(auxCliente == null) {
+			System.out.println("el idCliente es = "+ idCliente);
 				throw new ClienteException("No existe un cliente con el id " + idCliente);
 		}
 		resultado = this.toNegocio(auxCliente);

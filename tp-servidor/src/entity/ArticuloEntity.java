@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,16 +22,28 @@ public class ArticuloEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="art_id")
 	private Integer codigoBarra;
-
+	@Column(name="art_desc")
 	private String descripcion;
+	@Enumerated(EnumType.STRING)
+	@Column(name="art_presentacion")
 	private Presentacion presentacion;
+	@Column(name="art_tamanio")
 	private Integer tamaño;
+	@Column(name="art_unidad")
 	private Integer unidad;
+	@Column(name="art_precio_vta")
 	private Float precioVenta;
+	@Column(name="art_x_comprar")
 	private Integer cantidadOrdenDeCompra;
-	private List<LoteEntity> lotes;
+//	hay una doble navegacion---> asi que va un uno a muchos bidireccional
+//	private List<LoteEntity> lotes;
+	@Column(name="art_cant_res")
 	private Integer cantidadReservada;
-	private List<MovimientoEntity> movimientos;
+//	@OneToMany
+//	@JoinColumn(name="art_id")
+//	private List<MovimientoEntity> movimientos;
+	
+	
 	
 	public ArticuloEntity() {}
 	
@@ -92,11 +106,11 @@ public class ArticuloEntity {
 	}
 
 	public List<LoteEntity> getLotes() {
-		return lotes;
+		return null; // reemplazar por: return lotes;
 	}
 
 	public void setLotes(List<LoteEntity> lotes) {
-		this.lotes = lotes;
+		// luego destomentar // this.lotes = lotes;
 	}
 
 	public Integer getCantidadReservada() {
@@ -107,13 +121,13 @@ public class ArticuloEntity {
 		this.cantidadReservada = cantidadReservada;
 	}
 
-	public List<MovimientoEntity> getMovimientos() {
-		return movimientos;
-	}
-
-	public void setMovimientos(List<MovimientoEntity> movimientos) {
-		this.movimientos = movimientos;
-	}
+//	public List<MovimientoEntity> getMovimientos() {
+//		return movimientos;
+//	}
+//
+//	public void setMovimientos(List<MovimientoEntity> movimientos) {
+//		this.movimientos = movimientos;
+//	}
 	
 	
 }

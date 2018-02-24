@@ -93,9 +93,10 @@ public class PedidoDAO {
 	}
 	
 	public List<Pedido> getPendientes() throws PedidoException{
-		List<Pedido> pedidos_pen = new ArrayList();
+		List<Pedido> pedidos_pen = new ArrayList<Pedido>();
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
+		@SuppressWarnings("unchecked")
 		List<PedidoEntity> auxPedidos = (List<PedidoEntity>) s.createQuery("From PedidoEntity p where p.EstadoPedido = ?").setString(0, EstadoPedido.Pendiente.toString());
 		s.close();
 		if(auxPedidos == null) {

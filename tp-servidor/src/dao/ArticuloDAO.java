@@ -54,17 +54,17 @@ private static ArticuloDAO instancia;
 		art.setCantidadReservada(artE.getCantidadReservada());
 		art.setCodigoBarra(artE.getCodigoBarra());
 		art.setDescripcion(artE.getDescripcion());
-		for(LoteEntity loteEnt: artE.getLotes()) {
-			Lote lote = new Lote();
-			lote.setNroLote(loteEnt.getNroLote());
-			lote.setVencimiento(loteEnt.getVencimiento());
-			art.getLotes().add(lote);
-		}
-		for(MovimientoEntity movEnt: artE.getMovimientos()) {
-/*			Movimiento movimiento = new Movimiento();
-			movimiento.setArticulo(movEnt.getArticulo());
-			art.getMovimientos().add(movimiento);*/
-		}
+//		for(LoteEntity loteEnt: artE.getLotes()) {
+//			Lote lote = new Lote();
+//			lote.setNroLote(loteEnt.getNroLote());
+//			lote.setVencimiento(loteEnt.getVencimiento());
+//			art.getLotes().add(lote);
+//		}
+//		for(MovimientoEntity movEnt: artE.getMovimientos()) {
+///*			Movimiento movimiento = new Movimiento();
+//			movimiento.setArticulo(movEnt.getArticulo());
+//			art.getMovimientos().add(movimiento);*/
+//		}
 		art.setPrecioVenta(artE.getPrecioVenta());
 		art.setPresentacion(artE.getPresentacion());
 		art.setTamaño(artE.getTamaño());

@@ -31,10 +31,10 @@ public class OrdenDeCompraEntity {
 	@Enumerated(EnumType.STRING)
 	private EstadoOC estado;
 	
-	@Column(name="odc_fec_ent")
-	private Date fechaEntrega;
+	@Column(name="odc_fec_recepcion")
+	private Date fechaRecepcion;
 	
-	@Transient
+	@Column(name="odc_cant_res")
 	private int cantidadReservada;
 
 	public OrdenDeCompraEntity() {
@@ -73,12 +73,12 @@ public class OrdenDeCompraEntity {
 		this.estado = estado;
 	}
 
-	public Date getFechaEntrega() {
-		return fechaEntrega;
+	public Date getFechaRecepcion() {
+		return fechaRecepcion;
 	}
 
-	public void setFechaEntrega(Date fechaEntrega) {
-		this.fechaEntrega = fechaEntrega;
+	public void setFechaRecepcion(Date fechaRecepcion) {
+		this.fechaRecepcion = fechaRecepcion;
 	}
 
 	public int getCantidadReservada() {
