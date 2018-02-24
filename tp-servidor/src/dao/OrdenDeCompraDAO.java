@@ -3,14 +3,9 @@ package dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entity.ArticuloEntity;
-import entity.FacturaEntity;
 import entity.OrdenDeCompraEntity;
-import excepcion.ArticuloException;
-import excepcion.FacturaException;
 import excepcion.OrdenDeCompraException;
 import hibernate.HibernateUtil;
-import negocio.Articulo;
 import negocio.OrdenDeCompra;
 
 public class OrdenDeCompraDAO {

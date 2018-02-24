@@ -7,9 +7,7 @@ import java.util.List;
 
 import dao.ClienteDAO;
 import dao.PedidoDAO;
-import dto.ClienteDTO;
 import dto.PedidoDTO;
-import entity.PedidoEntity;
 import enumerator.EstadoPedido;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;

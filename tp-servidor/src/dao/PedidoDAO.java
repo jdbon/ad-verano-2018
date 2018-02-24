@@ -97,13 +97,13 @@ public class PedidoDAO {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 		@SuppressWarnings("unchecked")
-		List<PedidoEntity> auxPedidos = (List<PedidoEntity>) s.createQuery("From PedidoEntity p where p.EstadoPedido = ?").setString(0, EstadoPedido.Pendiente.toString());
+		List<PedidoEntity> auxPedidos = s.createQuery("From PedidoEntity pe where pe.estado = ? order by pe.fechaCreacion asc").setString(0, EstadoPedido.Pendiente.name()).list();
 		s.close();
 		if(auxPedidos == null) {
 				throw new PedidoException("No existen Pedidos Pendientes");
 		}
-		for (PedidoEntity p : auxPedidos) {
-			pedidos_pen.add(this.toNegocio(p));
+		for (PedidoEntity pe : auxPedidos) {
+			pedidos_pen.add(this.toNegocio(pe));
 		}
 		
 		return pedidos_pen;

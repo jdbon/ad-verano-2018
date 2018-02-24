@@ -6,7 +6,8 @@ public abstract class Movimiento {
 	
 	protected Integer nroMovimiento;
 	protected Integer cantidad;
-	protected Articulo articulo;
+	
+	//protected Articulo articulo; --> el movimiento no conoce al articulo
 	protected TipoMovimiento tipo;
 	
 	public Movimiento() {
@@ -25,12 +26,12 @@ public abstract class Movimiento {
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
-	public Articulo getArticulo() {
-		return articulo;
-	}
-	public void setArticulo(Articulo articulo) {
-		this.articulo = articulo;
-	}
+//	public Articulo getArticulo() {
+//		return articulo;
+//	}
+//	public void setArticulo(Articulo articulo) {
+//		this.articulo = articulo;
+//	}
 	public TipoMovimiento getTipo() {
 		return tipo;
 	}

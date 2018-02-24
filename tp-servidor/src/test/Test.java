@@ -60,10 +60,21 @@ public class Test {
 			
 			try {
 				List<PedidoDTO> pendientes = ControladorDeDespacho.getInstancia().buscarPedidosPendiente();
-				System.out.println("Pedidos Pendientes:");
-				System.out.println("Cliente: "+ pendientes.get(0).getNombreCliente());
-				System.out.println("Cliente: "+ pendientes.get(0).getEstado());
 				
+				System.out.println("");
+				System.out.println("******************* PEDIDOS PENDIENTES ******************");
+		
+				System.out.println("Cliente: "+ pendientes.get(0).getNombreCliente());
+				System.out.println("Estado: "+ pendientes.get(0).getEstado());
+				System.out.println("Fecha de Creacion: "+ pendientes.get(0).getFechaCreacion());
+				System.out.println("");
+				System.out.println("********************************************************");
+				
+				System.out.println("Cliente: "+ pendientes.get(1).getNombreCliente());
+				System.out.println("Estado: "+ pendientes.get(1).getEstado());
+				System.out.println("Fecha de Creacion: "+ pendientes.get(1).getFechaCreacion());
+				
+							
 			
 			} catch (PedidoException e) {
 				e.printStackTrace();
