@@ -33,7 +33,7 @@ public class OrdenDeCompraEntity {
 	@Column(name="odc_fec_ent")
 	private Date fechaEntrega;
 	
-	@Transient
+	@Column(name="odc_cant_res")
 	private int cantidadReservada;
 
 	public OrdenDeCompraEntity() {
