@@ -22,7 +22,7 @@ public class ControladorDeDespacho {
 		return instancia;
 	}
 
-	//devuelve todos los pedidos pendientes de la base de datos
+	//devuelve todos los pedidos PENDIENTES de la base de datos
 	public List<PedidoDTO> buscarPedidosPendiente() throws PedidoException{
 		
 		List<Pedido> pedidos_pen = PedidoDAO.getInstancia().getPendientes();
@@ -34,7 +34,7 @@ public class ControladorDeDespacho {
 		return pedidos_pen_DTO;
 	}
 	
-	//devuelve todos los pedidos completados de la base de datos
+	//devuelve todos los pedidos COMPLETADOS de la base de datos
 		public List<PedidoDTO> buscarPedidosCompletados() throws PedidoException{
 			
 			List<Pedido> pedidos_pen = PedidoDAO.getInstancia().getCompletados();
@@ -46,7 +46,7 @@ public class ControladorDeDespacho {
 			return pedidos_pen_DTO;
 		}
 
-		//devuelve todos los pedidos completados de la base de datos
+		//devuelve todos los pedidos DESPACHADOS de la base de datos
 		public List<PedidoDTO> buscarPedidosDespechados() throws PedidoException{
 					
 		List<Pedido> pedidos_pen = PedidoDAO.getInstancia().getDespachados();
