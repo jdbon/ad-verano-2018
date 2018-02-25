@@ -17,7 +17,7 @@ public class ClienteDTO implements Serializable {
 	private String nombre;
 	private float limiteCredito;
 	private float saldoActual;
-	private String tipoFactura;	
+	private TipoFactura tipoFactura;	
 
 	public ClienteDTO() {
 	
