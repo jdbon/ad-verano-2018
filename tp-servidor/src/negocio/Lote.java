@@ -1,4 +1,3 @@
-
 package negocio;
 
 import java.util.Date;
