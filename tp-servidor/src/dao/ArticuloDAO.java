@@ -15,7 +15,7 @@ import negocio.Movimiento;
 
 public class ArticuloDAO {
 
-private static ArticuloDAO instancia;
+	private static ArticuloDAO instancia;
 	
 	private ArticuloDAO(){
 		
