@@ -10,7 +10,7 @@ CREATE TABLE [dbo].[articulos](
 	[art_desc] [nvarchar](50) NOT NULL,
 	[art_tamanio] [int] NOT NULL,
 	[art_precio_vta] [float] NOT NULL,
-	[art_cant_res] [int] NOT NULL,
+	[art_cant_res] [int] NULL,
 	[art_cant_x_comprar] [int] NOT NULL,
 	[art_unidad] [nvarchar](50) NOT NULL,
 	[art_presentacion] [nvarchar](50) NOT NULL,
