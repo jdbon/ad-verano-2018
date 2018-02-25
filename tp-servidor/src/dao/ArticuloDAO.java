@@ -1,3 +1,4 @@
+
 package dao;
 
 import org.hibernate.Session;
@@ -102,3 +103,4 @@ private static ArticuloDAO instancia;
 
 
 }
+

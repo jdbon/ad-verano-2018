@@ -70,8 +70,6 @@ public class ClienteDTO implements Serializable {
 	public void setTipoFactura(TipoFactura tipoFactura) {
 		this.tipoFactura = tipoFactura;
 	}
-
-	
 	
 	
 

@@ -36,6 +36,9 @@ public class OrdenDeCompraEntity {
 	
 	@Column(name="odc_cant_res")
 	private int cantidadReservada;
+	
+	@Column(name="odc_fec_creacion")
+	private Date fechaCreacion;
 
 	public OrdenDeCompraEntity() {
 		
