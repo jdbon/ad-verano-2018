@@ -61,7 +61,7 @@ public class ArticuloEntity {
 	
 	@OneToMany
 	@JoinColumn(name="art_id")
-	private List<OrdenDeCompra> ordenes;
+	private List<OrdenDeCompraEntity> ordenes;
 	
 	
 	

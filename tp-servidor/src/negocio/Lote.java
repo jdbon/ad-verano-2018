@@ -48,7 +48,7 @@ public class Lote {
 		return loteEntity;
 	}
 	
-public LoteDTO toDTO() {
+	public LoteDTO toDTO() {
 		
 		LoteDTO LDTO = new LoteDTO();
 		
@@ -57,7 +57,11 @@ public LoteDTO toDTO() {
 		LDTO.setVencimiento(this.vencimiento);
 				
 			return LDTO;
-		}
+	}
+	
+	public String toString(){
+		return "Nro lote: " + this.getNroLote() + " - Venc: " + this.getVencimiento();
+	}
 	
 
 }
