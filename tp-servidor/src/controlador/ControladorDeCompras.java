@@ -2,15 +2,11 @@ package controlador;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import dao.OrdenDeCompraDAO;
-import dao.PedidoDAO;
 import dto.OrdenDeCompraDTO;
-import dto.PedidoDTO;
 import excepcion.OrdenDeCompraException;
-import excepcion.PedidoException;
 import negocio.OrdenDeCompra;
-import negocio.Pedido;
+
 
 public class ControladorDeCompras {
 
@@ -27,10 +23,10 @@ public class ControladorDeCompras {
 	
 public List<OrdenDeCompraDTO> buscarOCPendientes() throws OrdenDeCompraException{
 		
-		List<OrdenDeCompra> OC_pen = OrdenDeCompraDAO.getInstancia().getPendientes();
+		List<OrdenDeCompra> OC_pen = OrdenDeCompraDAO.getInstancia().getPendientes();  //pendiente
 		List<OrdenDeCompraDTO> OC_pen_DTO = new ArrayList<OrdenDeCompraDTO>();
 		for (OrdenDeCompra OC : OC_pen) {
-			OC_pen_DTO.add(OC.toDTO());   
+			OC_pen_DTO.add(OC.toDTO());   //pendiente
 		}
 		
 		return OC_pen_DTO;
