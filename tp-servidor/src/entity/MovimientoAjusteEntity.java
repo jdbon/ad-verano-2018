@@ -2,7 +2,9 @@ package entity;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
 @DiscriminatorValue("MovimientoAjuste")
 public class MovimientoAjusteEntity extends MovimientoEntity {
 	@Column(name="mov_encargado")
