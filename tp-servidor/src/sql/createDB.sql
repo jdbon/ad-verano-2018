@@ -123,6 +123,7 @@ CREATE TABLE [dbo].[lotes](
 	[lot_nro] [nvarchar](50) NOT NULL,
 	[lot_art] [int] NOT NULL,
 	[lot_vto] [datetime] NOT NULL,
+ CONSTRAINT [UC_lotes] UNIQUE (lot_nro, lot_art),	
  CONSTRAINT [PK_lotes] PRIMARY KEY CLUSTERED 
 (
 	[lot_id] ASC
