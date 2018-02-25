@@ -45,14 +45,14 @@ public void recibirOCPendiente (OrdenDeCompraDTO odc, LoteDTO lote) throws Orden
 	
 		OrdenDeCompra OC;
 		OC = OrdenDeCompraDAO.getInstancia().findById(odc.getNroOrdenDeCompra());
-		if (OC.getEstado().equals("Cumplida")){
+		if (OC.getEstado() == EstadoOC.Cumplida){
 			
 			throw new OrdenDeCompraException("La OC ya fue recibida anteriormente.");
 		
 		}else{
 			
 			OC.setEstado(EstadoOC.Cumplida);
-			OrdenDeCompraDAO.getInstancia().update(OC);  //NO ESTA IMPLEMENTADO EN DAO EL UPDATE
+			OrdenDeCompraDAO.getInstancia().update(OC); 
 		}
 	}
 }
