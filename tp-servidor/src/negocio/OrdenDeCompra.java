@@ -3,6 +3,8 @@ package negocio;
 import java.util.Date;
 
 import dao.OrdenDeCompraDAO;
+import dto.OrdenDeCompraDTO;
+import dto.PedidoDTO;
 import enumerator.EstadoOC;
 import excepcion.OrdenDeCompraException;
 
@@ -14,7 +16,16 @@ public class OrdenDeCompra {
 	private EstadoOC estado;
 	private Date fechaRecepcion;
 	private int cantidadReservada;
+	private Date fechaCreacion;
 	
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
 	public OrdenDeCompra() {
 		super();
 		
@@ -71,8 +82,21 @@ public class OrdenDeCompra {
 	public void setCantidadReservada(int cantidadReservada) {
 		this.cantidadReservada = cantidadReservada;
 	}
-	
-	
-	
 
-}
+	public OrdenDeCompraDTO toDTO() {
+		
+		OrdenDeCompraDTO OCDTO = new OrdenDeCompraDTO();
+		
+		OCDTO.setCantidadReservada(this.cantidadReservada);
+		OCDTO.setCantidadXcomprar(this.cantidadXcomprar);
+		OCDTO.setEstado(this.estado);
+		OCDTO.setFechaRecepcion(this.fechaRecepcion);
+		OCDTO.setNroOrdenDeCompra(this.nroOrdenDeCompra);
+		OCDTO.setFechaCreacion(this.fechaCreacion);
+		OCDTO.setArticuloDTO(this.articulo.toDTO());
+		
+		
+			return OCDTO;
+		}
+		
+	}
