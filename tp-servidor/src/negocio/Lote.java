@@ -12,6 +12,7 @@ public class Lote {
 	private String nroLote;
 	private Date vencimiento;
 	
+	
 	public Lote() {		
 	}
 	

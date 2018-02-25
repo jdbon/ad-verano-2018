@@ -21,7 +21,7 @@ public class OrdenDeCompraEntity {
 	@Column(name="odc_id")
 	private Integer nroOrdenDeCompra;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="odc_art")
 	private ArticuloEntity articulo;
 	
