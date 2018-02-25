@@ -220,7 +220,7 @@ public ArticuloDTO toDTO() {
 		
 		
 		List<MovimientoDTO> auxMOVDTO = new ArrayList<MovimientoDTO>();
-		for (Movimiento movimiento : movimientos) {
+		for (Movimiento movimiento : movimientos) { 
 			auxMOVDTO.add(movimiento.toDTO()); 
 		}
 	

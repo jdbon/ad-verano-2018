@@ -41,7 +41,7 @@ public abstract class Movimiento {
 	}
 
 	public MovimientoDTO toDTO() {
-		//FALTA IMPLEMENTAR
+		//FALTA IMPLEMENTAR 
 		return null;
 	}
 	
