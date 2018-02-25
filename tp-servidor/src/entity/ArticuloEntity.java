@@ -9,9 +9,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import enumerator.Presentacion;
+import negocio.Lote;
+import negocio.OrdenDeCompra;
 
 
 @Entity
@@ -41,6 +45,10 @@ public class ArticuloEntity {
 	
 	@Column(name="art_x_comprar")
 	private Integer cantidadOrdenDeCompra;
+	
+	@OneToMany
+	@JoinColumn(name="lot_art")
+	private List<Lote> lotes;
 
 //	hay una doble navegacion---> asi que va un uno a muchos bidireccional
 //	private List<LoteEntity> lotes;
@@ -50,6 +58,10 @@ public class ArticuloEntity {
 //	@OneToMany
 //	@JoinColumn(name="art_id")
 //	private List<MovimientoEntity> movimientos;
+	
+	@OneToMany
+	@JoinColumn(name="art_id")
+	private List<OrdenDeCompra> ordenes;
 	
 	
 	
