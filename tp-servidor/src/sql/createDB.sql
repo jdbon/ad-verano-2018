@@ -222,6 +222,7 @@ CREATE TABLE [dbo].[ubicaciones](
 	[ubi_blo] [nvarchar](50) NOT NULL,
 	[ubi_est] [nvarchar](50) NOT NULL,
 	[ubi_pos] [nvarchar](50) NOT NULL,
+	[ubi_lot] [int] NOT NULL,
  CONSTRAINT [PK_ubicaciones] PRIMARY KEY CLUSTERED 
 (
 	[ubi_id] ASC
@@ -301,3 +302,9 @@ REFERENCES [dbo].[articulos] ([art_id])
 /*se agrega la FK de remitos contra clientes*/
 ALTER TABLE [dbo].[remitos]  WITH CHECK ADD  CONSTRAINT [FK_remitos_clientes] FOREIGN KEY([rem_cli])
 REFERENCES [dbo].[clientes] ([cli_id])
+/*se agrega la FK de ubicaciones contra lotes*/
+ALTER TABLE [dbo].[ubicaciones]  WITH CHECK ADD  CONSTRAINT [FK_ubicaciones_lotes] FOREIGN KEY([ubi_lot])
+REFERENCES [dbo].[lotes] ([lot_id])
+
+
+
