@@ -6,11 +6,14 @@ import org.hibernate.SessionFactory;
 import entity.ArticuloEntity;
 import entity.LoteEntity;
 import entity.MovimientoEntity;
+import entity.PedidoEntity;
 import excepcion.ArticuloException;
+import excepcion.PedidoException;
 import hibernate.HibernateUtil;
 import negocio.Articulo;
 import negocio.Lote;
 import negocio.Movimiento;
+import negocio.Pedido;
 
 
 public class ArticuloDAO {
@@ -25,6 +28,22 @@ private static ArticuloDAO instancia;
 		if(instancia == null)
 			instancia = new ArticuloDAO();
 		return instancia;
+	}
+	
+	public void update(Articulo a) throws ArticuloException{
+		ArticuloEntity pe = this.toEntity(a);
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		try {
+		s.update(pe);
+		s.getTransaction().commit();
+		} catch (Exception e) {
+			s.getTransaction().rollback();
+			throw new ArticuloException("Error al actualizar el Articulo" + pe.getCodigoBarra());
+		}
+		s.close();
+		
 	}
 	
 	public ArticuloEntity toEntity(Articulo art){
@@ -76,12 +95,14 @@ private static ArticuloDAO instancia;
 		Articulo resultado;
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
-		ArticuloEntity auxCliente = (ArticuloEntity) s.createQuery("From ClienteEntity c where c.numero = ?").setInteger(0, idArticulo).uniqueResult();
+		ArticuloEntity auxArticulo = (ArticuloEntity) s.createQuery("From ArticuloEntity a where a.numero = ?").setInteger(0, idArticulo).uniqueResult();
 		s.close();
-		if(auxCliente == null) {
+		if(auxArticulo == null) {
 				throw new ArticuloException("No existe un cliente con el id " + idArticulo);
 		}
-		resultado = this.toNegocio(auxCliente);
+		resultado = this.toNegocio(auxArticulo);
 		return resultado;
 	}
+
+
 }
