@@ -1,4 +1,3 @@
-
 package negocio;
 
 import java.util.Date;
@@ -61,4 +60,3 @@ public LoteDTO toDTO() {
 	
 
 }
-

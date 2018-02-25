@@ -2,6 +2,8 @@ package dto;
 
 import java.io.Serializable;
 
+import enumerator.TipoFactura;
+
 
 public class ClienteDTO implements Serializable {
 	
@@ -15,7 +17,7 @@ public class ClienteDTO implements Serializable {
 	private String nombre;
 	private float limiteCredito;
 	private float saldoActual;
-	private String tipoFactura;	
+	private TipoFactura tipoFactura;	
 
 	public ClienteDTO() {
 	
@@ -61,13 +63,15 @@ public class ClienteDTO implements Serializable {
 		this.saldoActual = saldoActual;
 	}
 
-	public String getTipoFactura() {
+	public TipoFactura getTipoFactura() {
 		return tipoFactura;
 	}
 
-	public void setTipoFactura(String tipoFactura) {
+	public void setTipoFactura(TipoFactura tipoFactura) {
 		this.tipoFactura = tipoFactura;
 	}
+
+	
 	
 	
 

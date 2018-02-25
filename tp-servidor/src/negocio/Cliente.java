@@ -1,6 +1,7 @@
 package negocio;
 
 import dao.ClienteDAO;
+import dto.ClienteDTO;
 import enumerator.TipoFactura;
 import excepcion.ClienteException;
 
@@ -74,7 +75,6 @@ public class Cliente {
 	}
 	
 	
-<<<<<<< HEAD
 	public ClienteDTO toDTO() {
 		
 		ClienteDTO cliDTO = new ClienteDTO();
@@ -90,8 +90,6 @@ public class Cliente {
 		
 	}
 	
-=======
->>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 	
 	
 
