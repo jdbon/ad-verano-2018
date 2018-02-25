@@ -1,10 +1,16 @@
 package dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import enumerator.EstadoOC;
 
-public class OrdenDeCompraDTO {
+public class OrdenDeCompraDTO implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1796594785762271457L;
 	
 	private Integer nroOrdenDeCompra;
 	private ArticuloDTO articuloDTO;
