@@ -68,7 +68,7 @@ VALUES
 ('MARTINEZ','LETICIA', 5000.0, 4500.0, 'A')
 GO
 INSERT INTO ubicaciones 
-(ubi_cod, ubi_art, ubi_lot, ubi_cal, ubi_blo, ubi_est, ubi_pos)
+(ubi_cod, ubi_art, ubi_lot, ubi_tca, ubi_blo, ubi_est, ubi_pos)
 VALUES
  ('A010101',1,'11222','A','01','01','01')
 ,('A010102',1,'22033','A','01','01','02')
