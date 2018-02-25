@@ -52,7 +52,11 @@ public void recibirOCPendiente (OrdenDeCompraDTO odc, LoteDTO lote) throws Orden
 		}else{
 			
 			OC.setEstado(EstadoOC.Cumplida);
-			OrdenDeCompraDAO.getInstancia().update(OC); 
+			OrdenDeCompraDAO.getInstancia().update(OC);
 		}
+		
+		ControladorDeDeposito.getInstancia();  //FALTA COMPLETAR
+		
+		
 	}
 }
