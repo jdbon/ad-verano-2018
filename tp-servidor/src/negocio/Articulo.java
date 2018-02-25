@@ -4,6 +4,9 @@ import java.util.*;
 
 import dao.ArticuloDAO;
 import enumerator.EstadoOC;
+import dto.ArticuloDTO;
+import dto.LoteDTO;
+import dto.OrdenDeCompraDTO;
 import enumerator.Presentacion;
 import enumerator.TipoMovimiento;
 import excepcion.ArticuloException;
@@ -193,5 +196,32 @@ public class Articulo {
 		this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;
 		return resultado;
 	}
+
+public ArticuloDTO toDTO() {
+		
+		ArticuloDTO ArDTO = new ArticuloDTO();
+		
+		ArDTO.setCantidadOrdenDeCompra(this.cantidadOrdenDeCompra);
+		ArDTO.setCantidadReservada(this.cantidadReservada);
+		ArDTO.setCodigoBarra(this.codigoBarra);
+		ArDTO.setDescripcion(this.descripcion);
+		ArDTO.setPrecioVenta(this.precioVenta);
+		ArDTO.setPresentacion(this.presentacion);
+		ArDTO.setTamaño(this.tamaño);
+		ArDTO.setUnidad(this.unidad);
+
+			List<LoteDTO> auxLOTEDTO = new ArrayList<LoteDTO>();
+			for (Lote lote : this.lotes) {
+				auxLOTEDTO.add(lote.toDTO());
+			}
+		
+		ArDTO.setLotesDTO(auxLOTEDTO);
+		
+		//falta transformar en DTO movimientos
+		
+		return ArDTO;
+			
+		
+		}
 
 }

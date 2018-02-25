@@ -1,6 +1,7 @@
 package negocio;
 
 import dao.ClienteDAO;
+import dto.ClienteDTO;
 import enumerator.TipoFactura;
 import excepcion.ClienteException;
 
@@ -73,6 +74,21 @@ public class Cliente {
 		
 	}
 	
+	
+	public ClienteDTO toDTO() {
+		
+		ClienteDTO cliDTO = new ClienteDTO();
+		
+		cliDTO.setApellido(this.apellido);
+		cliDTO.setIdCliente(this.idCliente);
+		cliDTO.setLimiteCredito(this.limiteCredito);
+		cliDTO.setNombre(this.nombre);
+		cliDTO.setSaldoActual(this.saldoActual);
+		cliDTO.setTipoFactura(this.tipoFactura);
+				
+		return cliDTO;
+		
+	}
 	
 	
 	

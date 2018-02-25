@@ -16,7 +16,7 @@ public class PedidoDTO implements Serializable {
 
 	private int idPedido;
 	private List<ItemPedidoDTO> items;
-	private ClienteDTO cliente;
+	private ClienteDTO clienteDTO;
 	private String nombreCliente;
 	private String direccion;
 	private EstadoPedido estado;
@@ -123,6 +123,16 @@ public class PedidoDTO implements Serializable {
 
 	public void setMotivoRechazo(String motivoRechazo) {
 		this.motivoRechazo = motivoRechazo;
+	}
+
+
+	public ClienteDTO getClienteDTO() {
+		return clienteDTO;
+	}
+
+
+	public void setClienteDTO(ClienteDTO clienteDTO) {
+		this.clienteDTO = clienteDTO;
 	}
 	
 }
