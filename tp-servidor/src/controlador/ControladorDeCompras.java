@@ -23,10 +23,10 @@ public class ControladorDeCompras {
 	
 public List<OrdenDeCompraDTO> buscarOCPendientes() throws OrdenDeCompraException{
 		
-		List<OrdenDeCompra> OC_pen = OrdenDeCompraDAO.getInstancia().getPendientes();  //pendiente
+		List<OrdenDeCompra> OC_pen = OrdenDeCompraDAO.getInstancia().getPendientes();  
 		List<OrdenDeCompraDTO> OC_pen_DTO = new ArrayList<OrdenDeCompraDTO>();
 		for (OrdenDeCompra OC : OC_pen) {
-			OC_pen_DTO.add(OC.toDTO());   //pendiente
+			OC_pen_DTO.add(OC.toDTO());   //Completo, solo falta agregar ArticuloDTO
 		}
 		
 		return OC_pen_DTO;

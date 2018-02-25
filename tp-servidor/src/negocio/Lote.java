@@ -2,6 +2,8 @@ package negocio;
 
 import java.util.Date;
 
+import dto.LoteDTO;
+import dto.OrdenDeCompraDTO;
 import entity.LoteEntity;
 
 public class Lote {
@@ -44,6 +46,17 @@ public class Lote {
 		
 		return loteEntity;
 	}
+	
+public LoteDTO toDTO() {
+		
+		LoteDTO LDTO = new LoteDTO();
+		
+		LDTO.setIdLote(this.idLote);
+		LDTO.setNroLote(this.nroLote);
+		LDTO.setVencimiento(this.vencimiento);
+				
+			return LDTO;
+		}
 	
 
 }
