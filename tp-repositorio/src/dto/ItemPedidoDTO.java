@@ -10,19 +10,19 @@ public class ItemPedidoDTO implements Serializable{
 	private static final long serialVersionUID = -6124688305587653596L;
 	
 
-	private Integer articulo;
-	private Integer cantidadSolicitada;
-	private Integer cantidadReservada;
+	private ArticuloDTO articuloDTO;
+	private int cantidadSolicitada;
+	private int cantidadReservada;
 	private Float subTotal;
 	
 	public ItemPedidoDTO() {
 		super();
 	}
-	public Integer getArticulo() {
-		return articulo;
+	public ArticuloDTO getArticulo() {
+		return this.articuloDTO;
 	}
-	public void setArticulo(Integer articulo) {
-		this.articulo = articulo;
+	public void setArticulo(ArticuloDTO articulo) {
+		this.articuloDTO = articulo;
 	}
 	public Integer getCantidadSolicitada() {
 		return cantidadSolicitada;

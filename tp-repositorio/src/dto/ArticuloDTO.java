@@ -19,8 +19,8 @@ public class ArticuloDTO implements Serializable{
 	private int unidad;
 	private Float precioVenta;
 	private int cantidadOrdenDeCompra;
-	private List<LoteDTO> lotesDTO;
 	private int cantidadReservada;
+	private List<LoteDTO> lotesDTO;
 	private List<MovimientoDTO> movimientosDTO;
 	
 	public ArticuloDTO() {}
