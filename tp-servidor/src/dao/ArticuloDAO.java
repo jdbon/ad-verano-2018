@@ -6,11 +6,16 @@ import org.hibernate.SessionFactory;
 
 import entity.ArticuloEntity;
 import entity.LoteEntity;
+import entity.MovimientoABEntity;
+import entity.MovimientoAjusteEntity;
+import entity.MovimientoEntity;
 import excepcion.ArticuloException;
 import hibernate.HibernateUtil;
 import negocio.Articulo;
 import negocio.Lote;
 import negocio.Movimiento;
+import negocio.MovimientoAB;
+import negocio.MovimientoAjuste;
 
 
 public class ArticuloDAO {
@@ -50,12 +55,29 @@ private static ArticuloDAO instancia;
 		artE.setCodigoBarra(art.getCodigoBarra());
 		artE.setDescripcion(art.getDescripcion());		
 		for(Lote lote: art.getLotes()) {
-			LoteEntity le = lote.toEntity(lote);
+			LoteEntity le = LoteDAO.getInstancia().toEntity(lote);
 			artE.getLotes().add(le);
 		}
-		for(Movimiento movimiento: art.getMovimientos()) {
-/*			MovimientoEntity movEnt = movimiento.toEntity(movimiento); //TODO metodo toEntity
-			artE.getMovimientos().add(movEnt);*/
+		for(Movimiento m: art.getMovimientos()) {
+			if(m instanceof MovimientoAB){
+				MovimientoABEntity mabe = new MovimientoABEntity();
+				mabe.setCantidad(m.getCantidad());
+				mabe.setNroMovimiento(m.getNroMovimiento());
+				mabe.setTipo(m.getTipo());
+				
+				artE.getMovimientos().add(mabe);
+			} 
+			else if (m instanceof MovimientoAjuste){
+				MovimientoAjusteEntity mae = new MovimientoAjusteEntity();
+				mae.setAutorizadoPor(((MovimientoAjuste) m).getAutorizadoPor());
+				mae.setCantidad(m.getCantidad());
+				mae.setDestinoArticulos(((MovimientoAjuste) m).getDestinoArticulos());
+				mae.setEncargado(((MovimientoAjuste) m).getEncargado());
+				mae.setNroMovimiento(m.getNroMovimiento());
+				mae.setTipo(m.getTipo());
+				
+				artE.getMovimientos().add(mae);
+			}
 		}
 		artE.setPresentacion(art.getPresentacion());
 		artE.setPrecioVenta(art.getPrecioVenta());
@@ -70,17 +92,36 @@ private static ArticuloDAO instancia;
 		art.setCantidadReservada(artE.getCantidadReservada());
 		art.setCodigoBarra(artE.getCodigoBarra());
 		art.setDescripcion(artE.getDescripcion());
-//		for(LoteEntity loteEnt: artE.getLotes()) {
-//			Lote lote = new Lote();
-//			lote.setNroLote(loteEnt.getNroLote());
-//			lote.setVencimiento(loteEnt.getVencimiento());
-//			art.getLotes().add(lote);
-//		}
-//		for(MovimientoEntity movEnt: artE.getMovimientos()) {
-///*			Movimiento movimiento = new Movimiento();
-//			movimiento.setArticulo(movEnt.getArticulo());
-//			art.getMovimientos().add(movimiento);*/
-//		}
+		for(LoteEntity loteEnt: artE.getLotes()) {
+			Lote lote = new Lote();
+			lote.setNroLote(loteEnt.getNroLote());
+			lote.setVencimiento(loteEnt.getVencimiento());
+			art.getLotes().add(lote);
+		}
+		
+		for(MovimientoEntity movEnt: artE.getMovimientos()) {
+			if(movEnt instanceof MovimientoABEntity){
+				MovimientoAB mab = new MovimientoAB();
+				mab.setCantidad(movEnt.getCantidad());
+				mab.setNroMovimiento(movEnt.getNroMovimiento());
+				mab.setTipo(movEnt.getTipo());
+				
+				art.getMovimientos().add(mab);
+			}
+			else if (movEnt instanceof MovimientoAjusteEntity){
+				MovimientoAjuste ma = new MovimientoAjuste();
+				ma.setAutorizadoPor(((MovimientoAjusteEntity) movEnt).getAutorizadoPor());
+				ma.setCantidad(movEnt.getCantidad());
+				ma.setDestinoArticulos(((MovimientoAjusteEntity) movEnt).getDestinoArticulos());
+				ma.setEncargado(((MovimientoAjusteEntity) movEnt).getEncargado());
+				ma.setTipo(movEnt.getTipo());
+				ma.setNroMovimiento(movEnt.getNroMovimiento());
+				
+				art.getMovimientos().add(ma);
+				
+			}
+			
+		}
 		art.setPrecioVenta(artE.getPrecioVenta());
 		art.setPresentacion(artE.getPresentacion());
 		art.setTamaño(artE.getTamaño());

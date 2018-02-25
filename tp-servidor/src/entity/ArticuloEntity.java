@@ -140,13 +140,13 @@ public class ArticuloEntity {
 		this.cantidadReservada = cantidadReservada;
 	}
 
-//	public List<MovimientoEntity> getMovimientos() {
-//		return movimientos;
-//	}
-//
-//	public void setMovimientos(List<MovimientoEntity> movimientos) {
-//		this.movimientos = movimientos;
-//	}
+	public List<MovimientoEntity> getMovimientos() {
+		return movimientos;
+	}
+
+	public void setMovimientos(List<MovimientoEntity> movimientos) {
+		this.movimientos = movimientos;
+	}
 	
 	
 }
