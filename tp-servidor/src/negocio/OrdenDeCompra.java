@@ -3,6 +3,7 @@ package negocio;
 import java.util.Date;
 
 import dao.OrdenDeCompraDAO;
+import dto.OrdenDeCompraDTO;
 import enumerator.EstadoOC;
 import excepcion.OrdenDeCompraException;
 
@@ -70,6 +71,11 @@ public class OrdenDeCompra {
 
 	public void setCantidadReservada(int cantidadReservada) {
 		this.cantidadReservada = cantidadReservada;
+	}
+
+	public OrdenDeCompraDTO toDTO() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

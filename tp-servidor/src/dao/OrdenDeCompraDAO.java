@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -75,6 +77,11 @@ public class OrdenDeCompraDAO {
 		}
 		oc = this.toNegocio(auxOrdenDeCompra);
 		return oc;
+	}
+
+	public List<OrdenDeCompra> getPendientes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
