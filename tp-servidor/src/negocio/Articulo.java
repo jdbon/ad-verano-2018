@@ -6,6 +6,7 @@ import dao.ArticuloDAO;
 import enumerator.EstadoOC;
 import dto.ArticuloDTO;
 import dto.LoteDTO;
+import dto.MovimientoDTO;
 import dto.OrdenDeCompraDTO;
 import enumerator.Presentacion;
 import enumerator.TipoMovimiento;
@@ -210,14 +211,20 @@ public ArticuloDTO toDTO() {
 		ArDTO.setTamaño(this.tamaño);
 		ArDTO.setUnidad(this.unidad);
 
-			List<LoteDTO> auxLOTEDTO = new ArrayList<LoteDTO>();
-			for (Lote lote : this.lotes) {
+		List<LoteDTO> auxLOTEDTO = new ArrayList<LoteDTO>();
+			for (Lote lote : lotes) {
 				auxLOTEDTO.add(lote.toDTO());
 			}
 		
 		ArDTO.setLotesDTO(auxLOTEDTO);
 		
-		//falta transformar en DTO movimientos
+		
+		List<MovimientoDTO> auxMOVDTO = new ArrayList<MovimientoDTO>();
+		for (Movimiento movimiento : movimientos) {
+			auxMOVDTO.add(movimiento.toDTO()); 
+		}
+	
+	ArDTO.setMovimientosDTO(auxMOVDTO);
 		
 		return ArDTO;
 			

@@ -1,5 +1,6 @@
 package negocio;
 
+import dto.MovimientoDTO;
 import enumerator.TipoMovimiento;
 
 public abstract class Movimiento {
@@ -37,6 +38,11 @@ public abstract class Movimiento {
 	}
 	public void setTipo(TipoMovimiento tipo) {
 		this.tipo = tipo;
+	}
+
+	public MovimientoDTO toDTO() {
+		//FALTA IMPLEMENTAR
+		return null;
 	}
 	
 	
