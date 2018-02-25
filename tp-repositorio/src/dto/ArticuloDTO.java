@@ -1,11 +1,17 @@
 package dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 import enumerator.Presentacion;
 
-public class ArticuloDTO {
+public class ArticuloDTO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2983335243023317458L;
+	
 	private int codigoBarra;
 	private String descripcion;
 	private Presentacion presentacion;
