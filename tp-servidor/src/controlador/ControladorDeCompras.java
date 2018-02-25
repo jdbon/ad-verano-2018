@@ -21,12 +21,13 @@ public class ControladorDeCompras {
 	}
 	
 	
+	//Devuelve todas las OC que estan en estado PENDIENTE
 public List<OrdenDeCompraDTO> buscarOCPendientes() throws OrdenDeCompraException{
 		
-		List<OrdenDeCompra> OC_pen = OrdenDeCompraDAO.getInstancia().getPendientes();  
+		List<OrdenDeCompra> OC_pen = OrdenDeCompraDAO.getInstancia().getPendientes(); 			
 		List<OrdenDeCompraDTO> OC_pen_DTO = new ArrayList<OrdenDeCompraDTO>();
 		for (OrdenDeCompra OC : OC_pen) {
-			OC_pen_DTO.add(OC.toDTO());   //Completo, solo falta agregar ArticuloDTO
+			OC_pen_DTO.add(OC.toDTO());  
 		}
 		
 		return OC_pen_DTO;
