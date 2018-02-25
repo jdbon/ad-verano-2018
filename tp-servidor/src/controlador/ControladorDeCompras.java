@@ -45,9 +45,9 @@ public void recibirOCPendiente (OrdenDeCompraDTO odc, LoteDTO lote) throws Orden
 	
 		OrdenDeCompra OC;
 		OC = OrdenDeCompraDAO.getInstancia().findById(odc.getNroOrdenDeCompra());
-		if (OC == null || OC.getEstado().equals("Cumplida")){
+		if (OC.getEstado().equals("Cumplida")){
 			
-			throw new OrdenDeCompraException("No existe la OC o bien ya fue Recibida");
+			throw new OrdenDeCompraException("La OC ya fue recibida anteriormente.");
 		
 		}else{
 			

@@ -103,4 +103,9 @@ public class OrdenDeCompraDAO {
 		return OC_pen;
 	}
 
+	public void update(OrdenDeCompra oC) {
+		
+		
+	}
+
 }
