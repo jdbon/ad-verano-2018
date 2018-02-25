@@ -7,11 +7,11 @@ import excepcion.ArticuloException;
 public class ItemPedido {
 	
 	private Articulo articulo;
-	private Integer cantidadSolicitada;
-	private Integer cantidadReservada;
+	private int cantidadSolicitada;
+	private int cantidadReservada;
 	private float subTotal; 
 	
-	public ItemPedido(Integer art, int cant) throws ArticuloException {
+	public ItemPedido(int art, int cant) throws ArticuloException {
 		Articulo articulo = ArticuloDAO.getInstancia().findByID(art);
 		this.articulo = articulo;
 		this.cantidadSolicitada = cant;
@@ -28,16 +28,16 @@ public class ItemPedido {
 	public void setArticulo(Articulo articulo) {
 		this.articulo = articulo;
 	}
-	public Integer getCantidadSolicitada() {
+	public int getCantidadSolicitada() {
 		return cantidadSolicitada;
 	}
-	public void setCantidadSolicitada(Integer cantidadSolicitada) {
+	public void setCantidadSolicitada(int cantidadSolicitada) {
 		this.cantidadSolicitada = cantidadSolicitada;
 	}
-	public Integer getCantidadReservada() {
+	public int getCantidadReservada() {
 		return cantidadReservada;
 	}
-	public void setCantidadReservada(Integer cantidadReservada) {
+	public void setCantidadReservada(int cantidadReservada) {
 		this.cantidadReservada = cantidadReservada;
 	}
 	public float getSubTotal() {
@@ -45,6 +45,12 @@ public class ItemPedido {
 	}
 	public void setSubTotal(float subTotal) {
 		this.subTotal = subTotal;
+	}
+
+	public boolean verificarStock() {
+		
+		return false; 
+				//this.articulo.calcularStock(this.cantidadSolicitada));
 	}
 	
 	

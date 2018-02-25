@@ -60,6 +60,19 @@ public class Pedido {
 		
 		return cliente;
 	}
+	
+	public boolean verificarStock() {
+		
+		boolean parcial;
+		parcial = true;
+		for (ItemPedido item: this.items){
+			if (parcial == true){
+				parcial = item.verificarStock();
+			}
+		}
+		
+		return parcial;
+	}
 
 	public int getIdPedido() {
 		return idPedido;
@@ -130,4 +143,5 @@ public class Pedido {
 		PedidoDAO.getInstancia().save(this);
 		
 	}
+	
 }
