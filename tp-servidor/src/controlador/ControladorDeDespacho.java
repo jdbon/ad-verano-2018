@@ -1,5 +1,6 @@
 package controlador;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,11 +60,23 @@ public class ControladorDeDespacho {
 			return pedidos_pen_DTO;
 		}
 		
+		//RECHAZA el pedido PENDIENTE
 		public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException{
 
 			Pedido pedido;
 			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
 			pedido.setEstado(EstadoPedido.Rechazado);
+			PedidoDAO.getInstancia().update(pedido);
+
+		}
+		
+		//ENTREGA al delivery pedido DESPACHADO
+		public void entregarPedidoDespachado(PedidoDTO pedidoPendiente, Date fechaEntregaEstimada) throws PedidoException{
+
+			Pedido pedido;
+			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
+			pedido.setEstado(EstadoPedido.Entregado);
+			pedido.setFechaEntregaEstimada(fechaEntregaEstimada);
 			PedidoDAO.getInstancia().update(pedido);
 
 		}
