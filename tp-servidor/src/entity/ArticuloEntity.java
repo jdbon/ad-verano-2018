@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,20 +49,18 @@ public class ArticuloEntity {
 	
 	@OneToMany
 	@JoinColumn(name="lot_art")
-	private List<Lote> lotes;
+	private List<LoteEntity> lotes;
 
-//	hay una doble navegacion---> asi que va un uno a muchos bidireccional
-//	private List<LoteEntity> lotes;
 	@Column(name="art_cant_res")
 	private Integer cantidadReservada;
 
-//	@OneToMany
-//	@JoinColumn(name="art_id")
-//	private List<MovimientoEntity> movimientos;
+    @OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="mov_art")
+	private List<MovimientoEntity> movimientos;
 	
 	@OneToMany
 	@JoinColumn(name="art_id")
-	private List<OrdenDeCompra> ordenes;
+	private List<OrdenDeCompraEntity> ordenes;
 	
 	
 	
@@ -141,13 +140,13 @@ public class ArticuloEntity {
 		this.cantidadReservada = cantidadReservada;
 	}
 
-//	public List<MovimientoEntity> getMovimientos() {
-//		return movimientos;
-//	}
-//
-//	public void setMovimientos(List<MovimientoEntity> movimientos) {
-//		this.movimientos = movimientos;
-//	}
+	public List<MovimientoEntity> getMovimientos() {
+		return movimientos;
+	}
+
+	public void setMovimientos(List<MovimientoEntity> movimientos) {
+		this.movimientos = movimientos;
+	}
 	
 	
 }

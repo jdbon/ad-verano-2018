@@ -28,6 +28,7 @@ public class HibernateUtil
              config.addAnnotatedClass(MovimientoABEntity.class);
              config.addAnnotatedClass(MovimientoAjusteEntity.class);
              config.addAnnotatedClass(MovimientoEntity.class);
+             config.addAnnotatedClass(LoteEntity.class);
 
              sessionFactory = config.buildSessionFactory();                         
         }
