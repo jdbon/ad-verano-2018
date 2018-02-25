@@ -15,11 +15,9 @@ import excepcion.PedidoException;
 
 public class Pedido {
 
-	private Integer idPedido;
+	private int idPedido;
 	private List<ItemPedido> items;
 	private Cliente cliente;
-	private String idCliente;
-	private String nombreCliente;
 	private String direccion;
 	private EstadoPedido estado;
 	private Date fechaCreacion;
@@ -46,23 +44,24 @@ public class Pedido {
 		pe.setFechaCreacion(this.fechaCreacion);
 		pe.setFechaEntregaEstimada(this.fechaEntregaEstimada);
 		pe.setMotivoRechazo(this.motivoRechazo);
-        pe.setIdCliente(this.cliente.getidCliente());
         pe.setNombreCliente(this.cliente.getNombre());
 		return pe;
 	}
 	
 	public void agregarItemPedido(int articuloSolicitado, int cantidadSolicitada) throws ArticuloException {
+		
 		ItemPedido itemPedido = new ItemPedido(articuloSolicitado, cantidadSolicitada);
 		this.items.add(itemPedido);
 	}
 
 	private Cliente buscarCLiente(int idCliente) throws ClienteException {
+		
 		Cliente cliente = ClienteDAO.getInstancia().findByID(idCliente);
 		
 		return cliente;
 	}
 
-	public Integer getIdPedido() {
+	public int getIdPedido() {
 		return idPedido;
 	}
 

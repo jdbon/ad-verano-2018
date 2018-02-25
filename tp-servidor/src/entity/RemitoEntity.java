@@ -3,13 +3,32 @@ package entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.*;
 
+import negocio.Cliente;
+
+@Entity
+@Table(name="remitos")
 public class RemitoEntity {
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="rem_id")
 	private int nroRemito;
+	
+	@Column(name="rem_fec")
 	private Date fecha;
+	
+	@OneToOne
+	@JoinColumn(name="rem_ped")
 	private PedidoEntity pedido;
+	
+	@OneToMany
+	@JoinColumn(name="rem_id")
 	private List<ItemRemitoEntity> items;
+	
+	@OneToOne
+	@JoinColumn(name="rem_cli")
+	private Cliente cliente;
 
 	public RemitoEntity() {
 		
@@ -46,6 +65,16 @@ public class RemitoEntity {
 	public void setItems(List<ItemRemitoEntity> items) {
 		this.items = items;
 	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+	
 	
 	
 

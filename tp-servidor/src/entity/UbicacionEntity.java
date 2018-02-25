@@ -26,9 +26,20 @@ public class UbicacionEntity {
 	@Column(name="ubi_cod")
 	private String codigo;
 	
+	@Column(name="ubi_cal")
+	@Enumerated(EnumType.STRING)
 	private Calle calle;
+	
+	@Column(name="ubi_blo")
+	@Enumerated(EnumType.STRING)
 	private Bloque bloque;
+	
+	@Column(name="ubi_est")
+	@Enumerated(EnumType.STRING)
 	private Estanteria estanteria;
+	
+	@Column(name="ubi_pos")
+	@Enumerated(EnumType.STRING)
 	private Posicion posicion;
 
 	public UbicacionEntity() {

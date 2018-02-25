@@ -14,9 +14,9 @@ public class PedidoDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 2071632209672397718L;
 
-	private Integer idPedido;
+	private int idPedido;
 	private List<ItemPedidoDTO> items;
-	private Integer idCliente;
+	private ClienteDTO cliente;
 	private String nombreCliente;
 	private String direccion;
 	private EstadoPedido estado;
@@ -51,18 +51,6 @@ public class PedidoDTO implements Serializable {
 
 	public void setItems(List<ItemPedidoDTO> items) {
 		this.items = items;
-	}
-
-
-
-	public Integer getIdCliente() {
-		return idCliente;
-	}
-
-
-
-	public void setIdCliente(Integer idCliente) {
-		this.idCliente = idCliente;
 	}
 
 
@@ -136,7 +124,5 @@ public class PedidoDTO implements Serializable {
 	public void setMotivoRechazo(String motivoRechazo) {
 		this.motivoRechazo = motivoRechazo;
 	}
-
-	
 	
 }
