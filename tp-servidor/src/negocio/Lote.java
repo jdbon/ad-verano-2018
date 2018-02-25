@@ -37,13 +37,16 @@ public class Lote {
 		this.vencimiento = vencimiento;
 	}
 
-	public LoteEntity toEntity(Lote lote) {
-		LoteEntity loteEntity = new LoteEntity();
-		loteEntity.setNroLote(lote.getNroLote());
-		loteEntity.setVencimiento(lote.getVencimiento());
+public LoteDTO toDTO() {
 		
-		return loteEntity;
-	}
+		LoteDTO LDTO = new LoteDTO();
+		
+		LDTO.setIdLote(this.idLote);
+		LDTO.setNroLote(this.nroLote);
+		LDTO.setVencimiento(this.vencimiento);
+				
+			return LDTO;
+		}
 	
 
 }
