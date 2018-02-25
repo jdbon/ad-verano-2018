@@ -102,4 +102,21 @@ public class OrdenDeCompraDAO {
 		return OC_pen;
 	}
 
+	public void update(OrdenDeCompra oC) throws OrdenDeCompraException {
+		
+		OrdenDeCompraEntity OCE = this.toEntity(oC);
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		try {
+		s.update(OCE);
+		s.getTransaction().commit();
+		} catch (Exception e) {
+			s.getTransaction().rollback();
+			throw new OrdenDeCompraException("Error al actualizar la OC numero: " + OCE.getNroOrdenDeCompra().toString());
+		}
+		s.close(); 
+		
+	}
+
 }
