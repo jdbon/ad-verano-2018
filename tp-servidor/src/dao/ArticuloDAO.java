@@ -5,15 +5,11 @@ import org.hibernate.SessionFactory;
 
 import entity.ArticuloEntity;
 import entity.LoteEntity;
-import entity.MovimientoEntity;
-import entity.PedidoEntity;
 import excepcion.ArticuloException;
-import excepcion.PedidoException;
 import hibernate.HibernateUtil;
 import negocio.Articulo;
 import negocio.Lote;
 import negocio.Movimiento;
-import negocio.Pedido;
 
 
 public class ArticuloDAO {
