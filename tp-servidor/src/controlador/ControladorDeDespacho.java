@@ -8,6 +8,7 @@ import dao.PedidoDAO;
 import dto.PedidoDTO;
 import enumerator.EstadoPedido;
 import excepcion.ArticuloException;
+import excepcion.ItemPedidoException;
 import excepcion.OrdenDeCompraException;
 import excepcion.PedidoException;
 import negocio.Pedido;
@@ -82,14 +83,16 @@ public class ControladorDeDespacho {
 		}
 		
 		//ACEPTA el pedido PENDIENTE
-		public void aceptarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException, ArticuloException, OrdenDeCompraException{
+		public void aceptarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException, ArticuloException, OrdenDeCompraException, ItemPedidoException{
 
 			Pedido pedido;
 			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
 			if (pedido.verificarStock() == false){
 				pedido.setEstado(EstadoPedido.Pendiente);
+				PedidoDAO.getInstancia().update(pedido);
 			}else{
 				pedido.setEstado(EstadoPedido.Completo);
+				PedidoDAO.getInstancia().update(pedido);
 			}
 		}
 }

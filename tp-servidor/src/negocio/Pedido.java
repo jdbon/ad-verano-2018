@@ -11,6 +11,7 @@ import dto.PedidoDTO;
 import enumerator.EstadoPedido;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
+import excepcion.ItemPedidoException;
 import excepcion.OrdenDeCompraException;
 import excepcion.PedidoException;
 
@@ -63,7 +64,7 @@ public class Pedido {
 		return cliente;
 	}
 	
-	public boolean verificarStock() throws ArticuloException, OrdenDeCompraException {
+	public boolean verificarStock() throws ArticuloException, OrdenDeCompraException, ItemPedidoException {
 		
 		boolean parcial;
 		parcial = true;

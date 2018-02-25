@@ -39,9 +39,21 @@ public class ItemPedidoEntity {
 //	public void setArticulo(Articulo articulo) {
 //		this.articulo = articulo;
 //	}
+	
+	
 	public Integer getCantidadSolicitada() {
 		return cantidadSolicitada;
 	}
+	public Integer getIdItemPedido() {
+		return idItemPedido;
+	}
+
+
+	public void setIdItemPedido(Integer idItemPedido) {
+		this.idItemPedido = idItemPedido;
+	}
+
+
 	public void setCantidadSolicitada(Integer cantidadSolicitada) {
 		this.cantidadSolicitada = cantidadSolicitada;
 	}

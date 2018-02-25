@@ -1,8 +1,10 @@
 package negocio;
 
 import dao.ArticuloDAO;
+import dao.ItemPedidoDAO;
 import dto.ItemPedidoDTO;
 import excepcion.ArticuloException;
+import excepcion.ItemPedidoException;
 import excepcion.OrdenDeCompraException;
 
 public class ItemPedido {
@@ -17,6 +19,8 @@ public class ItemPedido {
 		this.articulo = articulo;
 		this.cantidadSolicitada = cant;
 	}
+	
+	public ItemPedido() {}
 	
 	public ItemPedidoDTO toDTO () { //completar
 		
@@ -48,10 +52,11 @@ public class ItemPedido {
 		this.subTotal = subTotal;
 	}
 
-	public boolean verificarStock() throws ArticuloException, OrdenDeCompraException {
+	public boolean verificarStock() throws ArticuloException, OrdenDeCompraException, ItemPedidoException {
 		
 		if (this.articulo.calcularStock(this.cantidadSolicitada) == false){
 			this.cantidadReservada = this.cantidadSolicitada;
+			ItemPedidoDAO.getInstancia().update(this);
 			return false;
 		}
 		return true;
