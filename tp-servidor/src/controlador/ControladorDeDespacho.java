@@ -1,5 +1,6 @@
 package controlador;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ControladorDeDespacho {
 		return instancia;
 	}
 
-	//devuelve todos los pedidos pendientes de la base de datos
+	//devuelve todos los pedidos PENDIENTES de la base de datos
 	public List<PedidoDTO> buscarPedidosPendiente() throws PedidoException{
 		
 		List<Pedido> pedidos_pen = PedidoDAO.getInstancia().getPendientes();
@@ -59,6 +60,7 @@ public class ControladorDeDespacho {
 			return pedidos_pen_DTO;
 		}
 		
+		//RECHAZA el pedido PENDIENTE
 		public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException{
 
 			Pedido pedido;
@@ -67,9 +69,32 @@ public class ControladorDeDespacho {
 			PedidoDAO.getInstancia().update(pedido);
 
 		}
+		
+		//ENTREGA al delivery pedido DESPACHADO
+		public void entregarPedidoDespachado(PedidoDTO pedidoPendiente, Date fechaEntregaEstimada) throws PedidoException{
 
+			Pedido pedido;
+			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
+			pedido.setEstado(EstadoPedido.Entregado);
+			pedido.setFechaEntregaEstimada(fechaEntregaEstimada);
+			PedidoDAO.getInstancia().update(pedido);
+		}
+		
+		//ACEPTA el pedido PENDIENTE
+		public void aceptarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException{
 
-
+			Pedido pedido;
+			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
+			if (pedido.verificarStock() == false){
+				
+				pedido.setEstado(EstadoPedido.Pendiente);
+			
+			}else{
+				
+				pedido.setEstado(EstadoPedido.Completo);
+				
+			}
+		}
 }
 
 
