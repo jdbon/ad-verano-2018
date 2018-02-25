@@ -31,7 +31,6 @@ public class OrdenDeCompraDAO {
 	
 	public OrdenDeCompra toNegocio(OrdenDeCompraEntity oce){
 		OrdenDeCompra oc = new OrdenDeCompra();
-		
 		oc.setArticulo(ArticuloDAO.getInstancia().toNegocio(oce.getArticulo()));
 		oc.setCantidadReservada(oce.getCantidadReservada());
 		oc.setCantidadXcomprar(oce.getCantidadXcomprar());

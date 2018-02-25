@@ -1,22 +1,32 @@
 package negocio;
 
-import java.util.Date;
-
+import java.time.LocalDate;
+import java.sql.Date;
 import dao.OrdenDeCompraDAO;
 import dto.OrdenDeCompraDTO;
-import dto.PedidoDTO;
 import enumerator.EstadoOC;
 import excepcion.OrdenDeCompraException;
 
 public class OrdenDeCompra {
 	
-	private Integer nroOrdenDeCompra;
+	private int nroOrdenDeCompra;
 	private Articulo articulo;
 	private int cantidadXcomprar;
 	private EstadoOC estado;
 	private Date fechaRecepcion;
 	private int cantidadReservada;
 	private Date fechaCreacion;
+	
+	public OrdenDeCompra(Articulo art, int cantReservada) {
+		this.articulo = art;
+		this.cantidadXcomprar = art.getCantidadOrdenDeCompra();
+		this.estado = EstadoOC.Pendiente;
+		this.cantidadReservada = cantReservada;
+		this.fechaCreacion = Date.valueOf(LocalDate.now());;
+		
+	}
+	
+	public OrdenDeCompra() {}
 	
 	public Date getFechaCreacion() {
 		return fechaCreacion;
@@ -26,10 +36,6 @@ public class OrdenDeCompra {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public OrdenDeCompra() {
-		super();
-		
-	}
 	
 	public void save() throws OrdenDeCompraException{
 		OrdenDeCompraDAO.getInstancia().save(this);

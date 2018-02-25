@@ -3,6 +3,7 @@ package negocio;
 import java.util.*;
 
 import dao.ArticuloDAO;
+import dao.OrdenDeCompraDAO;
 import enumerator.EstadoOC;
 import dto.ArticuloDTO;
 import dto.LoteDTO;
@@ -10,6 +11,7 @@ import dto.OrdenDeCompraDTO;
 import enumerator.Presentacion;
 import enumerator.TipoMovimiento;
 import excepcion.ArticuloException;
+import excepcion.OrdenDeCompraException;
 
 public class Articulo {
 
@@ -169,11 +171,13 @@ public class Articulo {
 		return true;
 	}
 
-	public boolean calcularStock(int cantidadSolicitada) throws ArticuloException {
+	public boolean calcularStock(int cantidadSolicitada) throws ArticuloException, OrdenDeCompraException {
 		
 		int cantLibre = 0;
+		int cantFaltante = 0;
 		int sumaMovimientos = 0;
 		int cantidadOC = 0;
+		int cantParaPedir = 0;
 		boolean resultado = true;
 		for(Movimiento movimiento: this.movimientos){
 			if (movimiento.tipo == TipoMovimiento.Alta){
@@ -183,18 +187,34 @@ public class Articulo {
 			}
 		}
 		cantLibre = sumaMovimientos - this.cantidadReservada;
-		if (cantLibre <  cantidadSolicitada){
+		if (cantLibre <  cantidadSolicitada & cantLibre > 0){
+			cantFaltante = cantidadSolicitada - cantLibre;
+			cantParaPedir = (int) Math.ceil(this.cantidadOrdenDeCompra%cantFaltante);
+			for (int i=1; i>cantParaPedir ;i++){
+				if (i==cantParaPedir){
+					this.generarOC(this, cantFaltante);
+				}
+				this.generarOC(this, this.cantidadOrdenDeCompra);
+			}
+			resultado = false;
+		}else{
 			for (OrdenDeCompra oc: this.ordenes){
 				if(oc.getEstado() == EstadoOC.Pendiente){
-					cantidadOC = cantidadOC + oc.getCantidadXcomprar();
+					cantidadOC = cantidadOC + (oc.getCantidadXcomprar() - oc.getCantidadReservada());
 				}
 			}
-			//if 
-			resultado = false;
 		}
 		ArticuloDAO.getInstancia().update(this);
 		this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;
 		return resultado;
+	}
+
+	private void generarOC(Articulo articulo, int cantReservada) throws OrdenDeCompraException {
+	
+		OrdenDeCompra oC = new OrdenDeCompra(articulo, cantReservada);
+		this.ordenes.add(oC);
+		OrdenDeCompraDAO.getInstancia().save(oC);
+		
 	}
 
 public ArticuloDTO toDTO() {
