@@ -22,7 +22,7 @@ public class OrdenDeCompraDTO implements Serializable {
 	
 	public Date getFechaCreacion() {
 		return fechaCreacion;
-	}
+	} 
 
 	
 

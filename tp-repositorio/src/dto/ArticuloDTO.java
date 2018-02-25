@@ -50,7 +50,7 @@ public class ArticuloDTO implements Serializable{
 		this.tamaño = tamaño;
 	}
 	public int getUnidad() {
-		return unidad;
+		return unidad; 
 	}
 	public void setUnidad(int unidad) {
 		this.unidad = unidad;
