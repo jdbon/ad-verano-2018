@@ -1,20 +1,12 @@
 package dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entity.OrdenDeCompraEntity;
-import entity.PedidoEntity;
-import enumerator.EstadoOC;
-import enumerator.EstadoPedido;
 import excepcion.OrdenDeCompraException;
-import excepcion.PedidoException;
 import hibernate.HibernateUtil;
 import negocio.OrdenDeCompra;
-import negocio.Pedido;
 
 public class OrdenDeCompraDAO {
 	
@@ -83,24 +75,6 @@ public class OrdenDeCompraDAO {
 		}
 		oc = this.toNegocio(auxOrdenDeCompra);
 		return oc;
-	}
-
-	public List<OrdenDeCompra> getPendientes() throws OrdenDeCompraException {
-		
-		List<OrdenDeCompra> OC_pen = new ArrayList<OrdenDeCompra>();
-		SessionFactory sf = HibernateUtil.getSessionFactory();
-		Session s = sf.openSession();
-		
-		List<OrdenDeCompraEntity> auxOC = s.createQuery("From OrdenDeCompraEntity OCpe where OCpe.estado = ?"/*order by OCpe.fechaCreacion asc*/).setString(0, EstadoOC.Pendiente.name()).list();
-		s.close();
-		if(auxOC == null) {
-				throw new OrdenDeCompraException("No existen OC Pendientes");
-		}
-		for (OrdenDeCompraEntity OCE : auxOC) {
-			OC_pen.add(this.toNegocio(OCE));
-		}
-		
-		return OC_pen;
 	}
 
 }
