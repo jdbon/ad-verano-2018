@@ -44,7 +44,8 @@ public class Pedido {
 		pe.setFechaCreacion(this.fechaCreacion);
 		pe.setFechaEntregaEstimada(this.fechaEntregaEstimada);
 		pe.setMotivoRechazo(this.motivoRechazo);
-        pe.setNombreCliente(this.cliente.getNombre());
+		pe.setClienteDTO(this.cliente.toDTO());
+        
 		return pe;
 	}
 	

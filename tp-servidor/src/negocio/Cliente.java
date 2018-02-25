@@ -74,6 +74,24 @@ public class Cliente {
 	}
 	
 	
+<<<<<<< HEAD
+	public ClienteDTO toDTO() {
+		
+		ClienteDTO cliDTO = new ClienteDTO();
+		
+		cliDTO.setApellido(this.apellido);
+		cliDTO.setIdCliente(this.idCliente);
+		cliDTO.setLimiteCredito(this.limiteCredito);
+		cliDTO.setNombre(this.nombre);
+		cliDTO.setSaldoActual(this.saldoActual);
+		cliDTO.setTipoFactura(this.tipoFactura);
+				
+		return cliDTO;
+		
+	}
+	
+=======
+>>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 	
 	
 
