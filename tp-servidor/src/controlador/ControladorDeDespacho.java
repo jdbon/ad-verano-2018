@@ -67,7 +67,6 @@ public class ControladorDeDespacho {
 			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
 			pedido.setEstado(EstadoPedido.Rechazado);
 			PedidoDAO.getInstancia().update(pedido);
-
 		}
 		
 		//ENTREGA al delivery pedido DESPACHADO
@@ -78,11 +77,23 @@ public class ControladorDeDespacho {
 			pedido.setEstado(EstadoPedido.Entregado);
 			pedido.setFechaEntregaEstimada(fechaEntregaEstimada);
 			PedidoDAO.getInstancia().update(pedido);
-
 		}
+		
+		//ACEPTA el pedido PENDIENTE
+		public void aceptarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException{
 
-
-
+			Pedido pedido;
+			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
+			if (pedido.verificarStock() == false){
+				
+				pedido.setEstado(EstadoPedido.Pendiente);
+			
+			}else{
+				
+				pedido.setEstado(EstadoPedido.Completo);
+				
+			}
+		}
 }
 
 
