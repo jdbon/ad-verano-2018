@@ -124,5 +124,15 @@ public class PedidoDTO implements Serializable {
 	public void setMotivoRechazo(String motivoRechazo) {
 		this.motivoRechazo = motivoRechazo;
 	}
+
+
+	public ClienteDTO getClienteDTO() {
+		return clienteDTO;
+	}
+
+
+	public void setClienteDTO(ClienteDTO clienteDTO) {
+		this.clienteDTO = clienteDTO;
+	}
 	
 }

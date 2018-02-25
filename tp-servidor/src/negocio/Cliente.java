@@ -85,7 +85,7 @@ public class Cliente {
 		cliDTO.setNombre(this.nombre);
 		cliDTO.setSaldoActual(this.saldoActual);
 		cliDTO.setTipoFactura(this.tipoFactura);
-		
+				
 		return cliDTO;
 		
 	}
