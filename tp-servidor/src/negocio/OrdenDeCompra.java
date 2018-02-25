@@ -94,9 +94,7 @@ public class OrdenDeCompra {
 		OCDTO.setNroOrdenDeCompra(this.nroOrdenDeCompra);
 		OCDTO.setFechaCreacion(this.fechaCreacion);
 		OCDTO.setArticuloDTO(this.articulo.toDTO());
-		 
-		
-			return OCDTO;
+		return OCDTO;
 		}
 		
 	}

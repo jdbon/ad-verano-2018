@@ -91,7 +91,7 @@ public class OrdenDeCompraDAO {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 		
-		List<OrdenDeCompraEntity> auxOC = s.createQuery("From OrdenDeCompraEntity OCpe where OCpe.estado = ?"/*order by OCpe.fechaCreacion asc*/).setString(0, EstadoOC.Pendiente.name()).list();
+		List<OrdenDeCompraEntity> auxOC = s.createQuery("From OrdenDeCompraEntity OCpe where OCpe.estado = ? order by OCpe.fechaCreacion asc").setString(0, EstadoOC.Pendiente.name()).list();
 		s.close();
 		if(auxOC == null) {
 				throw new OrdenDeCompraException("No existen OC Pendientes");
