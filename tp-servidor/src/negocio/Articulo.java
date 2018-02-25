@@ -6,11 +6,11 @@ import enumerator.Presentacion;
 
 public class Articulo {
 
-	private int codigoBarra;
+	private Integer codigoBarra;
 	private String descripcion;
 	private Presentacion presentacion;
 	private int tamaño;
-	private int unidad;
+	private String unidad;
 	private Float precioVenta;
 	private int cantidadOrdenDeCompra;
 	private List<Lote> lotes;
@@ -21,6 +21,38 @@ public class Articulo {
 		super();
 		lotes = new ArrayList<Lote>();
 		movimientos = new ArrayList<Movimiento>();
+	}
+	
+	public String toString(){
+		return "Art ID: " + this.getCodigoBarra() + " - Desc: " + this.getDescripcion() + " - Precio V: " + 
+	       this.getPrecioVenta() + " - Cant. OC: " + this.getCantidadOrdenDeCompra();
+	}
+	
+	public int calcularStock(){
+		int stock = 0;
+		
+		for(Movimiento m : movimientos){
+			switch (m.getTipo()){
+			case ALTA:
+				stock = stock + m.getCantidad();
+				break;
+			case BAJA:
+				stock = stock - m.getCantidad();
+				break;
+			case ROTURA:
+				stock = stock - m.getCantidad();
+				break;
+			case VENCIMIENTO:
+				stock = stock - m.getCantidad();
+				break;
+			default:
+				break;
+				
+			}
+		}
+		
+		return stock;
+		
 	}
 
 	public Integer getCodigoBarra() {
@@ -55,11 +87,11 @@ public class Articulo {
 		this.tamaño = tamaño;
 	}
 
-	public Integer getUnidad() {
+	public String getUnidad() {
 		return unidad;
 	}
 
-	public void setUnidad(Integer unidad) {
+	public void setUnidad(String unidad) {
 		this.unidad = unidad;
 	}
 
@@ -102,6 +134,7 @@ public class Articulo {
 	public void setMovimientos(List<Movimiento> movimientos) {
 		this.movimientos = movimientos;
 	}
+	
 
 	@Override
 	public int hashCode() {
@@ -116,7 +149,7 @@ public class Articulo {
 		result = prime * result + ((precioVenta == null) ? 0 : precioVenta.hashCode());
 		result = prime * result + ((presentacion == null) ? 0 : presentacion.hashCode());
 		result = prime * result + tamaño;
-		result = prime * result + unidad;
+		
 		return result;
 	}
 
@@ -163,6 +196,33 @@ public class Articulo {
 			return false;
 		return true;
 	}
+	
+public ArticuloDTO toDTO() {
+		
+		ArticuloDTO ArDTO = new ArticuloDTO();
+		
+		ArDTO.setCantidadOrdenDeCompra(this.cantidadOrdenDeCompra);
+		ArDTO.setCantidadReservada(this.cantidadReservada);
+		ArDTO.setCodigoBarra(this.codigoBarra);
+		ArDTO.setDescripcion(this.descripcion);
+		ArDTO.setPrecioVenta(this.precioVenta);
+		ArDTO.setPresentacion(this.presentacion);
+		ArDTO.setTamaño(this.tamaño);
+		ArDTO.setUnidad(this.unidad);
+
+			List<LoteDTO> auxLOTEDTO = new ArrayList<LoteDTO>();
+			for (Lote lote : this.lotes) {
+				auxLOTEDTO.add(lote.toDTO());
+			}
+		
+		ArDTO.setLotesDTO(auxLOTEDTO);
+		
+		//falta transformar en DTO movimientos
+		
+		return ArDTO;
+			
+		
+		}
 
 	
 	
