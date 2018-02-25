@@ -163,6 +163,7 @@ CREATE TABLE [dbo].[ordenes_compras](
 	[odc_cant_x_comprar] [int] NOT NULL,
 	[odc_fec_recepcion] [datetime] NOT NULL,
 	[odc_cant_res] [int],
+	[odc_fec_creacion] [datetime] NOT NULL,
  CONSTRAINT [PK_ordenes_compras] PRIMARY KEY CLUSTERED 
 (
 	[odc_id] ASC
