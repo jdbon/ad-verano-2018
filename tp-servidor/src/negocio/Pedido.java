@@ -11,6 +11,7 @@ import dto.PedidoDTO;
 import enumerator.EstadoPedido;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
+import excepcion.OrdenDeCompraException;
 import excepcion.PedidoException;
 
 public class Pedido {
@@ -62,16 +63,15 @@ public class Pedido {
 		return cliente;
 	}
 	
-	public boolean verificarStock() {
+	public boolean verificarStock() throws ArticuloException, OrdenDeCompraException {
 		
 		boolean parcial;
 		parcial = true;
 		for (ItemPedido item: this.items){
-			if (parcial == true){
-				parcial = item.verificarStock();
+			if (item.verificarStock() == false){
+				parcial = false;
 			}
 		}
-		
 		return parcial;
 	}
 

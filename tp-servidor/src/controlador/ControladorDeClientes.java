@@ -22,7 +22,7 @@ public class ControladorDeClientes {
 	public Integer generarNuevoPedido(int idCliente, String direccion, List<ItemPedidoDTO> items ) throws ClienteException, ArticuloException {
 		Pedido pedido = new Pedido(idCliente, direccion);
 		for(ItemPedidoDTO item: items) {
-			pedido.agregarItemPedido(item.getArticulo(), item.getCantidadReservada());
+			pedido.agregarItemPedido(item.getArticulo().getCodigoBarra(), item.getCantidadReservada());
 		}		
 		
 		return pedido.getIdPedido();
