@@ -16,7 +16,7 @@ public class PedidoDTO implements Serializable {
 
 	private int idPedido;
 	private List<ItemPedidoDTO> items;
-	private ClienteDTO clienteDTO;
+	private ClienteDTO cliente;
 	private String nombreCliente;
 	private String direccion;
 	private EstadoPedido estado;
