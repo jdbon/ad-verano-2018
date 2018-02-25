@@ -21,6 +21,7 @@ public class ControladorDeCompras {
 	}
 	
 	
+	//Devuelve todas las OC que estan en estado PENDIENTE
 public List<OrdenDeCompraDTO> buscarOCPendientes() throws OrdenDeCompraException{
 		
 		List<OrdenDeCompra> OC_pen = OrdenDeCompraDAO.getInstancia().getPendientes(); 			
