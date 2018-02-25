@@ -115,7 +115,7 @@ public class OrdenDeCompraDAO {
 			s.getTransaction().rollback();
 			throw new OrdenDeCompraException("Error al actualizar la OC numero: " + OCE.getNroOrdenDeCompra().toString());
 		}
-		s.close();
+		s.close(); 
 		
 	}
 
