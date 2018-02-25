@@ -14,7 +14,7 @@ public class PedidoDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 2071632209672397718L;
 
-	private Integer idPedido;
+	private int idPedido;
 	private List<ItemPedidoDTO> items;
 	private ClienteDTO cliente;
 	private String nombreCliente;

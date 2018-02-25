@@ -6,7 +6,7 @@ import excepcion.ClienteException;
 
 public class Cliente {
 	
-	private Integer idCliente;
+	private int idCliente;
 	private String apellido;
 	private String nombre;
 	private float limiteCredito;

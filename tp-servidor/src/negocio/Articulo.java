@@ -6,15 +6,15 @@ import enumerator.Presentacion;
 
 public class Articulo {
 
-	private Integer codigoBarra;
+	private int codigoBarra;
 	private String descripcion;
 	private Presentacion presentacion;
-	private Integer tamaño;
-	private Integer unidad;
+	private int tamaño;
+	private int unidad;
 	private Float precioVenta;
-	private Integer cantidadOrdenDeCompra;
+	private int cantidadOrdenDeCompra;
 	private List<Lote> lotes;
-	private Integer cantidadReservada;
+	private int cantidadReservada;
 	private List<Movimiento> movimientos;
 
 	public Articulo() {
@@ -107,7 +107,16 @@ public class Articulo {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codigoBarra == null) ? 0 : codigoBarra.hashCode());
+		result = prime * result + cantidadOrdenDeCompra;
+		result = prime * result + cantidadReservada;
+		result = prime * result + codigoBarra;
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((lotes == null) ? 0 : lotes.hashCode());
+		result = prime * result + ((movimientos == null) ? 0 : movimientos.hashCode());
+		result = prime * result + ((precioVenta == null) ? 0 : precioVenta.hashCode());
+		result = prime * result + ((presentacion == null) ? 0 : presentacion.hashCode());
+		result = prime * result + tamaño;
+		result = prime * result + unidad;
 		return result;
 	}
 
@@ -120,13 +129,42 @@ public class Articulo {
 		if (getClass() != obj.getClass())
 			return false;
 		Articulo other = (Articulo) obj;
-		if (codigoBarra == null) {
-			if (other.codigoBarra != null)
+		if (cantidadOrdenDeCompra != other.cantidadOrdenDeCompra)
+			return false;
+		if (cantidadReservada != other.cantidadReservada)
+			return false;
+		if (codigoBarra != other.codigoBarra)
+			return false;
+		if (descripcion == null) {
+			if (other.descripcion != null)
 				return false;
-		} else if (!codigoBarra.equals(other.codigoBarra))
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (lotes == null) {
+			if (other.lotes != null)
+				return false;
+		} else if (!lotes.equals(other.lotes))
+			return false;
+		if (movimientos == null) {
+			if (other.movimientos != null)
+				return false;
+		} else if (!movimientos.equals(other.movimientos))
+			return false;
+		if (precioVenta == null) {
+			if (other.precioVenta != null)
+				return false;
+		} else if (!precioVenta.equals(other.precioVenta))
+			return false;
+		if (presentacion != other.presentacion)
+			return false;
+		if (tamaño != other.tamaño)
+			return false;
+		if (unidad != other.unidad)
 			return false;
 		return true;
 	}
+
+	
 	
 	
 	
