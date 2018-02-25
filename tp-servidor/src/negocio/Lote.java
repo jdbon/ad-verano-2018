@@ -1,7 +1,10 @@
+
 package negocio;
 
 import java.util.Date;
 
+import dto.LoteDTO;
+import dto.OrdenDeCompraDTO;
 import entity.LoteEntity;
 
 public class Lote {
@@ -37,6 +40,14 @@ public class Lote {
 		this.vencimiento = vencimiento;
 	}
 
+	public LoteEntity toEntity(Lote lote) {
+		LoteEntity loteEntity = new LoteEntity();
+		loteEntity.setNroLote(lote.getNroLote());
+		loteEntity.setVencimiento(lote.getVencimiento());
+		
+		return loteEntity;
+	}
+	
 public LoteDTO toDTO() {
 		
 		LoteDTO LDTO = new LoteDTO();
@@ -50,3 +61,4 @@ public LoteDTO toDTO() {
 	
 
 }
+
