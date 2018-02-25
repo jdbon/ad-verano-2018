@@ -2,57 +2,33 @@ package negocio;
 
 import java.util.*;
 
+import dao.ArticuloDAO;
+import enumerator.EstadoOC;
+import dto.ArticuloDTO;
+import dto.LoteDTO;
+import dto.OrdenDeCompraDTO;
 import enumerator.Presentacion;
+import enumerator.TipoMovimiento;
+import excepcion.ArticuloException;
 
 public class Articulo {
 
-	private Integer codigoBarra;
+	private int codigoBarra;
 	private String descripcion;
 	private Presentacion presentacion;
 	private int tamaño;
-	private String unidad;
-	private Float precioVenta;
+	private int unidad;
+	private float precioVenta;
 	private int cantidadOrdenDeCompra;
 	private List<Lote> lotes;
 	private int cantidadReservada;
 	private List<Movimiento> movimientos;
+	private List<OrdenDeCompra> ordenes;
 
 	public Articulo() {
 		super();
 		lotes = new ArrayList<Lote>();
 		movimientos = new ArrayList<Movimiento>();
-	}
-	
-	public String toString(){
-		return "Art ID: " + this.getCodigoBarra() + " - Desc: " + this.getDescripcion() + " - Precio V: " + 
-	       this.getPrecioVenta() + " - Cant. OC: " + this.getCantidadOrdenDeCompra();
-	}
-	
-	public int calcularStock(){
-		int stock = 0;
-		
-		for(Movimiento m : movimientos){
-			switch (m.getTipo()){
-			case ALTA:
-				stock = stock + m.getCantidad();
-				break;
-			case BAJA:
-				stock = stock - m.getCantidad();
-				break;
-			case ROTURA:
-				stock = stock - m.getCantidad();
-				break;
-			case VENCIMIENTO:
-				stock = stock - m.getCantidad();
-				break;
-			default:
-				break;
-				
-			}
-		}
-		
-		return stock;
-		
 	}
 
 	public Integer getCodigoBarra() {
@@ -87,35 +63,35 @@ public class Articulo {
 		this.tamaño = tamaño;
 	}
 
-	public String getUnidad() {
+	public Integer getUnidad() {
 		return unidad;
 	}
 
-	public void setUnidad(String unidad) {
+	public void setUnidad(int unidad) {
 		this.unidad = unidad;
 	}
 
-	public Float getPrecioVenta() {
+	public float getPrecioVenta() {
 		return precioVenta;
 	}
 
-	public void setPrecioVenta(Float precioVenta) {
+	public void setPrecioVenta(float precioVenta) {
 		this.precioVenta = precioVenta;
 	}
 
-	public Integer getCantidadOrdenDeCompra() {
+	public int getCantidadOrdenDeCompra() {
 		return cantidadOrdenDeCompra;
 	}
 
-	public void setCantidadOrdenDeCompra(Integer cantidadOrdenDeCompra) {
+	public void setCantidadOrdenDeCompra(int cantidadOrdenDeCompra) {
 		this.cantidadOrdenDeCompra = cantidadOrdenDeCompra;
 	}
 
-	public Integer getCantidadReservada() {
+	public int getCantidadReservada() {
 		return cantidadReservada;
 	}
 
-	public void setCantidadReservada(Integer cantidadReservada) {
+	public void setCantidadReservada(int cantidadReservada) {
 		this.cantidadReservada = cantidadReservada;
 	}
 	
@@ -134,7 +110,6 @@ public class Articulo {
 	public void setMovimientos(List<Movimiento> movimientos) {
 		this.movimientos = movimientos;
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -146,10 +121,10 @@ public class Articulo {
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
 		result = prime * result + ((lotes == null) ? 0 : lotes.hashCode());
 		result = prime * result + ((movimientos == null) ? 0 : movimientos.hashCode());
-		result = prime * result + ((precioVenta == null) ? 0 : precioVenta.hashCode());
+		result = prime * result + Float.floatToIntBits(precioVenta);
 		result = prime * result + ((presentacion == null) ? 0 : presentacion.hashCode());
 		result = prime * result + tamaño;
-		
+		result = prime * result + unidad;
 		return result;
 	}
 
@@ -183,10 +158,7 @@ public class Articulo {
 				return false;
 		} else if (!movimientos.equals(other.movimientos))
 			return false;
-		if (precioVenta == null) {
-			if (other.precioVenta != null)
-				return false;
-		} else if (!precioVenta.equals(other.precioVenta))
+		if (Float.floatToIntBits(precioVenta) != Float.floatToIntBits(other.precioVenta))
 			return false;
 		if (presentacion != other.presentacion)
 			return false;
@@ -196,7 +168,35 @@ public class Articulo {
 			return false;
 		return true;
 	}
-	
+
+	public boolean calcularStock(int cantidadSolicitada) throws ArticuloException {
+		
+		int cantLibre = 0;
+		int sumaMovimientos = 0;
+		int cantidadOC = 0;
+		boolean resultado = true;
+		for(Movimiento movimiento: this.movimientos){
+			if (movimiento.tipo == TipoMovimiento.Alta){
+				sumaMovimientos = sumaMovimientos + movimiento.getCantidad();
+			}else{
+				sumaMovimientos = sumaMovimientos - movimiento.getCantidad();
+			}
+		}
+		cantLibre = sumaMovimientos - this.cantidadReservada;
+		if (cantLibre <  cantidadSolicitada){
+			for (OrdenDeCompra oc: this.ordenes){
+				if(oc.getEstado() == EstadoOC.Pendiente){
+					cantidadOC = cantidadOC + oc.getCantidadXcomprar();
+				}
+			}
+			//if 
+			resultado = false;
+		}
+		ArticuloDAO.getInstancia().update(this);
+		this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;
+		return resultado;
+	}
+
 public ArticuloDTO toDTO() {
 		
 		ArticuloDTO ArDTO = new ArticuloDTO();
@@ -223,10 +223,5 @@ public ArticuloDTO toDTO() {
 			
 		
 		}
-
-	
-	
-	
-	
 
 }
