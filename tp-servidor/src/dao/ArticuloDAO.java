@@ -130,16 +130,16 @@ private static ArticuloDAO instancia;
 	}
 
 	public Articulo findByID(int idArticulo) throws ArticuloException {
-		Articulo resultado;
+		Articulo a;
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
-		ArticuloEntity auxArticulo = (ArticuloEntity) s.createQuery("From ArticuloEntity a where a.numero = ?").setInteger(0, idArticulo).uniqueResult();
+		ArticuloEntity auxArticulo = (ArticuloEntity) s.createQuery("From ArticuloEntity ae where ae.codigoBarra = ?").setInteger(0, idArticulo).uniqueResult();
 		s.close();
 		if(auxArticulo == null) {
-				throw new ArticuloException("No existe un cliente con el id " + idArticulo);
+				throw new ArticuloException("No existe un Articulo con el id " + idArticulo);
 		}
-		resultado = this.toNegocio(auxArticulo);
-		return resultado;
+		a = this.toNegocio(auxArticulo);
+		return a;
 	}
 
 

@@ -44,7 +44,7 @@ public class ArticuloEntity {
 	@Column(name="art_precio_vta")	
 	private Float precioVenta;
 	
-	@Column(name="art_x_comprar")
+	@Column(name="art_cant_x_comprar")
 	private Integer cantidadOrdenDeCompra;
 	
 	@OneToMany
