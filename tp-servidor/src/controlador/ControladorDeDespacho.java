@@ -7,6 +7,8 @@ import java.util.List;
 import dao.PedidoDAO;
 import dto.PedidoDTO;
 import enumerator.EstadoPedido;
+import excepcion.ArticuloException;
+import excepcion.OrdenDeCompraException;
 import excepcion.PedidoException;
 import negocio.Pedido;
 
@@ -80,18 +82,14 @@ public class ControladorDeDespacho {
 		}
 		
 		//ACEPTA el pedido PENDIENTE
-		public void aceptarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException{
+		public void aceptarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException, ArticuloException, OrdenDeCompraException{
 
 			Pedido pedido;
 			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
 			if (pedido.verificarStock() == false){
-				
 				pedido.setEstado(EstadoPedido.Pendiente);
-			
 			}else{
-				
 				pedido.setEstado(EstadoPedido.Completo);
-				
 			}
 		}
 }

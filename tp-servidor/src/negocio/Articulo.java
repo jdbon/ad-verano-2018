@@ -177,7 +177,6 @@ public class Articulo {
 		int cantLibre = 0;
 		int cantFaltante = 0;
 		int sumaMovimientos = 0;
-		int cantidadOC = 0;
 		int cantParaPedir = 0;
 		boolean resultado = true;
 		for(Movimiento movimiento: this.movimientos){
@@ -188,33 +187,63 @@ public class Articulo {
 			}
 		}
 		cantLibre = sumaMovimientos - this.cantidadReservada;
-		if (cantLibre <  cantidadSolicitada & cantLibre > 0){
+		if (cantLibre <  cantidadSolicitada & cantLibre >= 0){
 			cantFaltante = cantidadSolicitada - cantLibre;
-			cantParaPedir = (int) Math.ceil(this.cantidadOrdenDeCompra%cantFaltante);
-			for (int i=1; i>cantParaPedir ;i++){
-				if (i==cantParaPedir){
-					this.generarOC(this, cantFaltante);
+			cantParaPedir = (int) Math.ceil(cantFaltante/this.cantidadOrdenDeCompra);
+			for (int i = 1; i > cantParaPedir ; i++){
+				if (i == cantParaPedir){
+					this.generarOC(cantFaltante);
+					cantFaltante = 0;
 				}
-				this.generarOC(this, this.cantidadOrdenDeCompra);
+				this.generarOC(this.cantidadOrdenDeCompra);
+				cantFaltante = cantFaltante - this.cantidadOrdenDeCompra;
 			}
+			this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;
 			resultado = false;
 		}else{
-			for (OrdenDeCompra oc: this.ordenes){
-				if(oc.getEstado() == EstadoOC.Pendiente){
-					cantidadOC = cantidadOC + (oc.getCantidadXcomprar() - oc.getCantidadReservada());
+			if (cantLibre > cantidadSolicitada){
+				this.cantidadReservada = this.cantidadReservada - cantidadSolicitada;
+			}else{
+				cantFaltante = cantidadSolicitada;
+				for (OrdenDeCompra oc: this.ordenes){
+					if((oc.getCantidadXcomprar() - oc.getCantidadReservada()) > 0 
+							& (oc.getCantidadXcomprar() - oc.getCantidadReservada()) >= cantidadSolicitada){
+						oc.setCantidadReservada(oc.getCantidadReservada()+cantidadSolicitada);
+						//update
+						cantFaltante = 0;
+					}else{
+						if((oc.getCantidadXcomprar() - oc.getCantidadReservada()) > 0 
+								& (oc.getCantidadXcomprar() - oc.getCantidadReservada()) < cantidadSolicitada){
+							cantFaltante = cantidadSolicitada - (oc.getCantidadXcomprar() - oc.getCantidadReservada());
+							oc.setCantidadReservada(oc.getCantidadReservada() + (cantidadSolicitada - cantFaltante));
+							//update
+						}
+					}
 				}
-			}
+				if (cantFaltante > 0){
+					cantParaPedir = (int) Math.ceil(cantFaltante/this.cantidadOrdenDeCompra);
+					for (int i=1; i>cantParaPedir ;i++){
+						if (i==cantParaPedir){
+							this.generarOC(cantFaltante);
+							cantFaltante = 0;
+						}
+						this.generarOC(this.cantidadOrdenDeCompra);
+						cantFaltante = cantFaltante - this.cantidadOrdenDeCompra;
+					}
+				}
+				this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;
+				resultado = false;
+			}						
 		}
 		ArticuloDAO.getInstancia().update(this);
-		this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;
 		return resultado;
 	}
 
-	private void generarOC(Articulo articulo, int cantReservada) throws OrdenDeCompraException {
+	private void generarOC(int cantReservada) throws OrdenDeCompraException {
 	
-		OrdenDeCompra oC = new OrdenDeCompra(articulo, cantReservada);
-		this.ordenes.add(oC);
+		OrdenDeCompra oC = new OrdenDeCompra(this, cantReservada);
 		OrdenDeCompraDAO.getInstancia().save(oC);
+		this.ordenes.add(oC);
 		
 	}
 
