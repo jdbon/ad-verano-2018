@@ -48,7 +48,7 @@ public class ItemPedidoDAO {
 		itpedE.setCantidadReservada(itped.getCantidadReservada());
 		itpedE.setCantidadSolicitada(itped.getCantidadSolicitada());
 		itpedE.setSubTotal(itped.getSubTotal());
-		itpedE.setArticulo(ArticuloDAO.getInstancia().toEntity(ArticuloDAO.getInstancia().findByID(itped.getArticulo().getCodigoBarra())));
+		itpedE.setArtE(ArticuloDAO.getInstancia().toEntity(ArticuloDAO.getInstancia().findByID(itped.getArticulo().getCodigoBarra())));
 		return itpedE;
 	}
 	
@@ -57,7 +57,7 @@ public class ItemPedidoDAO {
 		itped.setCantidadReservada(itped.getCantidadReservada());
 		itped.setCantidadSolicitada(itped.getCantidadSolicitada());
 		itped.setSubTotal(itped.getSubTotal());
-		itped.setArticulo(ArticuloDAO.getInstancia().findByID(itpedE.getArticulo().getCodigoBarra()));
+		//itped.setArticulo(ArticuloDAO.getInstancia().findByID(itpedE.getArticulo().getCodigoBarra()));
 		return itped;
 	}
 

@@ -61,6 +61,10 @@ public class ItemPedido {
 		}
 		return true;
 	}
+
+	public void save() throws ItemPedidoException, ArticuloException {
+		ItemPedidoDAO.getInstancia().save(this);
+	}
 	
 	
 

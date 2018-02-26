@@ -1,7 +1,9 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -41,9 +43,11 @@ public class PedidoDAO {
 		pe.setFechaEntregaEstimada(p.getFechaEntregaEstimada());
 		pe.setMotivoRechazo(p.getMotivoRechazo());
         pe.setCliente(ClienteDAO.getInstancia().toEntity(p.getCliente()));
-        List<ItemPedidoEntity> itemsE = new ArrayList<ItemPedidoEntity>();
+        Set<ItemPedidoEntity> itemsE = new HashSet<ItemPedidoEntity>();
+        pe.setItems(itemsE);
 		for (ItemPedido item: p.getItems()){
-			itemsE.add(ItemPedidoDAO.getInstancia().toEntity(item));
+			ItemPedidoEntity itemE = ItemPedidoDAO.getInstancia().toEntity(item);
+			pe.getItems().add(itemE);
 		}
 		return pe;
 		
@@ -61,9 +65,22 @@ public class PedidoDAO {
 		s.getTransaction().commit();
 		} catch (Exception e) {
 			s.getTransaction().rollback();
+			s.close();
 			throw new PedidoException("Error al grabar pedido, o el pedido " + pe.getIdPedido() + " ya existe.");
 		}
-		s.close();		
+		s.close();	
+		for(ItemPedidoEntity itemE: pe.getItems()){
+			SessionFactory sf2 = HibernateUtil.getSessionFactory();
+			Session s2 = sf2.openSession();
+			s2.beginTransaction();
+			try {
+				s2.save(itemE);
+			} catch (Exception e) {
+				s.getTransaction().rollback();
+				throw new ItemPedidoException("Error al grabar item pedido" + itemE.getIdItemPedido());
+			}
+			s2.close();	
+		}
 	}
 	
 	public void update(Pedido p) throws PedidoException, ArticuloException{

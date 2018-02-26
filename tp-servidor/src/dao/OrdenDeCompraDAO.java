@@ -31,7 +31,7 @@ public class OrdenDeCompraDAO {
 	
 	public OrdenDeCompra toNegocio(OrdenDeCompraEntity oce){
 		OrdenDeCompra oc = new OrdenDeCompra();
-		oc.setArticulo(ArticuloDAO.getInstancia().toNegocio(oce.getArticulo()));
+		//oc.setArticulo(ArticuloDAO.getInstancia().toNegocio(oce.getArticulo()));
 		oc.setCantidadReservada(oce.getCantidadReservada());
 		oc.setCantidadXcomprar(oce.getCantidadXcomprar());
 		oc.setEstado(oce.getEstado());
@@ -44,7 +44,7 @@ public class OrdenDeCompraDAO {
 	public OrdenDeCompraEntity toEntity(OrdenDeCompra oc){
 		OrdenDeCompraEntity oce = new OrdenDeCompraEntity();
 		
-		oce.setArticulo(ArticuloDAO.getInstancia().toEntity(oc.getArticulo()));
+		//oce.setArticulo(ArticuloDAO.getInstancia().toEntity(oc.getArticulo()));
 		oce.setCantidadReservada(oc.getCantidadReservada());
 		oce.setCantidadXcomprar(oc.getCantidadXcomprar());
 		oce.setEstado(oc.getEstado());

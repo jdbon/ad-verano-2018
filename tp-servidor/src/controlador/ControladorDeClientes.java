@@ -42,7 +42,7 @@ public class ControladorDeClientes {
 		for(ItemPedidoDTO item: items) {
 			pedido.agregarItemPedido(item.getArticulo().getCodigoBarra(), item.getCantidadSolicitada());
 		}		
-		PedidoDAO.getInstancia().save(pedido);
+		pedido.save();
 		
 		return pedido.getIdPedido();
 	}
