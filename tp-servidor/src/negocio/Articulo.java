@@ -246,8 +246,13 @@ public class Articulo {
 		this.ordenes.add(oC);
 		
 	}
+	
+	public String toString(){
+		return "Art ID: " + this.getCodigoBarra() + " - Desc: " + this.getDescripcion() + " - Precio V: " + 
+	       this.getPrecioVenta() + " - Cant. OC: " + this.getCantidadOrdenDeCompra();
+	}
 
-public ArticuloDTO toDTO() {
+	public ArticuloDTO toDTO() {
 		
 		ArticuloDTO ArDTO = new ArticuloDTO();
 		

@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,9 +48,9 @@ public class ArticuloEntity {
 	@Column(name="art_cant_x_comprar")
 	private Integer cantidadOrdenDeCompra;
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="lot_art")
-	private List<LoteEntity> lotes;
+	private Set<LoteEntity> lotes;
 
 	@Column(name="art_cant_res")
 	private Integer cantidadReservada;
@@ -126,13 +127,13 @@ public class ArticuloEntity {
 
 	
 
-	public List<LoteEntity> getLotes() {
+	public Set<LoteEntity> getLotes() {
 		return lotes;
 	}
 
 
 
-	public void setLotes(List<LoteEntity> lotes) {
+	public void setLotes(Set<LoteEntity> lotes) {
 		this.lotes = lotes;
 	}
 
