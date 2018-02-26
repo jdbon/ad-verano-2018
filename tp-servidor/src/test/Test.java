@@ -17,7 +17,7 @@ public class Test {
 
 	public static void main(String[] args) throws ClienteException, ArticuloException, PedidoException, ItemPedidoException {
 		
-		//CargaDeDatos.cargarClientes();
+		CargaDeDatos.cargarClientes();
 		@SuppressWarnings("unused")
 		List<ArticuloDTO> articulos = ControladorDeClientes.getInstancia().getAllArticulos();
 		System.out.println("TENGO EL LISTADO");

@@ -29,7 +29,6 @@ public class PedidoDAO {
 		
 	}
 	
-	
 		
 	public PedidoEntity toEntity(Pedido p) throws ArticuloException{
 		
@@ -43,6 +42,9 @@ public class PedidoDAO {
         pe.setCliente(ClienteDAO.getInstancia().toEntity(p.getCliente()));
         List<ItemPedidoEntity> itemsE = new ArrayList<ItemPedidoEntity>();
 		for (ItemPedido item: p.getItems()){
+			ItemPedidoEntity itemE = new ItemPedidoEntity();
+			itemE.setArticulo(ArticuloDAO.getInstancia().toEntity(item.getArticulo()));
+			itemE.setPedido(pe);
 			itemsE.add(ItemPedidoDAO.getInstancia().toEntity(item));
 		}
 		return pe;
@@ -62,6 +64,19 @@ public class PedidoDAO {
 		} catch (Exception e) {
 			s.getTransaction().rollback();
 			throw new PedidoException("Error al grabar pedido, o el pedido " + pe.getIdPedido() + " ya existe.");
+		}
+		for(ItemPedidoEntity itemPeE: pe.getItems()){
+			SessionFactory sf2 = HibernateUtil.getSessionFactory();
+			Session s2 = sf2.openSession();
+			s2.beginTransaction();
+			try {
+				s2.save(itemPeE);
+				s2.getTransaction().commit();
+			} catch (Exception e) {
+				s2.getTransaction().rollback();
+				throw new ItemPedidoException("Error al grabar itempedido" + itemPeE.getIdItemPedido() + " o ya existe.");
+			}
+			s2.close();
 		}
 		s.close();		
 	}

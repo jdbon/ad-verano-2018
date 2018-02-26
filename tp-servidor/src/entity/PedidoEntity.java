@@ -50,9 +50,15 @@ public class PedidoEntity {
 	
 	@Column(name="ped_motivo_rechazo")
 	private String motivoRechazo;
+	
+	public List<ItemPedidoEntity> getItems() {
+		return items;
+	}
 
-	
-	
+	public void setItems(List<ItemPedidoEntity> items) {
+		this.items = items;
+	}
+
 	public PedidoEntity() {
 		super();
 	}

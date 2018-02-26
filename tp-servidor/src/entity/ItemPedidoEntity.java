@@ -43,6 +43,19 @@ public class ItemPedidoEntity {
 	public ItemPedidoEntity() {}
 	
 	
+	
+	public PedidoEntity getPedido() {
+		return pedido;
+	}
+
+
+
+	public void setPedido(PedidoEntity pedido) {
+		this.pedido = pedido;
+	}
+
+
+
 	public ArticuloEntity getArticulo() {
 		return articulo;
 	}
