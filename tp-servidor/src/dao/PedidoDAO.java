@@ -49,8 +49,8 @@ public class PedidoDAO {
 			ItemPedidoEntity itemE = new ItemPedidoEntity();
 			itemE.setArticulo(ArticuloDAO.getInstancia().toEntity(item.getArticulo()));
 			itemE.setCantidadSolicitada(item.getCantidadSolicitada());
-			itemE.setCantidadReservada(0);
-			itemE.setSubTotal(0);
+			itemE.setCantidadReservada(item.getCantidadReservada());
+			itemE.setSubTotal(item.getSubTotal());
 			itemE.setPedido(pe);
 			pe.getItems().add(itemE);
 		}

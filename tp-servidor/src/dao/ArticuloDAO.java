@@ -10,13 +10,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entity.ArticuloEntity;
+import entity.ClienteEntity;
 import entity.LoteEntity;
 import entity.MovimientoABEntity;
 import entity.MovimientoAjusteEntity;
 import entity.MovimientoEntity;
 import excepcion.ArticuloException;
+import excepcion.ClienteException;
 import hibernate.HibernateUtil;
 import negocio.Articulo;
+import negocio.Cliente;
 import negocio.Lote;
 import negocio.Movimiento;
 import negocio.MovimientoAB;
@@ -172,6 +175,21 @@ private static ArticuloDAO instancia;
 		return a;
 	}
 
-
+	public void save(Articulo a) throws ArticuloException {
+			ArticuloEntity ae = this.toEntity(a);
+			
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session s = sf.openSession();
+			s.beginTransaction();
+			try {
+			s.save(ae);
+			s.getTransaction().commit();
+			} catch (Exception e) {
+				s.getTransaction().rollback();
+				throw new ArticuloException("Error al grabar el articulo " + ae.getCodigoBarra());
+			}
+			s.close();
+			
+		}
 }
 

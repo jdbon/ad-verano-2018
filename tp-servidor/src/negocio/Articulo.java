@@ -34,7 +34,7 @@ public class Articulo {
 		return codigoBarra;
 	}
 
-	public void setCodigoBarra(Integer codigoBarra) {
+	public void setCodigoBarra(int codigoBarra) {
 		this.codigoBarra = codigoBarra;
 	}
 
@@ -280,5 +280,10 @@ public class Articulo {
 			
 		
 		}
+
+	public void save() throws ArticuloException {
+		ArticuloDAO.getInstancia().save(this);
+		
+	}
 
 }

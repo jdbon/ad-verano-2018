@@ -8,6 +8,7 @@ import dao.ClienteDAO;
 import dao.PedidoDAO;
 import dto.ArticuloDTO;
 import dto.ItemPedidoDTO;
+import dto.PedidoDTO;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
@@ -29,6 +30,7 @@ public class ControladorDeClientes {
 	}
 	
 	public List<ArticuloDTO> getAllArticulos(){
+		
 		List<ArticuloDTO> resultado = new ArrayList<ArticuloDTO>();
 		List<Articulo> articulos = ArticuloDAO.getInstancia().findAll();
 		for(Articulo articulo: articulos)
@@ -36,18 +38,26 @@ public class ControladorDeClientes {
 		return resultado;
 	}
 	
-	public Integer generarNuevoPedido(int idCliente, String direccion, List<ItemPedidoDTO> items) throws ClienteException, ArticuloException, PedidoException, ItemPedidoException {
-		Cliente cliente = ClienteDAO.getInstancia().findByID(idCliente);
+	public Integer generarNuevoPedido(int idCliente, String direccion, List<ItemPedidoDTO> items) throws ArticuloException, PedidoException, ItemPedidoException, ClienteException {
+		
+		Cliente cliente = this.buscarCliente(idCliente);
 		Pedido pedido = new Pedido(cliente, direccion);
 		for(ItemPedidoDTO item: items) {
 			pedido.agregarItemPedido(item.getArticulo().getCodigoBarra(), item.getCantidadSolicitada());
 			
 		}
 		pedido.calcularTotal();
-		
 		PedidoDAO.getInstancia().save(pedido);
-		
 		return pedido.getIdPedido();
+	}
+	
+	private Cliente buscarCliente(int idCliente) throws ClienteException {
+		return ClienteDAO.getInstancia().findByID(idCliente);
+	}
+	
+	public PedidoDTO buscarPedido(int idPedido) throws PedidoException{
+		Pedido ped = PedidoDAO.getInstancia().findById(idPedido);
+		return ped.toDTO();
 	}
 }
 
