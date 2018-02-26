@@ -56,7 +56,9 @@ private static ArticuloDAO instancia;
 		artE.setCantidadOrdenDeCompra(art.getCantidadOrdenDeCompra());
 		artE.setCantidadReservada(art.getCantidadReservada());
 		artE.setCodigoBarra(art.getCodigoBarra());
-		artE.setDescripcion(art.getDescripcion());		
+		artE.setDescripcion(art.getDescripcion());
+		List<LoteEntity> lotesE = new ArrayList<LoteEntity>();
+		artE.setLotes(lotesE);
 		for(Lote lote: art.getLotes()) {
 			LoteEntity le = LoteDAO.getInstancia().toEntity(lote);
 			artE.getLotes().add(le);

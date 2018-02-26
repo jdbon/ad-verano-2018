@@ -49,17 +49,17 @@ public class ArticuloEntity {
 	private Integer cantidadOrdenDeCompra;
 	
 	@OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name="lot_art")
-	private Set<LoteEntity> lotes;
+	@JoinColumn(name="art_id")
+	private List<LoteEntity> lotes;
 
 	@Column(name="art_cant_res")
 	private Integer cantidadReservada;
 
     @OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name="mov_art")
+	@JoinColumn(name="art_id")
 	private List<MovimientoEntity> movimientos;
-	
-	@OneToMany
+    
+    @OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="art_id")
 	private List<OrdenDeCompraEntity> ordenes;
 	
@@ -127,14 +127,14 @@ public class ArticuloEntity {
 
 	
 
-	public Set<LoteEntity> getLotes() {
+	public List<LoteEntity> getLotes() {
 		return lotes;
 	}
 
 
 
-	public void setLotes(Set<LoteEntity> lotes) {
-		this.lotes = lotes;
+	public void setLotes(List<LoteEntity> lotesE) {
+		this.lotes = lotesE;
 	}
 
 
