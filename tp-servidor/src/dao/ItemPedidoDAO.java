@@ -3,18 +3,11 @@ package dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entity.ArticuloEntity;
 import entity.ItemPedidoEntity;
-import entity.LoteEntity;
-import entity.PedidoEntity;
 import excepcion.ArticuloException;
 import excepcion.ItemPedidoException;
-import excepcion.PedidoException;
 import hibernate.HibernateUtil;
-import negocio.Articulo;
 import negocio.ItemPedido;
-import negocio.Lote;
-import negocio.Movimiento;
 
 public class ItemPedidoDAO {
 

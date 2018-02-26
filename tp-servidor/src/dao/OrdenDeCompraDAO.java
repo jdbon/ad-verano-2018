@@ -7,14 +7,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entity.OrdenDeCompraEntity;
-import entity.PedidoEntity;
 import enumerator.EstadoOC;
-import enumerator.EstadoPedido;
 import excepcion.OrdenDeCompraException;
-import excepcion.PedidoException;
 import hibernate.HibernateUtil;
 import negocio.OrdenDeCompra;
-import negocio.Pedido;
 
 public class OrdenDeCompraDAO {
 	
@@ -90,7 +86,7 @@ public class OrdenDeCompraDAO {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 		
-		List<OrdenDeCompraEntity> auxOC = s.createQuery("From OrdenDeCompraEntity OCpe where OCpe.estado = ? order by OCpe.fechaCreacion asc").setString(0, EstadoOC.Pendiente.name()).list();
+		List<OrdenDeCompraEntity> auxOC = (List<OrdenDeCompraEntity>)s.createQuery("From OrdenDeCompraEntity OCpe where OCpe.estado = ? order by OCpe.fechaCreacion asc").setString(0, EstadoOC.Pendiente.name()).list();
 		s.close();
 		if(auxOC == null) {
 				throw new OrdenDeCompraException("No existen OC Pendientes");

@@ -150,7 +150,7 @@ public class PedidoDAO {
 		List<Pedido> pedidos_com = new ArrayList<Pedido>();
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
-		List<PedidoEntity> auxPedidos = s.createQuery("From PedidoEntity pe where pe.estado = ? order by pe.fechaCreacion asc").setString(0, EstadoPedido.Completo.name()).list();
+		List<PedidoEntity> auxPedidos = (List<PedidoEntity>)s.createQuery("From PedidoEntity pe where pe.estado = ? order by pe.fechaCreacion asc").setString(0, EstadoPedido.Completo.name()).list();
 		s.close();
 		if(auxPedidos == null) {
 				throw new PedidoException("No existen pedidos completados");
@@ -166,7 +166,7 @@ public class PedidoDAO {
 		List<Pedido> pedidos_des = new ArrayList<Pedido>();
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
-		List<PedidoEntity> auxPedidos = s.createQuery("From PedidoEntity pe where pe.estado = ? order by pe.fechaCreacion asc").setString(0, EstadoPedido.Despachado.name()).list();
+		List<PedidoEntity> auxPedidos = (List<PedidoEntity>)s.createQuery("From PedidoEntity pe where pe.estado = ? order by pe.fechaCreacion asc").setString(0, EstadoPedido.Despachado.name()).list();
 		s.close();
 		if(auxPedidos == null) {
 				throw new PedidoException("No existen pedidos despachados");

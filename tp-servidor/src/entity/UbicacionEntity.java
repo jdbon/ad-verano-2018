@@ -1,12 +1,21 @@
 package entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import enumerator.Bloque;
 import enumerator.Calle;
 import enumerator.Estanteria;
 import enumerator.Posicion;
-import negocio.Lote;
 
 @Entity
 @Table(name="ubicaciones")
@@ -20,9 +29,9 @@ public class UbicacionEntity {
 	@Column(name="ubi_tca")//ok
 	private int cantidadActual;
 	
-	@OneToOne
-	@JoinColumn(name="ubi_art")//ok
-	private ArticuloEntity articulo;
+//	@OneToOne
+//	@JoinColumn(name="ubi_art")//ok
+//	private ArticuloEntity articulo;
 	
 	@Column(name="ubi_cod")//cod
 	private String codigo;
@@ -43,9 +52,8 @@ public class UbicacionEntity {
 	@Enumerated(EnumType.STRING)
 	private Posicion posicion;
 	
-	@OneToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="ubi_lot")
-	//@Column(name="ubi_lot")
 	private LoteEntity lote;
 
 	public UbicacionEntity() {
@@ -76,13 +84,13 @@ public class UbicacionEntity {
 		this.cantidadActual = cantidadActual;
 	}
 
-	public ArticuloEntity getArticulo() {
-		return articulo;
-	}
-
-	public void setArticulo(ArticuloEntity articulo) {
-		this.articulo = articulo;
-	}
+//	public ArticuloEntity getArticulo() {
+//		return articulo;
+//	}
+//
+//	public void setArticulo(ArticuloEntity articulo) {
+//		this.articulo = articulo;
+//	}
 
 	public String getCodigo() {
 		return codigo;

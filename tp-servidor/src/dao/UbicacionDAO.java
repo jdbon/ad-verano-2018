@@ -3,12 +3,9 @@ package dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entity.ArticuloEntity;
 import entity.UbicacionEntity;
-import excepcion.ArticuloException;
 import excepcion.UbicacionException;
 import hibernate.HibernateUtil;
-import negocio.Articulo;
 import negocio.Ubicacion;
 
 public class UbicacionDAO {
@@ -30,7 +27,7 @@ public UbicacionEntity toEntity(Ubicacion u){
 		UbicacionEntity ue = new UbicacionEntity();
 		
 		ue.setCodigo(u.getCodigo());
-		ue.setArticulo(ArticuloDAO.getInstancia().toEntity(u.getArticulo()));
+//		ue.setArticulo(ArticuloDAO.getInstancia().toEntity(u.getArticulo()));
 		ue.setLote(LoteDAO.getInstancia().toEntity(u.getLote()));
 		ue.setCalle(u.getCalle());
 		ue.setBloque(u.getBloque());
@@ -46,7 +43,7 @@ public UbicacionEntity toEntity(Ubicacion u){
 		Ubicacion u = new Ubicacion();
 		
 		u.setCodigo(ue.getCodigo());
-		u.setArticulo(ArticuloDAO.getInstancia().toNegocio(ue.getArticulo()));
+//		u.setArticulo(ArticuloDAO.getInstancia().toNegocio(ue.getArticulo()));
 		u.setLote(LoteDAO.getInstancia().toNegocio(ue.getLote()));
 		u.setCalle(ue.getCalle());
 		u.setBloque(ue.getBloque());

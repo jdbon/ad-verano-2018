@@ -3,7 +3,6 @@ package negocio;
 import java.util.Date;
 
 import dto.LoteDTO;
-import dto.OrdenDeCompraDTO;
 import entity.LoteEntity;
 
 public class Lote {
@@ -11,8 +10,16 @@ public class Lote {
 	private int idLote;
 	private String nroLote;
 	private Date vencimiento;
+	private Articulo art;
 	
-	
+	public Articulo getArt() {
+		return art;
+	}
+
+	public void setArt(Articulo art) {
+		this.art = art;
+	}
+
 	public Lote() {		
 	}
 	
