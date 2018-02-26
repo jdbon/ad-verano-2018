@@ -2,7 +2,10 @@ package enumerator;
 
 public enum Presentacion {
 
-	Lata,
-	Bolsa,
-	Paquete;
+	LATAS,
+	BOLSA,
+	PAQUETE,
+	BOTELLAS,
+	FRASCO,
+	CAJAS;
 }

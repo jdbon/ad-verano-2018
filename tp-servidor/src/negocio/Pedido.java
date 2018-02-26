@@ -11,6 +11,8 @@ import dto.PedidoDTO;
 import enumerator.EstadoPedido;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
+import excepcion.ItemPedidoException;
+import excepcion.OrdenDeCompraException;
 import excepcion.PedidoException;
 
 public class Pedido {
@@ -26,13 +28,13 @@ public class Pedido {
 	
 	public Pedido () {}
 	
-	public Pedido(int idCliente, String direccion) throws ClienteException {
+	public Pedido(Cliente cliente, String direccion) throws ClienteException {
 
 		this.direccion = direccion;
 		this.items = new ArrayList<ItemPedido>();
 		this.estado = EstadoPedido.Pendiente;
 		this.fechaCreacion = Date.valueOf(LocalDate.now());
-		this.cliente = buscarCLiente(idCliente);		
+		this.cliente = cliente;		
 		
 	}
 	
@@ -55,23 +57,16 @@ public class Pedido {
 		this.items.add(itemPedido);
 	}
 
-	private Cliente buscarCLiente(int idCliente) throws ClienteException {
-		
-		Cliente cliente = ClienteDAO.getInstancia().findByID(idCliente);
-		
-		return cliente;
-	}
 	
-	public boolean verificarStock() {
+	public boolean verificarStock() throws ArticuloException, OrdenDeCompraException, ItemPedidoException {
 		
 		boolean parcial;
 		parcial = true;
 		for (ItemPedido item: this.items){
-			if (parcial == true){
-				parcial = item.verificarStock();
+			if (item.verificarStock() == false){
+				parcial = false;
 			}
 		}
-		
 		return parcial;
 	}
 
@@ -139,7 +134,7 @@ public class Pedido {
 		this.motivoRechazo = motivoRechazo;
 	}
 
-	public void save() throws PedidoException {
+	public void save() throws PedidoException, ItemPedidoException, ArticuloException {
 		// TODO Auto-generated method stub
 		PedidoDAO.getInstancia().save(this);
 		

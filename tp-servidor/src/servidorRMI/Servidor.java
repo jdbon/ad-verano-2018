@@ -26,6 +26,7 @@ public class Servidor {
 			
 			e.printStackTrace();
 		}
+		System.out.println("Se arranco");
 		
 	}
 }

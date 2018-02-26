@@ -1,17 +1,23 @@
 package entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import enumerator.Presentacion;
+import negocio.Lote;
+import negocio.OrdenDeCompra;
 
 
 @Entity
@@ -39,17 +45,23 @@ public class ArticuloEntity {
 	@Column(name="art_precio_vta")	
 	private Float precioVenta;
 	
-	@Column(name="art_x_comprar")
+	@Column(name="art_cant_x_comprar")
 	private Integer cantidadOrdenDeCompra;
+	
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="lot_art")
+	private Set<LoteEntity> lotes;
 
-//	hay una doble navegacion---> asi que va un uno a muchos bidireccional
-//	private List<LoteEntity> lotes;
 	@Column(name="art_cant_res")
 	private Integer cantidadReservada;
 
-//	@OneToMany
-//	@JoinColumn(name="art_id")
-//	private List<MovimientoEntity> movimientos;
+    @OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="mov_art")
+	private List<MovimientoEntity> movimientos;
+	
+	@OneToMany
+	@JoinColumn(name="art_id")
+	private List<OrdenDeCompraEntity> ordenes;
 	
 	
 	
@@ -113,13 +125,31 @@ public class ArticuloEntity {
 		this.cantidadOrdenDeCompra = cantidadOrdenDeCompra;
 	}
 
-	public List<LoteEntity> getLotes() {
-		return null; // reemplazar por: return lotes;
+	
+
+	public Set<LoteEntity> getLotes() {
+		return lotes;
 	}
 
-	public void setLotes(List<LoteEntity> lotes) {
-		// luego destomentar // this.lotes = lotes;
+
+
+	public void setLotes(Set<LoteEntity> lotes) {
+		this.lotes = lotes;
 	}
+
+
+
+	public List<OrdenDeCompraEntity> getOrdenes() {
+		return ordenes;
+	}
+
+
+
+	public void setOrdenes(List<OrdenDeCompraEntity> ordenes) {
+		this.ordenes = ordenes;
+	}
+
+
 
 	public Integer getCantidadReservada() {
 		return cantidadReservada;
@@ -129,13 +159,13 @@ public class ArticuloEntity {
 		this.cantidadReservada = cantidadReservada;
 	}
 
-//	public List<MovimientoEntity> getMovimientos() {
-//		return movimientos;
-//	}
-//
-//	public void setMovimientos(List<MovimientoEntity> movimientos) {
-//		this.movimientos = movimientos;
-//	}
+	public List<MovimientoEntity> getMovimientos() {
+		return movimientos;
+	}
+
+	public void setMovimientos(List<MovimientoEntity> movimientos) {
+		this.movimientos = movimientos;
+	}
 	
 	
 }

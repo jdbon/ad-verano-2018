@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entity.FacturaEntity;
+import excepcion.ArticuloException;
 import excepcion.FacturaException;
 import hibernate.HibernateUtil;
 import negocio.Factura;
@@ -21,7 +22,7 @@ public class FacturaDAO {
 		
 	}
 	
-	public FacturaEntity toEntity(Factura f){
+	public FacturaEntity toEntity(Factura f) throws ArticuloException{
 		FacturaEntity fe = new FacturaEntity();
 		
 		fe.setFecha(f.getFecha());
@@ -54,7 +55,7 @@ public class FacturaDAO {
 		return f;
 	}
 	
-	public void save(Factura f) throws FacturaException{
+	public void save(Factura f) throws FacturaException, ArticuloException{
 		
 		FacturaEntity fe = this.toEntity(f);
 		

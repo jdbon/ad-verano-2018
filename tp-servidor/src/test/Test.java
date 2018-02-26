@@ -2,80 +2,36 @@ package test;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-import controlador.ControladorDeDespacho;
-import dao.ClienteDAO;
-import dao.PedidoDAO;
-import dto.PedidoDTO;
-import enumerator.TipoFactura;
+import controlador.ControladorDeClientes;
+import dto.ArticuloDTO;
+import dto.ItemPedidoDTO;
+import excepcion.ArticuloException;
 import excepcion.ClienteException;
-import excepcion.FacturaException;
+import excepcion.ItemPedidoException;
 import excepcion.PedidoException;
-import negocio.*;
 
 public class Test {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClienteException, ArticuloException, PedidoException, ItemPedidoException {
 		
-		CargaDeDatos.cargarClientes();
-		CargaDeDatos.cargarPedidos();
+		//CargaDeDatos.cargarClientes();
+		@SuppressWarnings("unused")
+		List<ArticuloDTO> articulos = ControladorDeClientes.getInstancia().getAllArticulos();
+		System.out.println("TENGO EL LISTADO");
+		List<ItemPedidoDTO> items = new ArrayList<ItemPedidoDTO>();
+		ItemPedidoDTO item1 = new ItemPedidoDTO();
+		item1.setArticulo(articulos.get(0));
+		item1.setCantidadSolicitada(20);
+		ItemPedidoDTO item2 = new ItemPedidoDTO();
+		item2.setArticulo(articulos.get(1));
+		item2.setCantidadSolicitada(5);
+		items.add(item1);
+		items.add(item2);
+		ControladorDeClientes.getInstancia().generarNuevoPedido(1, "La recalcada concha de tu hermana", items);
 		
-		//Buscar cliente 1
-		Cliente c1 = null;
-		try {
-			c1 = ClienteDAO.getInstancia().findByID(1);
-		} catch (ClienteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("antes del Try del test");
-		//Buscar pedido 1
-		Pedido p1 = null;
-		try {
-				//System.out.println("******hasta aca el pedido es null --> " +p1.getIdPedido());
-			p1 = PedidoDAO.getInstancia().findById(1);
-				System.out.println("******luego se recupera el pedido con idPedido de valor: " + p1.getIdPedido() + "para setearlo en la factura");
-		} catch (PedidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		Factura f = new Factura();
-		f.setCliente(c1);
-		f.setFecha(Date.valueOf(LocalDate.now()));
-		f.setTipo(TipoFactura.B);
-		f.setTotal(20000f);
-		f.setPedido(p1);
-		
-		try {
-			f.save();
-			System.out.println("Se grabó la factura.");
-		} catch (FacturaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-				
-			try {
-				List<PedidoDTO> pendientes = ControladorDeDespacho.getInstancia().buscarPedidosPendiente();
-				
-				System.out.println("");
-				System.out.println("******************* PEDIDOS PENDIENTES ******************");
-		
-				System.out.println("Cliente: "+ pendientes.get(0).getNombreCliente());
-				System.out.println("Estado: "+ pendientes.get(0).getEstado());
-				System.out.println("Fecha de Creacion: "+ pendientes.get(0).getFechaCreacion());
-				System.out.println("");
-				System.out.println("********************************************************");
-				
-				System.out.println("Cliente: "+ pendientes.get(1).getNombreCliente());
-				System.out.println("Estado: "+ pendientes.get(1).getEstado());
-				System.out.println("Fecha de Creacion: "+ pendientes.get(1).getFechaCreacion());
-											
-			
-			} catch (PedidoException e) {
-				e.printStackTrace();
-			}	
 	}
 
 }

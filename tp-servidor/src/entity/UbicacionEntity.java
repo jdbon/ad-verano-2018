@@ -6,6 +6,7 @@ import enumerator.Bloque;
 import enumerator.Calle;
 import enumerator.Estanteria;
 import enumerator.Posicion;
+import negocio.Lote;
 
 @Entity
 @Table(name="ubicaciones")
@@ -13,24 +14,24 @@ public class UbicacionEntity {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ubi_id")
+	@Column(name="ubi_id")//ok
 	private Integer idUbicacion;
 	
-	@Column(name="ubi_tca")
+	@Column(name="ubi_tca")//ok
 	private int cantidadActual;
 	
 	@OneToOne
-	@JoinColumn(name="ubi_art")
+	@JoinColumn(name="ubi_art")//ok
 	private ArticuloEntity articulo;
 	
-	@Column(name="ubi_cod")
+	@Column(name="ubi_cod")//cod
 	private String codigo;
 	
-	@Column(name="ubi_cal")
+	@Column(name="ubi_cal")//ok
 	@Enumerated(EnumType.STRING)
 	private Calle calle;
 	
-	@Column(name="ubi_blo")
+	@Column(name="ubi_blo")//ok
 	@Enumerated(EnumType.STRING)
 	private Bloque bloque;
 	
@@ -41,9 +42,22 @@ public class UbicacionEntity {
 	@Column(name="ubi_pos")
 	@Enumerated(EnumType.STRING)
 	private Posicion posicion;
+	
+	@OneToOne
+	@JoinColumn(name="ubi_lot")
+	//@Column(name="ubi_lot")
+	private LoteEntity lote;
 
 	public UbicacionEntity() {
 		
+	}
+
+	public LoteEntity getLote() {
+		return lote;
+	}
+
+	public void setLote(LoteEntity lote) {
+		this.lote = lote;
 	}
 
 	public Integer getIdUbicacion() {

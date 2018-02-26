@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controlador.ControladorDeClientes;
+import dto.ArticuloDTO;
 import dto.ItemPedidoDTO;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
+import excepcion.ItemPedidoException;
 import excepcion.PedidoException;
 
 public class TestControladorCliente {
@@ -20,12 +22,16 @@ public class TestControladorCliente {
 		List<ItemPedidoDTO> items = new ArrayList<ItemPedidoDTO>();
 		
 		ItemPedidoDTO item1 = new ItemPedidoDTO();
-		item1.setArticulo(1);
+		ArticuloDTO art1 = new ArticuloDTO();
+		art1.setCodigoBarra(1);
+		item1.setArticulo(art1);
 		item1.setCantidadSolicitada(2);
 		items.add(item1);
 		
 		ItemPedidoDTO item2 = new ItemPedidoDTO();
-		item2.setArticulo(2);
+		ArticuloDTO art2 = new ArticuloDTO();
+		art2.setCodigoBarra(2);
+		item2.setArticulo(art2);
 		item2.setCantidadSolicitada(2);
 		items.add(item2);
 		
@@ -41,6 +47,9 @@ public class TestControladorCliente {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (PedidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ItemPedidoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

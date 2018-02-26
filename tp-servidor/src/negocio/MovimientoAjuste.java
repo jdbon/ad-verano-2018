@@ -10,6 +10,14 @@ public class MovimientoAjuste extends Movimiento{
 		super();
 		
 	}
+	
+	public String toString() {
+		
+		return "MovAB: " + this.getNroMovimiento() + " - Tipo: " + this.getTipo() + " - Cant: " + 
+				this.getCantidad() + " - Enc: " + this.getEncargado() + " - Aut: " + this.getAutorizadoPor()
+				+ " - Dest: " + this.getDestinoArticulos();
+	}
+
 
 	public String getEncargado() {
 		return encargado;

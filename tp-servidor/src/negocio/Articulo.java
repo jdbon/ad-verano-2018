@@ -3,6 +3,7 @@ package negocio;
 import java.util.*;
 
 import dao.ArticuloDAO;
+import dao.OrdenDeCompraDAO;
 import enumerator.EstadoOC;
 import dto.ArticuloDTO;
 import dto.LoteDTO;
@@ -11,6 +12,7 @@ import dto.OrdenDeCompraDTO;
 import enumerator.Presentacion;
 import enumerator.TipoMovimiento;
 import excepcion.ArticuloException;
+import excepcion.OrdenDeCompraException;
 
 public class Articulo {
 
@@ -27,12 +29,9 @@ public class Articulo {
 	private List<OrdenDeCompra> ordenes;
 
 	public Articulo() {
-		super();
-		lotes = new ArrayList<Lote>();
-		movimientos = new ArrayList<Movimiento>();
 	}
 
-	public Integer getCodigoBarra() {
+	public int getCodigoBarra() {
 		return codigoBarra;
 	}
 
@@ -56,7 +55,7 @@ public class Articulo {
 		this.presentacion = presentacion;
 	}
 
-	public Integer getTamaño() {
+	public int getTamaño() {
 		return tamaño;
 	}
 
@@ -64,7 +63,7 @@ public class Articulo {
 		this.tamaño = tamaño;
 	}
 
-	public Integer getUnidad() {
+	public int getUnidad() {
 		return unidad;
 	}
 
@@ -170,35 +169,87 @@ public class Articulo {
 		return true;
 	}
 
-	public boolean calcularStock(int cantidadSolicitada) throws ArticuloException {
+	public boolean calcularStock(int cantidadSolicitada) throws ArticuloException, OrdenDeCompraException {
 		
 		int cantLibre = 0;
+		int cantFaltante = 0;
 		int sumaMovimientos = 0;
-		int cantidadOC = 0;
+		int cantParaPedir = 0;
 		boolean resultado = true;
 		for(Movimiento movimiento: this.movimientos){
-			if (movimiento.tipo == TipoMovimiento.Alta){
+			if (movimiento.tipo == TipoMovimiento.ALTA){
 				sumaMovimientos = sumaMovimientos + movimiento.getCantidad();
 			}else{
 				sumaMovimientos = sumaMovimientos - movimiento.getCantidad();
 			}
 		}
 		cantLibre = sumaMovimientos - this.cantidadReservada;
-		if (cantLibre <  cantidadSolicitada){
-			for (OrdenDeCompra oc: this.ordenes){
-				if(oc.getEstado() == EstadoOC.Pendiente){
-					cantidadOC = cantidadOC + oc.getCantidadXcomprar();
+		if (cantLibre <  cantidadSolicitada & cantLibre >= 0){
+			cantFaltante = cantidadSolicitada - cantLibre;
+			cantParaPedir = (int) Math.ceil(cantFaltante/this.cantidadOrdenDeCompra);
+			for (int i = 1; i > cantParaPedir ; i++){
+				if (i == cantParaPedir){
+					this.generarOC(cantFaltante);
+					cantFaltante = 0;
 				}
+				this.generarOC(this.cantidadOrdenDeCompra);
+				cantFaltante = cantFaltante - this.cantidadOrdenDeCompra;
 			}
-			//if 
+			this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;
 			resultado = false;
+		}else{
+			if (cantLibre > cantidadSolicitada){
+				this.cantidadReservada = this.cantidadReservada - cantidadSolicitada;
+			}else{
+				cantFaltante = cantidadSolicitada;
+				for (OrdenDeCompra oc: this.ordenes){
+					if((oc.getCantidadXcomprar() - oc.getCantidadReservada()) > 0 
+							& (oc.getCantidadXcomprar() - oc.getCantidadReservada()) >= cantidadSolicitada){
+						oc.setCantidadReservada(oc.getCantidadReservada()+cantidadSolicitada);
+						//update
+						cantFaltante = 0;
+					}else{
+						if((oc.getCantidadXcomprar() - oc.getCantidadReservada()) > 0 
+								& (oc.getCantidadXcomprar() - oc.getCantidadReservada()) < cantidadSolicitada){
+							cantFaltante = cantidadSolicitada - (oc.getCantidadXcomprar() - oc.getCantidadReservada());
+							oc.setCantidadReservada(oc.getCantidadReservada() + (cantidadSolicitada - cantFaltante));
+							//update
+						}
+					}
+				}
+				if (cantFaltante > 0){
+					cantParaPedir = (int) Math.ceil(cantFaltante/this.cantidadOrdenDeCompra);
+					for (int i=1; i>cantParaPedir ;i++){
+						if (i==cantParaPedir){
+							this.generarOC(cantFaltante);
+							cantFaltante = 0;
+						}
+						this.generarOC(this.cantidadOrdenDeCompra);
+						cantFaltante = cantFaltante - this.cantidadOrdenDeCompra;
+					}
+				}
+				this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;
+				resultado = false;
+			}						
 		}
 		ArticuloDAO.getInstancia().update(this);
-		this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;
 		return resultado;
 	}
 
-public ArticuloDTO toDTO() {
+	private void generarOC(int cantReservada) throws OrdenDeCompraException {
+	
+		OrdenDeCompra oC = new OrdenDeCompra(this, cantReservada);
+		OrdenDeCompraDAO.getInstancia().save(oC);
+		this.ordenes.add(oC);
+		
+	}
+	
+	public String toString(){
+		return "Art ID: " + this.getCodigoBarra() + " - Desc: " + this.getDescripcion() + " - Precio V: " + 
+	       this.getPrecioVenta() + " - Cant. OC: " + this.getCantidadOrdenDeCompra();
+	}
+
+	public ArticuloDTO toDTO() {
 		
 		ArticuloDTO ArDTO = new ArticuloDTO();
 		
