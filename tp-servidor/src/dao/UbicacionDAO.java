@@ -1,6 +1,14 @@
 package dao;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import entity.ArticuloEntity;
 import entity.UbicacionEntity;
+import excepcion.ArticuloException;
+import excepcion.UbicacionException;
+import hibernate.HibernateUtil;
+import negocio.Articulo;
 import negocio.Ubicacion;
 
 public class UbicacionDAO {
@@ -46,6 +54,19 @@ public UbicacionEntity toEntity(Ubicacion u){
 		u.setPosicion(ue.getPosicion());
 		u.setCantidadActual(ue.getCantidadActual());
 		
+		return u;
+	}
+	
+	public Ubicacion findById(String cod) throws UbicacionException{
+		Ubicacion u;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		UbicacionEntity ue = (UbicacionEntity) s.createQuery("From UbicacionEntity ue where ue.codigo = ?").setString(0, cod).uniqueResult();
+		s.close();
+		if(ue == null) {
+				throw new UbicacionException("No existe la ubicacion con el id " + cod);
+		}
+		u = this.toNegocio(ue);
 		return u;
 	}
 

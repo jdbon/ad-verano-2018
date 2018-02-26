@@ -1061,7 +1061,7 @@ VALUES
 GO
 -- BREAK OBLIGATORIO --------------------------------------
 INSERT INTO ubicaciones 
-(ubi_cod, ubi_art, ubi_lot, ubi_cal, ubi_blo, ubi_est, ubi_pos)
+(ubi_cod, ubi_art, ubi_lot, ubi_tca, ubi_cal, ubi_blo, ubi_est, ubi_pos)
 VALUES
 ('B030603',NULL,NULL,0,'B','03','06','03')
 ,('B030604',NULL,NULL,0,'B','03','06','04')
@@ -2056,7 +2056,7 @@ VALUES
 GO
 -- BREAK OBLIGATORIO ----------------------
 INSERT INTO ubicaciones 
-(ubi_cod, ubi_art, ubi_lot, ubi_cal, ubi_blo, ubi_est, ubi_pos)
+(ubi_cod, ubi_art, ubi_lot, ubi_tca, ubi_cal, ubi_blo, ubi_est, ubi_pos)
 VALUES
 ('D010506',NULL,NULL,0,'D','01','05','06')
 ,('D010507',NULL,NULL,0,'D','01','05','07')
@@ -3052,7 +3052,7 @@ VALUES
 GO
 -- BREAK OBLIGATORIO ----------------------
 INSERT INTO ubicaciones 
-(ubi_cod, ubi_art, ubi_lot, ubi_cal, ubi_blo, ubi_est, ubi_pos)
+(ubi_cod, ubi_art, ubi_lot, ubi_tca, ubi_cal, ubi_blo, ubi_est, ubi_pos)
 VALUES
  ('E040410',NULL,NULL,0,'E','04','04','10')
 ,('E040411',NULL,NULL,0,'E','04','04','11')
@@ -4047,7 +4047,7 @@ VALUES
 GO
 -- BREAK OBLIGATORIO ----------------------
 INSERT INTO ubicaciones 
-(ubi_cod, ubi_art, ubi_lot, ubi_cal, ubi_blo, ubi_est, ubi_pos)
+(ubi_cod, ubi_art, ubi_lot, ubi_tca, ubi_cal, ubi_blo, ubi_est, ubi_pos)
 VALUES
  ('G020313',NULL,NULL,0,'G','02','03','13')
 ,('G020314',NULL,NULL,0,'G','02','03','14')
