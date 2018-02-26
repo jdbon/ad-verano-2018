@@ -2,8 +2,8 @@ package enumerator;
 
 public enum TipoMovimiento {
 
-	Alta,
-	Baja,
-	Rotura,
-	Vencimiento;
+	ALTA,
+	BAJA,
+	ROTURA,
+	VENCIMIENTO;
 }

@@ -7,6 +7,18 @@ public class MovimientoAB extends Movimiento{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String toString() {
+		
+		return "MovAB: " + this.getNroMovimiento() + " - Tipo: " + this.getTipo() + " - Cant: " + 
+				this.getCantidad();
+	}
+	
+	
+	
 	
 
 }
+
+	
+
+

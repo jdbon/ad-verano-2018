@@ -180,7 +180,7 @@ public class Articulo {
 		int cantParaPedir = 0;
 		boolean resultado = true;
 		for(Movimiento movimiento: this.movimientos){
-			if (movimiento.tipo == TipoMovimiento.Alta){
+			if (movimiento.tipo == TipoMovimiento.ALTA){
 				sumaMovimientos = sumaMovimientos + movimiento.getCantidad();
 			}else{
 				sumaMovimientos = sumaMovimientos - movimiento.getCantidad();
