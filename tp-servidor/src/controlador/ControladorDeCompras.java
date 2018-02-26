@@ -55,7 +55,7 @@ public void recibirOCPendiente (OrdenDeCompraDTO odc, LoteDTO lote) throws Orden
 			OrdenDeCompraDAO.getInstancia().update(OC);
 		}
 		
-		ControladorDeDeposito.getInstancia();  //FALTA COMPLETAR 
+		ControladorDeDeposito.getInstancia();  //FALTA COMPLETAR CON EL METODO DE DEPOSITO
 		
 		
 	}
