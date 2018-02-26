@@ -2,6 +2,7 @@ package entity;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -29,9 +31,9 @@ public class PedidoEntity {
 	
 	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="ite_ped")
-	private List<ItemPedidoEntity> items;
+	private Set<ItemPedidoEntity> items;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="ped_cli")
 	private ClienteEntity cliente;
 	
@@ -52,11 +54,11 @@ public class PedidoEntity {
 	@Column(name="ped_motivo_rechazo")
 	private String motivoRechazo;
 	
-	public List<ItemPedidoEntity> getItems() {
+	public Set<ItemPedidoEntity> getItems() {
 		return items;
 	}
 
-	public void setItems(List<ItemPedidoEntity> items) {
+	public void setItems(Set<ItemPedidoEntity> items) {
 		this.items = items;
 	}
 

@@ -56,11 +56,11 @@ public class ArticuloEntity {
 
     @OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="mov_art")
-	private List<MovimientoEntity> movimientos;
+	private Set<MovimientoEntity> movimientos;
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="odc_art")
-	private List<OrdenDeCompraEntity> ordenes;
+	private Set<OrdenDeCompraEntity> ordenes;
 	
 	
 	
@@ -138,13 +138,13 @@ public class ArticuloEntity {
 
 
 
-	public List<OrdenDeCompraEntity> getOrdenes() {
+	public Set<OrdenDeCompraEntity> getOrdenes() {
 		return ordenes;
 	}
 
 
 
-	public void setOrdenes(List<OrdenDeCompraEntity> ordenes) {
+	public void setOrdenes(Set<OrdenDeCompraEntity> ordenes) {
 		this.ordenes = ordenes;
 	}
 
@@ -158,11 +158,11 @@ public class ArticuloEntity {
 		this.cantidadReservada = cantidadReservada;
 	}
 
-	public List<MovimientoEntity> getMovimientos() {
+	public Set<MovimientoEntity> getMovimientos() {
 		return movimientos;
 	}
 
-	public void setMovimientos(List<MovimientoEntity> movimientos) {
+	public void setMovimientos(Set<MovimientoEntity> movimientos) {
 		this.movimientos = movimientos;
 	}
 	

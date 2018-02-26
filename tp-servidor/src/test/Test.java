@@ -17,7 +17,7 @@ public class Test {
 
 	public static void main(String[] args) throws ClienteException, ArticuloException, PedidoException, ItemPedidoException {
 		
-		CargaDeDatos.cargarClientes();
+		//CargaDeDatos.cargarClientes();
 		@SuppressWarnings("unused")
 		List<ArticuloDTO> articulos = ControladorDeClientes.getInstancia().getAllArticulos();
 		System.out.println("TENGO EL LISTADO");
@@ -30,7 +30,7 @@ public class Test {
 		item2.setCantidadSolicitada(5);
 		items.add(item1);
 		items.add(item2);
-		ControladorDeClientes.getInstancia().generarNuevoPedido(1, "La recalcada concha de tu hermana", items);
+		ControladorDeClientes.getInstancia().generarNuevoPedido(1, "Direccion", items);
 		
 	}
 
