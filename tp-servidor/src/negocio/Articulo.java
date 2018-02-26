@@ -29,9 +29,6 @@ public class Articulo {
 	private List<OrdenDeCompra> ordenes;
 
 	public Articulo() {
-		super();
-		lotes = new ArrayList<Lote>();
-		movimientos = new ArrayList<Movimiento>();
 	}
 
 	public Integer getCodigoBarra() {

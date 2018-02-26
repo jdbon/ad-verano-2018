@@ -1,6 +1,9 @@
 
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -129,6 +132,30 @@ private static ArticuloDAO instancia;
 		return art;
 	}
 
+<<<<<<< HEAD
+	public Articulo findByID(int idArticulo) throws ArticuloException {
+		Articulo resultado;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		ArticuloEntity auxArticulo = (ArticuloEntity) s.createQuery("From ArticuloEntity a where a.numero = ?").setInteger(0, idArticulo).uniqueResult();
+		s.close();
+		if(auxArticulo == null) {
+				throw new ArticuloException("No existe un cliente con el id " + idArticulo);
+		}
+		resultado = this.toNegocio(auxArticulo);
+		return resultado;
+	}
+
+	public List<Articulo> findAll() {
+		List<Articulo> resultado = new ArrayList<Articulo>();
+		Session se = HibernateUtil.getSessionFactory().openSession();
+		List<ArticuloEntity> articulos = (List<ArticuloEntity>)se.createQuery("from ArticuloEntity").list();
+		se.close();
+		for(ArticuloEntity articulo: articulos){
+			resultado.add(this.toNegocio(articulo));
+		}
+		return null;
+=======
 	public Articulo findByID(int idArticulo) throws ArticuloException {
 		Articulo a;
 		SessionFactory sf = HibernateUtil.getSessionFactory();
@@ -140,6 +167,7 @@ private static ArticuloDAO instancia;
 		}
 		a = this.toNegocio(auxArticulo);
 		return a;
+>>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 	}
 
 
