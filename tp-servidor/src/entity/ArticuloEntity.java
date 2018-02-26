@@ -124,13 +124,31 @@ public class ArticuloEntity {
 		this.cantidadOrdenDeCompra = cantidadOrdenDeCompra;
 	}
 
+	
+
 	public List<LoteEntity> getLotes() {
-		return null; // reemplazar por: return lotes;
+		return lotes;
 	}
 
+
+
 	public void setLotes(List<LoteEntity> lotes) {
-		// luego destomentar // this.lotes = lotes;
+		this.lotes = lotes;
 	}
+
+
+
+	public List<OrdenDeCompraEntity> getOrdenes() {
+		return ordenes;
+	}
+
+
+
+	public void setOrdenes(List<OrdenDeCompraEntity> ordenes) {
+		this.ordenes = ordenes;
+	}
+
+
 
 	public Integer getCantidadReservada() {
 		return cantidadReservada;
