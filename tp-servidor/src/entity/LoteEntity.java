@@ -2,15 +2,13 @@ package entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,17 +26,16 @@ public class LoteEntity {
 	@Column(name="lot_vto")
 	private Date vencimiento;
 	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToOne
 	@JoinColumn(name="lot_art")
-	private ArticuloEntity artE;
-	
+	private ArticuloEntity articuloE;
 	
 	public ArticuloEntity getArt() {
-		return artE;
+		return articuloE;
 	}
 
 	public void setArt(ArticuloEntity art) {
-		this.artE = art;
+		this.articuloE = art;
 	}
 
 	public LoteEntity() {

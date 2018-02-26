@@ -1,13 +1,7 @@
 package entity;
 
-
-import java.util.List;
-
-import javax.persistence.CascadeType;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +22,10 @@ public class ItemPedidoEntity {
 	@Column(name="ite_id")
 	private Integer idItemPedido;
 	
+	@OneToOne
+	@JoinColumn(name="ite_art")
+	private ArticuloEntity articulo;
+	
 	@Column(name="ite_cant")
 	private Integer cantidadSolicitada;
 	
@@ -37,37 +35,22 @@ public class ItemPedidoEntity {
 	@Column(name="ite_sub_tot")
 	private float subTotal;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="ite_ped")
-	private PedidoEntity pedidoE;
+	private PedidoEntity pedido;
 	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="ite_art")
-	private ArticuloEntity artE;	
 	
 	public ItemPedidoEntity() {}
 	
 	
-	public PedidoEntity getPedidoE() {
-		return pedidoE;
+	public ArticuloEntity getArticulo() {
+		return articulo;
 	}
-
-
-	public void setPedidoE(PedidoEntity pedidoE) {
-		this.pedidoE = pedidoE;
+	public void setArticulo(ArticuloEntity articulo) {
+		this.articulo = articulo;
 	}
-
-
-	public ArticuloEntity getArtE() {
-		return artE;
-	}
-
-
-	public void setArtE(ArticuloEntity artE) {
-		this.artE = artE;
-	}
-
-
+	
+	
 	public Integer getCantidadSolicitada() {
 		return cantidadSolicitada;
 	}

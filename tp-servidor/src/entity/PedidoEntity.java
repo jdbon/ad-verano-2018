@@ -1,16 +1,12 @@
 package entity;
 
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,9 +26,9 @@ public class PedidoEntity {
 	@Column(name="ped_id")
 	private Integer idPedido;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="ite_ped")
-	private Set<ItemPedidoEntity> items = new HashSet<ItemPedidoEntity>();
+	@OneToMany
+	@JoinColumn(name="ped_id")
+	private List<ItemPedidoEntity> items;
 	
 	@OneToOne
 	@JoinColumn(name="ped_cli")
@@ -60,22 +56,6 @@ public class PedidoEntity {
 	public PedidoEntity() {
 		super();
 	}
-	
-	
-
-	
-	
-	public Set<ItemPedidoEntity> getItems() {
-		return items;
-	}
-
-
-
-	public void setItems(Set<ItemPedidoEntity> items) {
-		this.items = items;
-	}
-
-
 
 	public Integer getIdPedido() {
 		return idPedido;

@@ -1,18 +1,14 @@
 package entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import enumerator.TipoMovimiento;
@@ -28,13 +24,10 @@ public abstract class MovimientoEntity {
 	@Column(name="mov_cant")
 	protected Integer cantidad;
 	
+	//protected Articulo articulo; --> el movimiento no conoce al articulo
 	@Enumerated(EnumType.STRING)
 	@Column(name="mov_tipoEnum")
 	protected TipoMovimiento tipo;
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="mov_art")
-	private ArticuloEntity artE;
 	
 	public MovimientoEntity() {
 		super();

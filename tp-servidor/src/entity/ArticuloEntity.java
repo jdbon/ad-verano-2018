@@ -1,10 +1,8 @@
 package entity;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,18 +28,6 @@ public class ArticuloEntity {
 	@Column(name="art_id")
 	private Integer codigoBarra;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="lot_art")
-	private Set<LoteEntity> lotes = new HashSet<LoteEntity>();
-
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="mov_art")
-	private Set<MovimientoEntity> movimientos= new HashSet<MovimientoEntity>();
-    
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="odc_art")
-	private Set<OrdenDeCompraEntity> ordenes= new HashSet<OrdenDeCompraEntity>();
-	
 	@Column(name="art_desc")
 	private String descripcion;
 	
@@ -60,10 +46,21 @@ public class ArticuloEntity {
 	
 	@Column(name="art_cant_x_comprar")
 	private Integer cantidadOrdenDeCompra;
+	
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="lot_art")
+	private Set<LoteEntity> lotes;
 
 	@Column(name="art_cant_res")
 	private Integer cantidadReservada;
 
+    @OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="mov_art")
+	private List<MovimientoEntity> movimientos;
+	
+	@OneToMany
+	@JoinColumn(name="odc_art")
+	private List<OrdenDeCompraEntity> ordenes;
 	
 	
 	
@@ -135,22 +132,22 @@ public class ArticuloEntity {
 
 
 
-
-	public void setLotes(Set<LoteEntity> lotesE) {
-		this.lotes = lotesE;
+	public void setLotes(Set<LoteEntity> lotes) {
+		this.lotes = lotes;
 	}
 
 
 
-	public Set<OrdenDeCompraEntity> getOrdenes() {
+	public List<OrdenDeCompraEntity> getOrdenes() {
 		return ordenes;
 	}
 
 
 
-	public void setOrdenes(Set<OrdenDeCompraEntity> ordenes) {
+	public void setOrdenes(List<OrdenDeCompraEntity> ordenes) {
 		this.ordenes = ordenes;
 	}
+
 
 
 	public Integer getCantidadReservada() {
@@ -161,11 +158,11 @@ public class ArticuloEntity {
 		this.cantidadReservada = cantidadReservada;
 	}
 
-	public Set<MovimientoEntity> getMovimientos() {
+	public List<MovimientoEntity> getMovimientos() {
 		return movimientos;
 	}
 
-	public void setMovimientos(Set<MovimientoEntity> movimientos) {
+	public void setMovimientos(List<MovimientoEntity> movimientos) {
 		this.movimientos = movimientos;
 	}
 	

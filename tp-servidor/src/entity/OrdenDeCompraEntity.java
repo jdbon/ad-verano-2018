@@ -19,7 +19,7 @@ public class OrdenDeCompraEntity {
 	private int cantidadXcomprar;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="odc_teo")
+	@Column(name="odc_estado")
 	private EstadoOC estado;
 	
 	@Column(name="odc_fec_recepcion")
@@ -77,6 +77,15 @@ public class OrdenDeCompraEntity {
 
 	public void setCantidadReservada(int cantidadReservada) {
 		this.cantidadReservada = cantidadReservada;
+	}
+
+	public void setArticulo(ArticuloEntity entity) {
+		this.artE = entity;
+		
+	}
+
+	public ArticuloEntity getArticulo() {
+		return this.artE;
 	}
 	
 	

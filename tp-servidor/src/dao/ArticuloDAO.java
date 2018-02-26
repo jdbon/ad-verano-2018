@@ -61,6 +61,8 @@ private static ArticuloDAO instancia;
 		artE.setDescripcion(art.getDescripcion());
 		Set<LoteEntity> lotesE = new HashSet<LoteEntity>();
 		artE.setLotes(lotesE);
+//		Set<LoteEntity> lotesE = new Set<LoteEntity>();
+//		artE.setLotes(lotesE);
 		for(Lote lote: art.getLotes()) {
 			LoteEntity le = new LoteEntity();
 			le = LoteDAO.getInstancia().toEntity(lote);

@@ -136,6 +136,7 @@ public class Pedido {
 	public void save() throws PedidoException, ItemPedidoException, ArticuloException {
 		// TODO Auto-generated method stub
 		PedidoDAO.getInstancia().save(this);
+		
 	}
 	
 }
