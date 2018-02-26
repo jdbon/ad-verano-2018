@@ -132,6 +132,7 @@ private static ArticuloDAO instancia;
 		return art;
 	}
 
+<<<<<<< HEAD
 	public Articulo findByID(int idArticulo) throws ArticuloException {
 		Articulo resultado;
 		SessionFactory sf = HibernateUtil.getSessionFactory();
@@ -154,6 +155,19 @@ private static ArticuloDAO instancia;
 			resultado.add(this.toNegocio(articulo));
 		}
 		return null;
+=======
+	public Articulo findByID(int idArticulo) throws ArticuloException {
+		Articulo a;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		ArticuloEntity auxArticulo = (ArticuloEntity) s.createQuery("From ArticuloEntity ae where ae.codigoBarra = ?").setInteger(0, idArticulo).uniqueResult();
+		s.close();
+		if(auxArticulo == null) {
+				throw new ArticuloException("No existe un Articulo con el id " + idArticulo);
+		}
+		a = this.toNegocio(auxArticulo);
+		return a;
+>>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 	}
 
 

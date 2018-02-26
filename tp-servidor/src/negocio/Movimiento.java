@@ -15,6 +15,8 @@ public abstract class Movimiento {
 		super();
 	}
 	
+	public abstract String toString();
+	
 	public Integer getNroMovimiento() {
 		return nroMovimiento;
 	}
