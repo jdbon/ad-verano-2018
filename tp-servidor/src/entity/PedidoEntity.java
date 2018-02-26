@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,8 +27,8 @@ public class PedidoEntity {
 	@Column(name="ped_id")
 	private Integer idPedido;
 	
-	@OneToMany
-	@JoinColumn(name="ped_id")
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="ite_ped")
 	private List<ItemPedidoEntity> items;
 	
 	@OneToOne

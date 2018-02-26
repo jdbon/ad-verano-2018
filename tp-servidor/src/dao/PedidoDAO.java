@@ -41,11 +41,13 @@ public class PedidoDAO {
 		pe.setMotivoRechazo(p.getMotivoRechazo());
         pe.setCliente(ClienteDAO.getInstancia().toEntity(p.getCliente()));
         List<ItemPedidoEntity> itemsE = new ArrayList<ItemPedidoEntity>();
+        pe.setItems(itemsE);
 		for (ItemPedido item: p.getItems()){
 			ItemPedidoEntity itemE = new ItemPedidoEntity();
 			itemE.setArticulo(ArticuloDAO.getInstancia().toEntity(item.getArticulo()));
-			itemE.setPedido(pe);
 			itemsE.add(ItemPedidoDAO.getInstancia().toEntity(item));
+			itemE.setPedido(pe);
+			pe.getItems().add(itemE);
 		}
 		return pe;
 		
@@ -54,7 +56,6 @@ public class PedidoDAO {
 	
 	public void save(Pedido p) throws PedidoException, ItemPedidoException, ArticuloException{
 		PedidoEntity pe = this.toEntity(p);
-		
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 		s.beginTransaction();
