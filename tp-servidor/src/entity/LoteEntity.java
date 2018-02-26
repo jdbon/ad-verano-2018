@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+
+import javax.persistence.OneToMany;
+
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,14 +32,14 @@ public class LoteEntity {
 	
 	@OneToOne
 	@JoinColumn(name="lot_art")
-	private ArticuloEntity art;
+	private ArticuloEntity articuloE;
 	
 	public ArticuloEntity getArt() {
-		return art;
+		return articuloE;
 	}
 
 	public void setArt(ArticuloEntity art) {
-		this.art = art;
+		this.articuloE = art;
 	}
 
 	public LoteEntity() {
