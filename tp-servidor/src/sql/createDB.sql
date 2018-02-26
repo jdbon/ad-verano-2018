@@ -218,8 +218,8 @@ GO
 CREATE TABLE [dbo].[ubicaciones](
 	[ubi_id] [int] IDENTITY(1,1) NOT NULL,
 	[ubi_cod] [nvarchar](50) NOT NULL,
-	[ubi_art] [int] NOT NULL,
-	[ubi_lot] [int] NOT NULL,
+	[ubi_art] [int] NULL,
+	[ubi_lot] [nvarchar](50) NULL,
 	[ubi_tca] [int] NOT NULL,
 	[ubi_cal] [nvarchar](50) NOT NULL,
 	[ubi_blo] [nvarchar](50) NOT NULL,
@@ -306,8 +306,8 @@ REFERENCES [dbo].[articulos] ([art_id])
 ALTER TABLE [dbo].[remitos]  WITH CHECK ADD  CONSTRAINT [FK_remitos_clientes] FOREIGN KEY([rem_cli])
 REFERENCES [dbo].[clientes] ([cli_id])
 /*se agrega la FK de ubicaciones contra lotes*/
-ALTER TABLE [dbo].[ubicaciones]  WITH CHECK ADD  CONSTRAINT [FK_ubicaciones_lotes] FOREIGN KEY([ubi_lot])
-REFERENCES [dbo].[lotes] ([lot_nro])
+ALTER TABLE [dbo].[ubicaciones]  WITH CHECK ADD  CONSTRAINT [FK_ubicaciones_lotes] FOREIGN KEY([ubi_lot], [ubi_art])
+REFERENCES [dbo].[lotes] ([lot_nro], [lot_art])
 
 
 
