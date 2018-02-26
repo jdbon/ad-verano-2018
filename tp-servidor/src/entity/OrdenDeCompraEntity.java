@@ -29,6 +29,7 @@ public class OrdenDeCompraEntity {
 	private int cantidadXcomprar;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(name="odc_estado")
 	private EstadoOC estado;
 	
 	@Column(name="odc_fec_recepcion")
