@@ -141,6 +141,7 @@ private static ArticuloDAO instancia;
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public List<Articulo> findAll() {
 		List<Articulo> resultado = new ArrayList<Articulo>();
 		Session se = HibernateUtil.getSessionFactory().openSession();

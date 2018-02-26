@@ -86,4 +86,9 @@ public class ArticuloDTO implements Serializable{
 		this.movimientosDTO = movimientosDTO;
 	}
 	
+	public String toString(){
+		return "Cod: " + this.getCodigoBarra() + " - Art: " + this.getDescripcion() + " - Precio: " + 
+					this.getPrecioVenta();
+	}
+	
 }
