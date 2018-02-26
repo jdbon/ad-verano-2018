@@ -1,14 +1,13 @@
 package negocio;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.ArticuloDAO;
 import dao.OrdenDeCompraDAO;
-import enumerator.EstadoOC;
 import dto.ArticuloDTO;
 import dto.LoteDTO;
 import dto.MovimientoDTO;
-import dto.OrdenDeCompraDTO;
 import enumerator.Presentacion;
 import enumerator.TipoMovimiento;
 import excepcion.ArticuloException;

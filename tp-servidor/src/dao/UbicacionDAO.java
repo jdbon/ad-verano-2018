@@ -3,12 +3,9 @@ package dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import entity.ArticuloEntity;
 import entity.UbicacionEntity;
-import excepcion.ArticuloException;
 import excepcion.UbicacionException;
 import hibernate.HibernateUtil;
-import negocio.Articulo;
 import negocio.Ubicacion;
 
 public class UbicacionDAO {

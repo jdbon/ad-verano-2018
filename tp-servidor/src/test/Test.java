@@ -1,8 +1,5 @@
 package test;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import controlador.ControladorDeClientes;
@@ -20,7 +17,7 @@ public class Test {
 		List<ArticuloDTO> articulos = ControladorDeClientes.getInstancia().getAllArticulos();
 		System.out.println("TENGO EL LISTADO");
 		
-		//ControladorDeClientes.getInstancia().generarNuevoPedido(1, "La recalcada concha de tu hermana", items);
+		//ControladorDeClientes.getInstancia().generarNuevoPedido(1, "direccion", items);
 		
 	}
 

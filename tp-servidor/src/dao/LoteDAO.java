@@ -1,9 +1,7 @@
 package dao;
 
 import entity.LoteEntity;
-import entity.PedidoEntity;
 import negocio.Lote;
-import negocio.Pedido;
 
 public class LoteDAO {
 	

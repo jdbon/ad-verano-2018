@@ -44,7 +44,7 @@ public class CargaDeDatos {
 				// prueba para insertar un pedido asociado a cliente en la BD
 	}
 	
-	/*public static void cargarPedidos(){
+/*	public static void cargarPedidos(){
 		try {
 
 			Pedido ped1 = new Pedido(1, "Lima 1");
