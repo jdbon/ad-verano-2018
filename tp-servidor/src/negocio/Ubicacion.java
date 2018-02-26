@@ -14,10 +14,19 @@ public class Ubicacion {
 	private Bloque bloque;
 	private Estanteria estanteria;
 	private Posicion posicion;
+	private Lote lote;
 	
 	public Ubicacion() {
 		super();
 		
+	}
+
+	public Lote getLote() {
+		return lote;
+	}
+
+	public void setLote(Lote lote) {
+		this.lote = lote;
 	}
 
 	public int getCantidadActual() {

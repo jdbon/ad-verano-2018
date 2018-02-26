@@ -46,10 +46,18 @@ public class UbicacionEntity {
 	@OneToOne
 	@JoinColumn(name="ubi_lot")
 	//@Column(name="ubi_lot")
-	private Lote lote;
+	private LoteEntity lote;
 
 	public UbicacionEntity() {
 		
+	}
+
+	public LoteEntity getLote() {
+		return lote;
+	}
+
+	public void setLote(LoteEntity lote) {
+		this.lote = lote;
 	}
 
 	public Integer getIdUbicacion() {
