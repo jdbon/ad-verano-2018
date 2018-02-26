@@ -3,6 +3,7 @@ package dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -57,8 +58,8 @@ private static ArticuloDAO instancia;
 		artE.setCantidadReservada(art.getCantidadReservada());
 		artE.setCodigoBarra(art.getCodigoBarra());
 		artE.setDescripcion(art.getDescripcion());
-		List<LoteEntity> lotesE = new ArrayList<LoteEntity>();
-		artE.setLotes(lotesE);
+//		Set<LoteEntity> lotesE = new Set<LoteEntity>();
+//		artE.setLotes(lotesE);
 		for(Lote lote: art.getLotes()) {
 			LoteEntity le = LoteDAO.getInstancia().toEntity(lote);
 			artE.getLotes().add(le);
