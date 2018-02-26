@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.ClienteDAO;
 import dao.PedidoDAO;
 import dto.PedidoDTO;
 import enumerator.EstadoPedido;

@@ -2,17 +2,13 @@ package controlador;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import dao.OrdenDeCompraDAO;
-import dao.PedidoDAO;
 import dto.LoteDTO;
 import dto.OrdenDeCompraDTO;
-import dto.PedidoDTO;
 import enumerator.EstadoOC;
-import enumerator.EstadoPedido;
 import excepcion.OrdenDeCompraException;
-import excepcion.PedidoException;
 import negocio.OrdenDeCompra;
-import negocio.Pedido;
 
 
 public class ControladorDeCompras {

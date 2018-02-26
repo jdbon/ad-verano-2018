@@ -3,11 +3,9 @@ package test;
 import dao.ArticuloDAO;
 import dao.UbicacionDAO;
 import excepcion.ArticuloException;
-import excepcion.OrdenDeCompraException;
 import excepcion.UbicacionException;
 import negocio.Articulo;
 import negocio.Lote;
-import negocio.Movimiento;
 import negocio.Ubicacion;
 
 public class Test2 {

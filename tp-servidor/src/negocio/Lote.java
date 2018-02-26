@@ -3,7 +3,6 @@ package negocio;
 import java.util.Date;
 
 import dto.LoteDTO;
-import dto.OrdenDeCompraDTO;
 import entity.LoteEntity;
 
 public class Lote {

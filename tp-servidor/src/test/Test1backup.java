@@ -6,17 +6,20 @@ import java.time.LocalDate;
 import dao.ClienteDAO;
 import dao.PedidoDAO;
 import enumerator.TipoFactura;
+import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.FacturaException;
 import excepcion.PedidoException;
-import negocio.*;
+import negocio.Cliente;
+import negocio.Factura;
+import negocio.Pedido;
 
 public class Test1backup {
 
 	public static void main(String[] args) {
 		
 		CargaDeDatos.cargarClientes();
-		CargaDeDatos.cargarPedidos();
+//		CargaDeDatos.cargarPedidos();
 		
 		//Buscar cliente 1
 		Cliente c1 = null;
@@ -47,6 +50,9 @@ public class Test1backup {
 			f.save();
 			System.out.println("Se grabó la factura.");
 		} catch (FacturaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ArticuloException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
