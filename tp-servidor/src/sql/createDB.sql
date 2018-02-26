@@ -186,6 +186,7 @@ CREATE TABLE [dbo].[pedidos](
 	[ped_fec_entrega] [datetime],
 	[ped_motivo_rechazo] [nvarchar](50) NULL,
 	[ped_direc] [nvarchar](50) NOT NULL,
+	[ped_tot] float NOT NULL,
  CONSTRAINT [PK_pedidos] PRIMARY KEY CLUSTERED 
 (
 	[ped_id] ASC

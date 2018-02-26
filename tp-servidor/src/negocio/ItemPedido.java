@@ -9,6 +9,7 @@ import excepcion.OrdenDeCompraException;
 
 public class ItemPedido {
 	
+	private int idItemPedido;
 	private Articulo articulo;
 	private int cantidadSolicitada;
 	private int cantidadReservada;
@@ -28,6 +29,15 @@ public class ItemPedido {
 		return null;
 	}
 	
+	
+	public int getIdItemPedido() {
+		return idItemPedido;
+	}
+
+	public void setIdItemPedido(int idItemPedido) {
+		this.idItemPedido = idItemPedido;
+	}
+
 	public Articulo getArticulo() {
 		return articulo;
 	}

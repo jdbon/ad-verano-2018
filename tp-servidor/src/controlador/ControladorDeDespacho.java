@@ -64,11 +64,12 @@ public class ControladorDeDespacho {
 		}
 		
 		//RECHAZA el pedido PENDIENTE
-		public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException, ArticuloException{
+		public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente, String motivoRech) throws PedidoException, ArticuloException{
 
 			Pedido pedido;
 			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
 			pedido.setEstado(EstadoPedido.Rechazado);
+			pedido.setMotivoRechazo(motivoRech);
 			PedidoDAO.getInstancia().update(pedido);
 		}
 		

@@ -52,6 +52,7 @@ public class PedidoDAO {
 			itemE.setCantidadReservada(item.getCantidadReservada());
 			itemE.setSubTotal(item.getSubTotal());
 			itemE.setPedido(pe);
+			itemE.setIdItemPedido(item.getIdItemPedido());
 			pe.getItems().add(itemE);
 		}
 		return pe;
@@ -81,7 +82,7 @@ public class PedidoDAO {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		try {
-		s.update(pe);
+		s.merge(pe);
 		s.getTransaction().commit();
 		} catch (Exception e) {
 			s.getTransaction().rollback();
@@ -99,12 +100,19 @@ public class PedidoDAO {
 		p.setEstado(pe.getEstado());
 		p.setFechaCreacion(pe.getFechaCreacion());
 		p.setFechaEntregaEstimada(pe.getFechaEntregaEstimada());
-		
 		p.setMotivoRechazo(pe.getMotivoRechazo());
-		
 		p.setCliente(ClienteDAO.getInstancia().toNegocio(pe.getCliente()));
-		p.setItems(null);
-		
+		List<ItemPedido> items = new ArrayList<ItemPedido>();
+        p.setItems(items);
+        for (ItemPedidoEntity itemE: pe.getItems()){
+			ItemPedido item = new ItemPedido();
+			item.setArticulo(ArticuloDAO.getInstancia().toNegocio(itemE.getArticulo()));
+			item.setCantidadSolicitada(itemE.getCantidadSolicitada());
+			item.setCantidadReservada(itemE.getCantidadReservada());
+			item.setSubTotal(itemE.getSubTotal());
+			item.setIdItemPedido(itemE.getIdItemPedido());
+			p.getItems().add(item);
+		}
 		return p;
 	}
 	

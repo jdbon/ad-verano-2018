@@ -42,15 +42,17 @@ public class ItemPedidoDAO {
 		itpedE.setCantidadSolicitada(itped.getCantidadSolicitada());
 		itpedE.setSubTotal(itped.getSubTotal());
 		itpedE.setArticulo(ArticuloDAO.getInstancia().toEntity(ArticuloDAO.getInstancia().findByID(itped.getArticulo().getCodigoBarra())));
+		itpedE.setIdItemPedido(itped.getIdItemPedido());
 		return itpedE;
 	}
 	
 	public ItemPedido toNegocio(ItemPedidoEntity itpedE) throws ArticuloException{
 		ItemPedido itped = new ItemPedido();
-		itped.setCantidadReservada(itped.getCantidadReservada());
-		itped.setCantidadSolicitada(itped.getCantidadSolicitada());
-		itped.setSubTotal(itped.getSubTotal());
+		itped.setCantidadReservada(itpedE.getCantidadReservada());
+		itped.setCantidadSolicitada(itpedE.getCantidadSolicitada());
+		itped.setSubTotal(itpedE.getSubTotal());
 		itped.setArticulo(ArticuloDAO.getInstancia().findByID(itpedE.getArticulo().getCodigoBarra()));
+		itped.setIdItemPedido(itpedE.getIdItemPedido());
 		return itped;
 	}
 
