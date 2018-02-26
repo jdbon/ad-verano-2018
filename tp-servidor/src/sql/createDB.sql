@@ -1,4 +1,4 @@
-USE [ad-verano]
+USE [adverano]
 GO
 /****** Object:  Table [dbo].[articulos]    Script Date: 21/02/2018 08:43:57 p.m. ******/
 SET ANSI_NULLS ON
@@ -218,8 +218,7 @@ GO
 CREATE TABLE [dbo].[ubicaciones](
 	[ubi_id] [int] IDENTITY(1,1) NOT NULL,
 	[ubi_cod] [nvarchar](50) NOT NULL,
-	[ubi_art] [int] NULL,
-	[ubi_lot] [nvarchar](50) NULL,
+	[ubi_lot] [int] NULL,
 	[ubi_tca] [int] NOT NULL,
 	[ubi_cal] [nvarchar](50) NOT NULL,
 	[ubi_blo] [nvarchar](50) NOT NULL,
@@ -294,11 +293,6 @@ REFERENCES [dbo].[pedidos] ([ped_id])
 GO
 ALTER TABLE [dbo].[remitos] CHECK CONSTRAINT [FK_remitos_pedidos1]
 GO
-ALTER TABLE [dbo].[ubicaciones]  WITH CHECK ADD  CONSTRAINT [FK_ubicaciones_articulos1] FOREIGN KEY([ubi_art])
-REFERENCES [dbo].[articulos] ([art_id])
-GO
-ALTER TABLE [dbo].[ubicaciones] CHECK CONSTRAINT [FK_ubicaciones_articulos1]
-GO
 /*se agrega la FK de movimientos contra Articulos*/
 ALTER TABLE [dbo].[movimientos]  WITH CHECK ADD  CONSTRAINT [FK_movimientos_articulos] FOREIGN KEY([mov_art])
 REFERENCES [dbo].[articulos] ([art_id])
@@ -306,8 +300,8 @@ REFERENCES [dbo].[articulos] ([art_id])
 ALTER TABLE [dbo].[remitos]  WITH CHECK ADD  CONSTRAINT [FK_remitos_clientes] FOREIGN KEY([rem_cli])
 REFERENCES [dbo].[clientes] ([cli_id])
 /*se agrega la FK de ubicaciones contra lotes*/
-ALTER TABLE [dbo].[ubicaciones]  WITH CHECK ADD  CONSTRAINT [FK_ubicaciones_lotes] FOREIGN KEY([ubi_lot], [ubi_art])
-REFERENCES [dbo].[lotes] ([lot_nro], [lot_art])
+ALTER TABLE [dbo].[ubicaciones]  WITH CHECK ADD  CONSTRAINT [FK_ubicaciones_lotes] FOREIGN KEY([ubi_lot])
+REFERENCES [dbo].[lotes] ([lot_id])
 
 
 
