@@ -15,6 +15,7 @@ import entity.LoteEntity;
 import entity.MovimientoABEntity;
 import entity.MovimientoAjusteEntity;
 import entity.MovimientoEntity;
+import entity.OrdenDeCompraEntity;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import hibernate.HibernateUtil;
@@ -24,6 +25,7 @@ import negocio.Lote;
 import negocio.Movimiento;
 import negocio.MovimientoAB;
 import negocio.MovimientoAjuste;
+import negocio.OrdenDeCompra;
 
 
 public class ArticuloDAO {
@@ -64,14 +66,14 @@ private static ArticuloDAO instancia;
 		artE.setDescripcion(art.getDescripcion());
 		Set<LoteEntity> lotesE = new HashSet<LoteEntity>();
 		artE.setLotes(lotesE);
-//		Set<LoteEntity> lotesE = new Set<LoteEntity>();
-//		artE.setLotes(lotesE);
 		for(Lote lote: art.getLotes()) {
 			LoteEntity le = new LoteEntity();
 			le = LoteDAO.getInstancia().toEntity(lote);
 			le.setArt(artE);
 			artE.getLotes().add(le);
 		}
+		Set<MovimientoEntity> movsE = new HashSet<MovimientoEntity>();
+		artE.setMovimientos(movsE);
 		for(Movimiento m: art.getMovimientos()) {
 			if(m instanceof MovimientoAB){
 				MovimientoABEntity mabe = new MovimientoABEntity();
@@ -93,6 +95,14 @@ private static ArticuloDAO instancia;
 				artE.getMovimientos().add(mae);
 			}
 		}
+		Set<OrdenDeCompraEntity> odcsE = new HashSet<OrdenDeCompraEntity>();
+		artE.setOrdenes(odcsE);
+		for(OrdenDeCompra oc: art.getOrdenes()){
+			OrdenDeCompraEntity odcE = new OrdenDeCompraEntity();  
+			odcE = OrdenDeCompraDAO.getInstancia().toEntity(oc);
+			odcE.setArticulo(artE);
+			artE.getOrdenes().add(odcE);
+		}
 		artE.setPresentacion(art.getPresentacion());
 		artE.setPrecioVenta(art.getPrecioVenta());
 		artE.setTamaño(art.getTamaño());
@@ -113,19 +123,17 @@ private static ArticuloDAO instancia;
 			lote.setNroLote(loteEnt.getNroLote());
 			lote.setVencimiento(loteEnt.getVencimiento());
 			lote.setIdLote(loteEnt.getIdLote());
+			lote.setArt(art);
 			art.getLotes().add(lote);
-			lotes.add(lote);
 		}
 		List<Movimiento> movimientos = new ArrayList<Movimiento>();
 		art.setMovimientos(movimientos);
-		art.setLotes(lotes);
 		for(MovimientoEntity movEnt: artE.getMovimientos()) {
 			if(movEnt instanceof MovimientoABEntity){
 				MovimientoAB mab = new MovimientoAB();
 				mab.setCantidad(movEnt.getCantidad());
 				mab.setNroMovimiento(movEnt.getNroMovimiento());
 				mab.setTipo(movEnt.getTipo());
-				
 				art.getMovimientos().add(mab);
 			}
 			else if (movEnt instanceof MovimientoAjusteEntity){
@@ -140,7 +148,19 @@ private static ArticuloDAO instancia;
 				art.getMovimientos().add(ma);
 				
 			}
-			
+		}
+		List<OrdenDeCompra> ordenes = new ArrayList<>();
+		art.setOrdenes(ordenes);
+		for(OrdenDeCompraEntity odcE: artE.getOrdenes()){
+			OrdenDeCompra odc = new OrdenDeCompra();
+			odc.setCantidadReservada(odcE.getCantidadReservada());
+			odc.setArticulo(art);
+			odc.setCantidadXcomprar(odcE.getCantidadXcomprar());
+			odc.setEstado(odcE.getEstado());
+			odc.setFechaCreacion(odcE.getFechaCreacion());
+			odc.setFechaRecepcion(odcE.getFechaRecepcion());
+			odc.setNroOrdenDeCompra(odcE.getNroOrdenDeCompra());
+			art.getOrdenes().add(odc);
 		}
 		art.setPrecioVenta(artE.getPrecioVenta());
 		art.setPresentacion(artE.getPresentacion());

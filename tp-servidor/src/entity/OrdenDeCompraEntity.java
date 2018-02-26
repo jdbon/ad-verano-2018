@@ -38,6 +38,32 @@ public class OrdenDeCompraEntity {
 	public OrdenDeCompraEntity() {
 		
 	}
+	
+	
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+
+
+	public ArticuloEntity getArtE() {
+		return artE;
+	}
+
+
+
+	public void setArtE(ArticuloEntity artE) {
+		this.artE = artE;
+	}
+
+
 
 	public Integer getNroOrdenDeCompra() {
 		return nroOrdenDeCompra;

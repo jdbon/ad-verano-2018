@@ -21,7 +21,7 @@ public class Test {
 		//CargaDeDatos.cargarArticulos();
 
 		/*CREAR PEDIDO*/
-		/*List<ArticuloDTO> articulos = ControladorDeClientes.getInstancia().getAllArticulos();
+		List<ArticuloDTO> articulos = ControladorDeClientes.getInstancia().getAllArticulos();
 		System.out.println("TENGO EL LISTADO");
 		List<ItemPedidoDTO> items = new ArrayList<ItemPedidoDTO>();
 		ItemPedidoDTO item1 = new ItemPedidoDTO();
@@ -32,13 +32,13 @@ public class Test {
 		item2.setCantidadSolicitada(5);
 		items.add(item1);
 		items.add(item2);
-		ControladorDeClientes.getInstancia().generarNuevoPedido(1, "Direccion", items);*/
+		ControladorDeClientes.getInstancia().generarNuevoPedido(1, "Direccion", items);
 		
 		/*CONSULTAR PEDIDO*/
-		@SuppressWarnings("unused")
-		PedidoDTO pedido = ControladorDeClientes.getInstancia().buscarPedido(4);
+		//PedidoDTO pedido = ControladorDeClientes.getInstancia().buscarPedido(4);
 		
-		ControladorDeDespacho.getInstancia().rechazarPedidoPendiente(pedido, "RECHAZADO por falta de atencion");
+		/*RECHAZAR PEDIDO*/
+		//ControladorDeDespacho.getInstancia().rechazarPedidoPendiente(pedido, "RECHAZADO por falta de atencion");
 		
 	}
 

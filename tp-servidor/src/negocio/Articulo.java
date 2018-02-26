@@ -29,6 +29,10 @@ public class Articulo {
 
 	public Articulo() {
 	}
+	
+	
+
+	
 
 	public int getCodigoBarra() {
 		return codigoBarra;
@@ -284,6 +288,29 @@ public class Articulo {
 	public void save() throws ArticuloException {
 		ArticuloDAO.getInstancia().save(this);
 		
+	}
+
+
+	
+
+	public void setTamaño(int tamaño) {
+		this.tamaño = tamaño;
+	}
+
+
+
+
+
+	public void setOrdenes(List<OrdenDeCompra> ordenes) {
+		this.ordenes = ordenes;
+	}
+
+
+
+
+
+	public List<OrdenDeCompra> getOrdenes() {
+		return this.ordenes;
 	}
 
 }

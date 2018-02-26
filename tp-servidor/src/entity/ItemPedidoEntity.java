@@ -24,7 +24,7 @@ public class ItemPedidoEntity {
 	@Column(name="ite_id")
 	private Integer idItemPedido;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="ite_art")
 	private ArticuloEntity articulo;
 	
