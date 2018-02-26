@@ -11,8 +11,16 @@ public class Lote {
 	private Integer idLote;
 	private String nroLote;
 	private Date vencimiento;
+	private Articulo art;
 	
-	
+	public Articulo getArt() {
+		return art;
+	}
+
+	public void setArt(Articulo art) {
+		this.art = art;
+	}
+
 	public Lote() {		
 	}
 	
