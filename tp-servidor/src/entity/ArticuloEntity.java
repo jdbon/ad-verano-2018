@@ -16,8 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import enumerator.Presentacion;
-import negocio.Lote;
-import negocio.OrdenDeCompra;
+
 
 
 @Entity
@@ -49,17 +48,17 @@ public class ArticuloEntity {
 	private Integer cantidadOrdenDeCompra;
 	
 	@OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name="art_id")
-	private List<LoteEntity> lotes;
+	@JoinColumn(name="lot_art")
+	private Set<LoteEntity> lotes;
 
 	@Column(name="art_cant_res")
 	private Integer cantidadReservada;
 
     @OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name="art_id")
+	@JoinColumn(name="mov_art")
 	private List<MovimientoEntity> movimientos;
-    
-    @OneToMany(fetch=FetchType.EAGER)
+	
+	@OneToMany
 	@JoinColumn(name="art_id")
 	private List<OrdenDeCompraEntity> ordenes;
 	
@@ -127,14 +126,14 @@ public class ArticuloEntity {
 
 	
 
-	public List<LoteEntity> getLotes() {
+	public Set<LoteEntity> getLotes() {
 		return lotes;
 	}
 
 
 
-	public void setLotes(List<LoteEntity> lotesE) {
-		this.lotes = lotesE;
+	public void setLotes(Set<LoteEntity> lotes) {
+		this.lotes = lotes;
 	}
 
 
