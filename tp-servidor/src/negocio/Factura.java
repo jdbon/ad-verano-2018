@@ -5,6 +5,7 @@ import java.util.List;
 
 import dao.FacturaDAO;
 import enumerator.TipoFactura;
+import excepcion.ArticuloException;
 import excepcion.FacturaException;
 
 public class Factura {
@@ -22,7 +23,7 @@ public class Factura {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void save() throws FacturaException{
+	public void save() throws FacturaException, ArticuloException{
 		FacturaDAO.getInstancia().save(this);
 	}
 

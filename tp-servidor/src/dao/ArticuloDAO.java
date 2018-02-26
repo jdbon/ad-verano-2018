@@ -95,13 +95,17 @@ private static ArticuloDAO instancia;
 		art.setCantidadReservada(artE.getCantidadReservada());
 		art.setCodigoBarra(artE.getCodigoBarra());
 		art.setDescripcion(artE.getDescripcion());
+		List<Lote> lotes = new ArrayList<Lote>();
+		art.setLotes(lotes);
 		for(LoteEntity loteEnt: artE.getLotes()) {
 			Lote lote = new Lote();
 			lote.setNroLote(loteEnt.getNroLote());
 			lote.setVencimiento(loteEnt.getVencimiento());
+			lote.setIdLote(loteEnt.getIdLote());
 			art.getLotes().add(lote);
 		}
-		
+		List<Movimiento> movimientos = new ArrayList<Movimiento>();
+		art.setMovimientos(movimientos);
 		for(MovimientoEntity movEnt: artE.getMovimientos()) {
 			if(movEnt instanceof MovimientoABEntity){
 				MovimientoAB mab = new MovimientoAB();
@@ -141,7 +145,7 @@ private static ArticuloDAO instancia;
 		for(ArticuloEntity articulo: articulos){
 			resultado.add(this.toNegocio(articulo));
 		}
-		return null;
+		return resultado;
 	}
 	
 	public Articulo findByID(int idArticulo) throws ArticuloException {

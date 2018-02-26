@@ -31,7 +31,7 @@ public class Articulo {
 	public Articulo() {
 	}
 
-	public Integer getCodigoBarra() {
+	public int getCodigoBarra() {
 		return codigoBarra;
 	}
 
@@ -55,7 +55,7 @@ public class Articulo {
 		this.presentacion = presentacion;
 	}
 
-	public Integer getTamaño() {
+	public int getTamaño() {
 		return tamaño;
 	}
 
@@ -63,7 +63,7 @@ public class Articulo {
 		this.tamaño = tamaño;
 	}
 
-	public Integer getUnidad() {
+	public int getUnidad() {
 		return unidad;
 	}
 

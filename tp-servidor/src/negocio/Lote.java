@@ -8,7 +8,7 @@ import entity.LoteEntity;
 
 public class Lote {
 	
-	private Integer idLote;
+	private int idLote;
 	private String nroLote;
 	private Date vencimiento;
 	

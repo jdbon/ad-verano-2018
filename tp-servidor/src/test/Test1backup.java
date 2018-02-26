@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import dao.ClienteDAO;
 import dao.PedidoDAO;
 import enumerator.TipoFactura;
+import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.FacturaException;
 import excepcion.PedidoException;
@@ -13,10 +14,10 @@ import negocio.*;
 
 public class Test1backup {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ArticuloException {
 		
 		CargaDeDatos.cargarClientes();
-		CargaDeDatos.cargarPedidos();
+		//CargaDeDatos.cargarPedidos();
 		
 		//Buscar cliente 1
 		Cliente c1 = null;

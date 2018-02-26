@@ -46,8 +46,6 @@ public class ClienteDAO {
 
 	public Cliente findByID(int idCliente) throws ClienteException {
 		
-		System.out.println("el idCliente es = "+ idCliente);
-		
 		Cliente resultado;
 		
 		SessionFactory sf = HibernateUtil.getSessionFactory();
