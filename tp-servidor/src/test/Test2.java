@@ -1,11 +1,14 @@
 package test;
 
 import dao.ArticuloDAO;
+import dao.UbicacionDAO;
 import excepcion.ArticuloException;
 import excepcion.OrdenDeCompraException;
+import excepcion.UbicacionException;
 import negocio.Articulo;
 import negocio.Lote;
 import negocio.Movimiento;
+import negocio.Ubicacion;
 
 public class Test2 {
 
@@ -18,8 +21,16 @@ public class Test2 {
 				System.out.println(l.toString());
 			}
 			
-			for(Movimiento m : a.getMovimientos()){
-				System.out.println(m.toString());
+//			for(Movimiento m : a.getMovimientos()){
+//				System.out.println(m.toString());
+//			}
+			
+			try {
+				Ubicacion u = UbicacionDAO.getInstancia().findById("A010101");
+				System.out.println(u.toString());
+			} catch (UbicacionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		
 			

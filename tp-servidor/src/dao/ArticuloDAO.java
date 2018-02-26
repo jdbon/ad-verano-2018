@@ -103,9 +103,11 @@ private static ArticuloDAO instancia;
 			lote.setVencimiento(loteEnt.getVencimiento());
 			lote.setIdLote(loteEnt.getIdLote());
 			art.getLotes().add(lote);
+			lotes.add(lote);
 		}
 		List<Movimiento> movimientos = new ArrayList<Movimiento>();
 		art.setMovimientos(movimientos);
+		art.setLotes(lotes);
 		for(MovimientoEntity movEnt: artE.getMovimientos()) {
 			if(movEnt instanceof MovimientoABEntity){
 				MovimientoAB mab = new MovimientoAB();
