@@ -64,7 +64,7 @@ private static ArticuloDAO instancia;
 		artE.setCantidadReservada(art.getCantidadReservada());
 		artE.setCodigoBarra(art.getCodigoBarra());
 		artE.setDescripcion(art.getDescripcion());
-		Set<LoteEntity> lotesE = new HashSet<LoteEntity>();
+		/*Set<LoteEntity> lotesE = new HashSet<LoteEntity>();
 		artE.setLotes(lotesE);
 		for(Lote lote: art.getLotes()) {
 			LoteEntity le = new LoteEntity();
@@ -98,11 +98,16 @@ private static ArticuloDAO instancia;
 		Set<OrdenDeCompraEntity> odcsE = new HashSet<OrdenDeCompraEntity>();
 		artE.setOrdenes(odcsE);
 		for(OrdenDeCompra oc: art.getOrdenes()){
-			OrdenDeCompraEntity odcE = new OrdenDeCompraEntity();  
-			odcE = OrdenDeCompraDAO.getInstancia().toEntity(oc);
-			odcE.setArticulo(artE);
+			OrdenDeCompraEntity odcE = new OrdenDeCompraEntity();
+			odcE.setCantidadReservada(oc.getCantidadReservada());
+			odcE.setArtE(artE);
+			odcE.setCantidadXcomprar(oc.getCantidadXcomprar());
+			odcE.setEstado(oc.getEstado());
+			odcE.setFechaCreacion(oc.getFechaCreacion());
+			odcE.setFechaRecepcion(oc.getFechaRecepcion());
+			odcE.setNroOrdenDeCompra(oc.getNroOrdenDeCompra());
 			artE.getOrdenes().add(odcE);
-		}
+		}*/
 		artE.setPresentacion(art.getPresentacion());
 		artE.setPrecioVenta(art.getPrecioVenta());
 		artE.setTamaño(art.getTamaño());
