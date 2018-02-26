@@ -307,7 +307,7 @@ ALTER TABLE [dbo].[remitos]  WITH CHECK ADD  CONSTRAINT [FK_remitos_clientes] FO
 REFERENCES [dbo].[clientes] ([cli_id])
 /*se agrega la FK de ubicaciones contra lotes*/
 ALTER TABLE [dbo].[ubicaciones]  WITH CHECK ADD  CONSTRAINT [FK_ubicaciones_lotes] FOREIGN KEY([ubi_lot])
-REFERENCES [dbo].[lotes] ([lot_id])
+REFERENCES [dbo].[lotes] ([lot_nro])
 
 
 
