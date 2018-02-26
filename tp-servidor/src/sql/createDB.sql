@@ -12,11 +12,7 @@ CREATE TABLE [dbo].[articulos](
 	[art_precio_vta] [float] NOT NULL,
 	[art_cant_res] [int] NULL,
 	[art_cant_x_comprar] [int] NOT NULL,
-<<<<<<< HEAD
-	[art_unidad] int NOT NULL,
-=======
 	[art_unidad] [int] NOT NULL,
->>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 	[art_presentacion] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_articulos] PRIMARY KEY CLUSTERED 
 (
