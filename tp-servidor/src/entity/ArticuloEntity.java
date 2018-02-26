@@ -59,7 +59,7 @@ public class ArticuloEntity {
 	private List<MovimientoEntity> movimientos;
 	
 	@OneToMany
-	@JoinColumn(name="art_id")
+	@JoinColumn(name="odc_art")
 	private List<OrdenDeCompraEntity> ordenes;
 	
 	
