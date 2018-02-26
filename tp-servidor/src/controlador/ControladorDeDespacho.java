@@ -64,7 +64,7 @@ public class ControladorDeDespacho {
 		}
 		
 		//RECHAZA el pedido PENDIENTE
-		public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException{
+		public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException, ArticuloException{
 
 			Pedido pedido;
 			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
@@ -73,7 +73,7 @@ public class ControladorDeDespacho {
 		}
 		
 		//ENTREGA al delivery pedido DESPACHADO
-		public void entregarPedidoDespachado(PedidoDTO pedidoPendiente, Date fechaEntregaEstimada) throws PedidoException{
+		public void entregarPedidoDespachado(PedidoDTO pedidoPendiente, Date fechaEntregaEstimada) throws PedidoException, ArticuloException{
 
 			Pedido pedido;
 			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());

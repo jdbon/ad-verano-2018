@@ -5,10 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
+
 @Entity
-@Table(name="items-pedidos")
+@Table(name="items_pedidos")
 public class ItemPedidoEntity {
 
 	@Id
@@ -16,9 +22,9 @@ public class ItemPedidoEntity {
 	@Column(name="ite_id")
 	private Integer idItemPedido;
 	
-//	@OneToOne
-//	@JoinColumn(name="ite_art")
-//	private Articulo articulo;
+	@OneToOne
+	@JoinColumn(name="ite_art")
+	private ArticuloEntity articulo;
 	
 	@Column(name="ite_cant")
 	private Integer cantidadSolicitada;
@@ -29,16 +35,20 @@ public class ItemPedidoEntity {
 	@Column(name="ite_sub_tot")
 	private float subTotal;
 	
+	@ManyToOne
+	@JoinColumn(name="ite_ped")
+	private PedidoEntity pedido;
+	
 	
 	public ItemPedidoEntity() {}
 	
 	
-//	public Articulo getArticulo() {
-//		return articulo;
-//	}
-//	public void setArticulo(Articulo articulo) {
-//		this.articulo = articulo;
-//	}
+	public ArticuloEntity getArticulo() {
+		return articulo;
+	}
+	public void setArticulo(ArticuloEntity articulo) {
+		this.articulo = articulo;
+	}
 	
 	
 	public Integer getCantidadSolicitada() {

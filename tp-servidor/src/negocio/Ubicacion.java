@@ -8,7 +8,7 @@ import enumerator.Posicion;
 public class Ubicacion {
 	
 	private int cantidadActual;
-	private Articulo articulo;
+//	private Articulo articulo;
 	private String codigo;
 	private Calle calle;
 	private Bloque bloque;
@@ -37,13 +37,13 @@ public class Ubicacion {
 		this.cantidadActual = cantidadActual;
 	}
 
-	public Articulo getArticulo() {
-		return articulo;
-	}
-
-	public void setArticulo(Articulo articulo) {
-		this.articulo = articulo;
-	}
+//	public Articulo getArticulo() {
+//		return articulo;
+//	}
+//
+//	public void setArticulo(Articulo articulo) {
+//		this.articulo = articulo;
+//	}
 
 	public String getCodigo() {
 		return codigo;
@@ -86,8 +86,8 @@ public class Ubicacion {
 	}
 	
 	public String toString(){
-		return "Codigo: " + this.getCodigo() + " - Art: " + this.getArticulo().getDescripcion() + 
-				"Lote: " + this.getLote().getNroLote() + " - Venc: " + this.getLote().getVencimiento();
+		return "Ubic. Codigo: " + this.getCodigo() + " - Art: " + this.getLote().getArt().getDescripcion() +
+				" - Lote: " + this.getLote().getNroLote() + " - Venc: " + this.getLote().getVencimiento();
 	}
 	
 	

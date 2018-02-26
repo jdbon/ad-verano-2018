@@ -20,9 +20,9 @@ public class UbicacionEntity {
 	@Column(name="ubi_tca")//ok
 	private int cantidadActual;
 	
-	@OneToOne
-	@JoinColumn(name="ubi_art")//ok
-	private ArticuloEntity articulo;
+//	@OneToOne
+//	@JoinColumn(name="ubi_art")//ok
+//	private ArticuloEntity articulo;
 	
 	@Column(name="ubi_cod")//cod
 	private String codigo;
@@ -43,9 +43,8 @@ public class UbicacionEntity {
 	@Enumerated(EnumType.STRING)
 	private Posicion posicion;
 	
-	@OneToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="ubi_lot")
-	//@Column(name="ubi_lot")
 	private LoteEntity lote;
 
 	public UbicacionEntity() {
@@ -76,13 +75,13 @@ public class UbicacionEntity {
 		this.cantidadActual = cantidadActual;
 	}
 
-	public ArticuloEntity getArticulo() {
-		return articulo;
-	}
-
-	public void setArticulo(ArticuloEntity articulo) {
-		this.articulo = articulo;
-	}
+//	public ArticuloEntity getArticulo() {
+//		return articulo;
+//	}
+//
+//	public void setArticulo(ArticuloEntity articulo) {
+//		this.articulo = articulo;
+//	}
 
 	public String getCodigo() {
 		return codigo;

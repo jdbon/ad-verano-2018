@@ -25,6 +25,7 @@ public class LoteDAO {
 		le.setIdLote(l.getIdLote());
 		le.setNroLote(l.getNroLote());
 		le.setVencimiento(l.getVencimiento());
+		le.setArt(ArticuloDAO.getInstancia().toEntity(l.getArt()));
 		
 		return le;
 		
@@ -36,6 +37,7 @@ public class LoteDAO {
 		l.setIdLote(le.getIdLote());
 		l.setNroLote(le.getNroLote());
 		l.setVencimiento(l.getVencimiento());
+		l.setArt(ArticuloDAO.getInstancia().toNegocio(le.getArt()));
 		
 		return l;
 	}

@@ -6,10 +6,14 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entity.ItemPedidoEntity;
 import entity.PedidoEntity;
 import enumerator.EstadoPedido;
+import excepcion.ArticuloException;
+import excepcion.ItemPedidoException;
 import excepcion.PedidoException;
 import hibernate.HibernateUtil;
+import negocio.ItemPedido;
 import negocio.Pedido;
 
 public class PedidoDAO {
@@ -27,7 +31,7 @@ public class PedidoDAO {
 	
 	
 		
-	public PedidoEntity toEntity(Pedido p){
+	public PedidoEntity toEntity(Pedido p) throws ArticuloException{
 		
 		PedidoEntity pe = new PedidoEntity();
 		pe.setIdPedido(p.getIdPedido());
@@ -37,14 +41,16 @@ public class PedidoDAO {
 		pe.setFechaEntregaEstimada(p.getFechaEntregaEstimada());
 		pe.setMotivoRechazo(p.getMotivoRechazo());
         pe.setCliente(ClienteDAO.getInstancia().toEntity(p.getCliente()));
-        //itemPedidoEntity esta comentado en la Entity por ahora
-		
+        List<ItemPedidoEntity> itemsE = new ArrayList<ItemPedidoEntity>();
+		for (ItemPedido item: p.getItems()){
+			itemsE.add(ItemPedidoDAO.getInstancia().toEntity(item));
+		}
 		return pe;
 		
 	}
 	
 	
-	public void save(Pedido p) throws PedidoException{
+	public void save(Pedido p) throws PedidoException, ItemPedidoException, ArticuloException{
 		PedidoEntity pe = this.toEntity(p);
 		
 		SessionFactory sf = HibernateUtil.getSessionFactory();
@@ -57,11 +63,10 @@ public class PedidoDAO {
 			s.getTransaction().rollback();
 			throw new PedidoException("Error al grabar pedido, o el pedido " + pe.getIdPedido() + " ya existe.");
 		}
-		s.close();
-		
+		s.close();		
 	}
 	
-	public void update(Pedido p) throws PedidoException{
+	public void update(Pedido p) throws PedidoException, ArticuloException{
 		PedidoEntity pe = this.toEntity(p);
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
@@ -89,7 +94,6 @@ public class PedidoDAO {
 		p.setMotivoRechazo(pe.getMotivoRechazo());
 		
 		p.setCliente(ClienteDAO.getInstancia().toNegocio(pe.getCliente()));
-		//Falta convertir ItemPedido a Negocio
 		p.setItems(null);
 		
 		return p;
