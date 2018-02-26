@@ -5,7 +5,9 @@ import java.time.LocalDate;
 
 import enumerator.EstadoPedido;
 import enumerator.TipoFactura;
+import excepcion.ArticuloException;
 import excepcion.ClienteException;
+import excepcion.ItemPedidoException;
 import excepcion.PedidoException;
 import negocio.Cliente;
 import negocio.Pedido;
@@ -44,32 +46,42 @@ public class CargaDeDatos {
 				// prueba para insertar un pedido asociado a cliente en la BD
 	}
 	
-/*	public static void cargarPedidos(){
+	public static void cargarPedidos(){
+		Pedido ped1 = new Pedido();
+		Pedido ped2 = new Pedido();
+		ped1.setDireccion("lima 1");
+		ped1.setEstado(EstadoPedido.Pendiente);
+		ped1.setFechaCreacion(Date.valueOf(LocalDate.now()));
+
+		ped2.setDireccion("lima 2");
+		ped2.setEstado(EstadoPedido.Pendiente);
+		ped2.setFechaCreacion(Date.valueOf(LocalDate.now()));
+		
 		try {
-
-			Pedido ped1 = new Pedido(1, "Lima 1");
-			Pedido ped2 = new Pedido(2, "Lima 2");
-			//ped1.setDireccion("lima 1");
-			ped1.setEstado(EstadoPedido.Pendiente);
-			ped1.setFechaCreacion(Date.valueOf(LocalDate.now()));
-
-			//ped2.setDireccion("lima 2");
-			ped2.setEstado(EstadoPedido.Pendiente);
-			ped2.setFechaCreacion(Date.valueOf(LocalDate.now()));
-			
 			try {
 				ped1.save();
-				System.out.println("Grabo el primer pedido");
-				ped2.save();
-				System.out.println("Grabo el segundo pedido");
-			} catch (PedidoException e) {
+			} catch (ItemPedidoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ArticuloException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	
-		} catch (ClienteException e) {
+			System.out.println("Grabo el primer pedido");
+			try {
+				ped2.save();
+			} catch (ItemPedidoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ArticuloException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Grabo el segundo pedido");
+		} catch (PedidoException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 }

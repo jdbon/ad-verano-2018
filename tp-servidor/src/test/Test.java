@@ -1,7 +1,5 @@
 package test;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class Test {
 	public static void main(String[] args) throws ClienteException, ArticuloException, PedidoException, ItemPedidoException {
 		
 		CargaDeDatos.cargarClientes();
-		@SuppressWarnings("unused")
+
 		List<ArticuloDTO> articulos = ControladorDeClientes.getInstancia().getAllArticulos();
 		System.out.println("TENGO EL LISTADO");
 		List<ItemPedidoDTO> items = new ArrayList<ItemPedidoDTO>();
