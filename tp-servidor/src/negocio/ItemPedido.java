@@ -18,6 +18,7 @@ public class ItemPedido {
 		Articulo articulo = ArticuloDAO.getInstancia().findByID(art);
 		this.articulo = articulo;
 		this.cantidadSolicitada = cant;
+		this.setSubTotal(this.articulo.getPrecioVenta()*cant);
 	}
 	
 	public ItemPedido() {}

@@ -1,4 +1,4 @@
-USE [adverano]
+USE [ad_verano]
 GO
 /****** Object:  Table [dbo].[articulos]    Script Date: 21/02/2018 08:43:57 p.m. ******/
 SET ANSI_NULLS ON

@@ -42,12 +42,15 @@ public class PedidoDAO {
 		pe.setFechaEntregaEstimada(p.getFechaEntregaEstimada());
 		pe.setMotivoRechazo(p.getMotivoRechazo());
         pe.setCliente(ClienteDAO.getInstancia().toEntity(p.getCliente()));
+        pe.setTotal(p.getTotal());
         Set<ItemPedidoEntity> itemsE = new HashSet<ItemPedidoEntity>();
         pe.setItems(itemsE);
-		for (ItemPedido item: p.getItems()){
+        for (ItemPedido item: p.getItems()){
 			ItemPedidoEntity itemE = new ItemPedidoEntity();
 			itemE.setArticulo(ArticuloDAO.getInstancia().toEntity(item.getArticulo()));
-			itemsE.add(ItemPedidoDAO.getInstancia().toEntity(item));
+			itemE.setCantidadSolicitada(item.getCantidadSolicitada());
+			itemE.setCantidadReservada(0);
+			itemE.setSubTotal(0);
 			itemE.setPedido(pe);
 			pe.getItems().add(itemE);
 		}
@@ -64,6 +67,7 @@ public class PedidoDAO {
 		try {
 		s.save(pe);
 		s.getTransaction().commit();
+		p.setIdPedido(pe.getIdPedido());
 		} catch (Exception e) {
 			s.getTransaction().rollback();
 			throw new PedidoException("Error al grabar pedido, o el pedido " + pe.getIdPedido() + " ya existe.");

@@ -24,6 +24,7 @@ public class Pedido {
 	private Date fechaCreacion;
 	private Date fechaEntregaEstimada;
 	private String motivoRechazo;
+	private float total;
 	
 	public Pedido () {}
 	
@@ -33,7 +34,8 @@ public class Pedido {
 		this.items = new ArrayList<ItemPedido>();
 		this.estado = EstadoPedido.Pendiente;
 		this.fechaCreacion = Date.valueOf(LocalDate.now());
-		this.cliente = cliente;		
+		this.cliente = cliente;	
+		this.total=0;
 		
 	}
 	
@@ -67,6 +69,16 @@ public class Pedido {
 			}
 		}
 		return parcial;
+	}
+	
+	
+
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
 	}
 
 	public int getIdPedido() {
@@ -136,6 +148,13 @@ public class Pedido {
 	public void save() throws PedidoException, ItemPedidoException, ArticuloException {
 		// TODO Auto-generated method stub
 		PedidoDAO.getInstancia().save(this);
+		
+	}
+
+	public void calcularTotal() {
+		for(ItemPedido item: this.items){
+			this.total = this.total + item.getSubTotal();
+		}
 		
 	}
 	

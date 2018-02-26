@@ -3,6 +3,7 @@ package entity;
 import java.sql.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,7 +28,7 @@ public class PedidoEntity {
 	@Column(name="ped_id")
 	private Integer idPedido;
 	
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="ite_ped")
 	private Set<ItemPedidoEntity> items;
 	
@@ -52,6 +53,17 @@ public class PedidoEntity {
 	@Column(name="ped_motivo_rechazo")
 	private String motivoRechazo;
 	
+	@Column(name="ped_tot")
+	private float total;
+	
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
+	}
+
 	public Set<ItemPedidoEntity> getItems() {
 		return items;
 	}

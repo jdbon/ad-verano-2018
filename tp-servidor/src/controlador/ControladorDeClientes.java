@@ -36,12 +36,15 @@ public class ControladorDeClientes {
 		return resultado;
 	}
 	
-	public Integer generarNuevoPedido(int idCliente, String direccion, List<ItemPedidoDTO> items ) throws ClienteException, ArticuloException, PedidoException, ItemPedidoException {
+	public Integer generarNuevoPedido(int idCliente, String direccion, List<ItemPedidoDTO> items) throws ClienteException, ArticuloException, PedidoException, ItemPedidoException {
 		Cliente cliente = ClienteDAO.getInstancia().findByID(idCliente);
 		Pedido pedido = new Pedido(cliente, direccion);
 		for(ItemPedidoDTO item: items) {
 			pedido.agregarItemPedido(item.getArticulo().getCodigoBarra(), item.getCantidadSolicitada());
-		}		
+			
+		}
+		pedido.calcularTotal();
+		
 		PedidoDAO.getInstancia().save(pedido);
 		
 		return pedido.getIdPedido();
