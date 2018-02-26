@@ -10,12 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-<<<<<<< HEAD
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-=======
->>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,23 +28,17 @@ public class LoteEntity {
 	@Column(name="lot_vto")
 	private Date vencimiento;
 	
-<<<<<<< HEAD
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="lot_art")
 	private ArticuloEntity artE;
 	
-=======
-	@OneToOne
-	@JoinColumn(name="lot_art")
-	private ArticuloEntity articuloE;
->>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 	
 	public ArticuloEntity getArt() {
-		return articuloE;
+		return artE;
 	}
 
 	public void setArt(ArticuloEntity art) {
-		this.articuloE = art;
+		this.artE = art;
 	}
 
 	public LoteEntity() {

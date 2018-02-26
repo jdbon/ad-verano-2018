@@ -1,11 +1,10 @@
 package entity;
 
-<<<<<<< HEAD
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
-=======
->>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

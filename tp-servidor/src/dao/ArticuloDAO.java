@@ -59,13 +59,10 @@ private static ArticuloDAO instancia;
 		artE.setCantidadReservada(art.getCantidadReservada());
 		artE.setCodigoBarra(art.getCodigoBarra());
 		artE.setDescripcion(art.getDescripcion());
-<<<<<<< HEAD
 		Set<LoteEntity> lotesE = new HashSet<LoteEntity>();
 		artE.setLotes(lotesE);
-=======
 //		Set<LoteEntity> lotesE = new Set<LoteEntity>();
 //		artE.setLotes(lotesE);
->>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 		for(Lote lote: art.getLotes()) {
 			LoteEntity le = LoteDAO.getInstancia().toEntity(lote);
 			artE.getLotes().add(le);

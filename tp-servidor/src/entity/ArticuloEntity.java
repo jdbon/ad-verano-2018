@@ -29,7 +29,6 @@ public class ArticuloEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="art_id")
 	private Integer codigoBarra;
-<<<<<<< HEAD
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="lot_art")
@@ -42,8 +41,6 @@ public class ArticuloEntity {
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="odc_art")
 	private Set<OrdenDeCompraEntity> ordenes= new HashSet<OrdenDeCompraEntity>();
-=======
->>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 	
 	@Column(name="art_desc")
 	private String descripcion;
@@ -63,27 +60,10 @@ public class ArticuloEntity {
 	
 	@Column(name="art_cant_x_comprar")
 	private Integer cantidadOrdenDeCompra;
-<<<<<<< HEAD
-=======
-	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name="lot_art")
-	private Set<LoteEntity> lotes;
->>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 
 	@Column(name="art_cant_res")
 	private Integer cantidadReservada;
-<<<<<<< HEAD
-=======
 
-    @OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name="mov_art")
-	private List<MovimientoEntity> movimientos;
-	
-	@OneToMany
-	@JoinColumn(name="odc_art")
-	private List<OrdenDeCompraEntity> ordenes;
->>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 	
 	
 	
@@ -155,13 +135,9 @@ public class ArticuloEntity {
 
 
 
-<<<<<<< HEAD
+
 	public void setLotes(Set<LoteEntity> lotesE) {
 		this.lotes = lotesE;
-=======
-	public void setLotes(Set<LoteEntity> lotes) {
-		this.lotes = lotes;
->>>>>>> branch 'master' of https://github.com/jdbon/ad-verano-2018.git
 	}
 
 
