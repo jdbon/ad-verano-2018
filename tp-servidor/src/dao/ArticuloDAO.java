@@ -95,12 +95,15 @@ private static ArticuloDAO instancia;
 		art.setCantidadReservada(artE.getCantidadReservada());
 		art.setCodigoBarra(artE.getCodigoBarra());
 		art.setDescripcion(artE.getDescripcion());
+		
+		List<Lote> lotes = new ArrayList<Lote>();
 		for(LoteEntity loteEnt: artE.getLotes()) {
 			Lote lote = new Lote();
 			lote.setNroLote(loteEnt.getNroLote());
 			lote.setVencimiento(loteEnt.getVencimiento());
-			art.getLotes().add(lote);
+			lotes.add(lote);
 		}
+		art.setLotes(lotes);
 		
 		for(MovimientoEntity movEnt: artE.getMovimientos()) {
 			if(movEnt instanceof MovimientoABEntity){

@@ -85,6 +85,10 @@ public class Ubicacion {
 		this.posicion = posicion;
 	}
 	
+	public String toString(){
+		return "Codigo: " + this.getCodigo() + " - Art: " + this.getArticulo().getDescripcion() + 
+				"Lote: " + this.getLote().getNroLote() + " - Venc: " + this.getLote().getVencimiento();
+	}
 	
 	
 	
