@@ -1,6 +1,9 @@
 
 package dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -140,6 +143,17 @@ private static ArticuloDAO instancia;
 		}
 		resultado = this.toNegocio(auxArticulo);
 		return resultado;
+	}
+
+	public List<Articulo> findAll() {
+		List<Articulo> resultado = new ArrayList<Articulo>();
+		Session se = HibernateUtil.getSessionFactory().openSession();
+		List<ArticuloEntity> articulos = (List<ArticuloEntity>)se.createQuery("from ArticuloEntity").list();
+		se.close();
+		for(ArticuloEntity articulo: articulos){
+			resultado.add(this.toNegocio(articulo));
+		}
+		return null;
 	}
 
 
