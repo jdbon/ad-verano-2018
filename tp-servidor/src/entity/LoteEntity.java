@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +26,18 @@ public class LoteEntity {
 	@Column(name="lot_vto")
 	private Date vencimiento;
 	
+	@OneToOne
+	@JoinColumn(name="lot_art")
+	private ArticuloEntity art;
+	
+	public ArticuloEntity getArt() {
+		return art;
+	}
+
+	public void setArt(ArticuloEntity art) {
+		this.art = art;
+	}
+
 	public LoteEntity() {
 		super();
 		
