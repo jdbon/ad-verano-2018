@@ -1,12 +1,11 @@
-/*Agrego algunos INSERTS que no vamos a hacer por pantalla*/
 INSERT INTO articulos (art_desc, art_tamanio, art_precio_vta, art_cant_res, art_cant_x_comprar, art_unidad, art_presentacion)
-VALUES ('ARROZ',	    1000,  50.0, 0,  500, 'gramos', 'CAJAS'),
-       ('TOMATE',	     500,  30.0, 0, 1500, 'gramos', 'LATAS'),
-       ('PAPAS',	    3000, 130.0, 0, 2000, 'gramos', 'BOLSA'),
-       ('ALMENDRAS',     100, 290.0, 0, 3500, 'gramos', 'CAJAS'),
-       ('MAYONESA',	     250,  40.0, 0,  500, 'gramos', 'FRASCO'),
-       ('QUESO CHUBUT',	 500, 200.0, 0,  200, 'gramos', 'LATAS'),
-       ('GUARANA',	    1000,  50.0, 0,  200,    'cm3', 'BOTELLAS')
+VALUES ('ARROZ',	    1000,  50.0, 0,  500, 1, 'CAJAS'),
+       ('TOMATE',	     500,  30.0, 0, 1500, 2, 'LATAS'),
+       ('PAPAS',	    3000, 130.0, 0, 2000, 3, 'BOLSA'),
+       ('ALMENDRAS',     100, 290.0, 0, 3500, 4, 'CAJAS'),
+       ('MAYONESA',	     250,  40.0, 0,  500, 4, 'FRASCO'),
+       ('QUESO CHUBUT',	 500, 200.0, 0,  200, 5, 'LATAS'),
+       ('GUARANA',	    1000,  50.0, 0,  200, 6, 'BOTELLAS')
 GO
 INSERT INTO movimientos
 (mov_art, mov_tmo, mov_destino, mov_autorizado, mov_encargado, mov_cant, mov_tipoEnum)
