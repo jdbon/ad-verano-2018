@@ -14,6 +14,7 @@ CREATE TABLE [dbo].[articulos](
 	[art_cant_x_comprar] [int] NOT NULL,
 	[art_unidad] [int] NOT NULL,
 	[art_presentacion] [nvarchar](50) NOT NULL,
+	[art_oc] [int],
  CONSTRAINT [PK_articulos] PRIMARY KEY CLUSTERED 
 (
 	[art_id] ASC
@@ -165,6 +166,7 @@ CREATE TABLE [dbo].[ordenes_compras](
 	[odc_fec_recepcion] [datetime] NOT NULL,
 	[odc_cant_res] [int],
 	[odc_fec_creacion] [datetime] NOT NULL,
+	[odc_estado] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_ordenes_compras] PRIMARY KEY CLUSTERED 
 (
 	[odc_id] ASC
