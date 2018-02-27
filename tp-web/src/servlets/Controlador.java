@@ -73,8 +73,7 @@ public class Controlador extends HttpServlet {
         	int totalArticulos = 7;
 
         	for(int a=1; a < totalArticulos+1; a++){
-        		System.out.println(String.valueOf(a));
-        		
+	
         		int codigoArticulo = Integer.valueOf(request.getParameter("codigoBarra"+String.valueOf(a)));
         		int cantidadIngresada = Integer.valueOf(request.getParameter("cantidad"+String.valueOf(a)));
         		System.out.println("codigoArt, cant: " + codigoArticulo + ", " + cantidadIngresada); 
@@ -91,7 +90,7 @@ public class Controlador extends HttpServlet {
         		if(ipDTO2.getCantidadSolicitada() > 0)
         			items.add(ipDTO2);
         	}
-        	System.out.println("items sizee: " + items.size());
+
         	int nroPedido = 0;
 			try {
 				nroPedido = BusinessDelegate.getInstancia().generarNuevoPedido(idCliente, direccion, items);
@@ -104,7 +103,7 @@ public class Controlador extends HttpServlet {
 //        	String cantidad1 = request.getParameter("cantidad1");
 //        	System.out.println("Servlet: idcliente, direccion, cod, cant --> " 
 //        			+ idCliente + ", " + direccion + ", "+ codigoBarra1 + ", " + cantidad1);
-        	System.out.println("nroPedido: " + nroPedido);
+
         	
         	request.setAttribute("nroPedido", nroPedido);
             jspPage = "/darNroPedido.jsp";	
@@ -112,7 +111,7 @@ public class Controlador extends HttpServlet {
         }
         else if("statusPedido".equals(action)){
         	int nroPedido = Integer.valueOf(request.getParameter("nroPed"));
-        	System.out.println("nroPed: " + nroPedido);
+
         	PedidoDTO pDTO;
         	String status = null;
         	try {

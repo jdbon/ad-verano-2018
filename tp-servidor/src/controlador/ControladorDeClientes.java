@@ -51,8 +51,7 @@ public class ControladorDeClientes {
 		PedidoDTO pDTO = new PedidoDTO();
 		String estadoPedido = null;
 		estadoPedido = PedidoDAO.getInstancia().findEstadoById(idPedido);
-		System.out.println("obt est: " + estadoPedido);
-		
+
 		pDTO.setIdPedido(idPedido);
 		pDTO.setEstado(EstadoPedido.valueOf(estadoPedido));
 		return pDTO;

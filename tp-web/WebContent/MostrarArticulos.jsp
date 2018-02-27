@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>MOSTRAR ARTICULOS</title>
+<title>REALIZAR PEDIDO</title>
 </head>
 <body>
 
