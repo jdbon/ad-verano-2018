@@ -64,13 +64,12 @@ public class ControladorDeDespacho {
 		}
 		
 		//RECHAZA el pedido PENDIENTE
-		public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente, String motivoRech) throws PedidoException, ArticuloException{
+		public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException, ArticuloException{
 
 			Pedido pedido;
 			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
 			pedido.setEstado(EstadoPedido.Rechazado);
-			pedido.setMotivoRechazo(motivoRech);
-			PedidoDAO.getInstancia().update(pedido);
+			PedidoDAO.getInstancia().updateEstado(pedido);
 		}
 		
 		//ENTREGA al delivery pedido DESPACHADO
@@ -88,12 +87,13 @@ public class ControladorDeDespacho {
 
 			Pedido pedido;
 			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
+			//System.out.println("cant itemped: " + pedido.getItems().size());
 			if (pedido.verificarStock() == false){
 				pedido.setEstado(EstadoPedido.Pendiente);
-				PedidoDAO.getInstancia().update(pedido);
+				PedidoDAO.getInstancia().updateEstado(pedido);
 			}else{
 				pedido.setEstado(EstadoPedido.Completo);
-				PedidoDAO.getInstancia().update(pedido);
+				PedidoDAO.getInstancia().updateEstado(pedido);
 			}
 		}
 }

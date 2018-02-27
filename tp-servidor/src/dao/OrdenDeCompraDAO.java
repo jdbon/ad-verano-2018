@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import entity.ArticuloEntity;
 import entity.OrdenDeCompraEntity;
 import enumerator.EstadoOC;
 import excepcion.OrdenDeCompraException;
@@ -52,7 +53,19 @@ public class OrdenDeCompraDAO {
 	}
 	
 	public void save(OrdenDeCompra oc) throws OrdenDeCompraException{
-		OrdenDeCompraEntity oce = this.toEntity(oc);
+//		OrdenDeCompraEntity oce = this.toEntity(oc);
+		OrdenDeCompraEntity oce = new OrdenDeCompraEntity();
+		
+		ArticuloEntity ae = new ArticuloEntity();
+		ae.setCodigoBarra(oc.getArticulo().getCodigoBarra());
+		
+		oce.setArticulo(ae);
+		oce.setCantidadReservada(oc.getCantidadReservada());
+		oce.setCantidadXcomprar(oc.getCantidadXcomprar());
+		oce.setEstado(oc.getEstado());
+		oce.setFechaCreacion(oc.getFechaCreacion());
+		oce.setFechaRecepcion(oc.getFechaRecepcion());
+		oce.setNroOrdenDeCompra(oc.getNroOrdenDeCompra());
 		
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();

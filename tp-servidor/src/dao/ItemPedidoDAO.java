@@ -21,6 +21,7 @@ public class ItemPedidoDAO {
 	}
 	
 	public void update(ItemPedido ip) throws ItemPedidoException, ArticuloException{
+		
 		ItemPedidoEntity ipe = this.toEntity(ip);
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
@@ -29,6 +30,7 @@ public class ItemPedidoDAO {
 		s.update(ipe);
 		s.getTransaction().commit();
 		} catch (Exception e) {
+			e.printStackTrace();
 			s.getTransaction().rollback();
 			throw new ItemPedidoException("Error al actualizar el ItemPedido" + ipe.getIdItemPedido());
 		}
@@ -41,18 +43,16 @@ public class ItemPedidoDAO {
 		itpedE.setCantidadReservada(itped.getCantidadReservada());
 		itpedE.setCantidadSolicitada(itped.getCantidadSolicitada());
 		itpedE.setSubTotal(itped.getSubTotal());
-		itpedE.setArticulo(ArticuloDAO.getInstancia().toEntity(ArticuloDAO.getInstancia().findByID(itped.getArticulo().getCodigoBarra())));
-		itpedE.setIdItemPedido(itped.getIdItemPedido());
+		itpedE.setArticulo(ArticuloDAO.getInstancia().toEntity(ArticuloDAO.getInstancia().findByIDsoloArt(itped.getArticulo().getCodigoBarra())));
 		return itpedE;
 	}
 	
 	public ItemPedido toNegocio(ItemPedidoEntity itpedE) throws ArticuloException{
 		ItemPedido itped = new ItemPedido();
-		itped.setCantidadReservada(itpedE.getCantidadReservada());
-		itped.setCantidadSolicitada(itpedE.getCantidadSolicitada());
-		itped.setSubTotal(itpedE.getSubTotal());
+		itped.setCantidadReservada(itped.getCantidadReservada());
+		itped.setCantidadSolicitada(itped.getCantidadSolicitada());
+		itped.setSubTotal(itped.getSubTotal());
 		itped.setArticulo(ArticuloDAO.getInstancia().findByID(itpedE.getArticulo().getCodigoBarra()));
-		itped.setIdItemPedido(itpedE.getIdItemPedido());
 		return itped;
 	}
 

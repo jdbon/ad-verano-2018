@@ -1,4 +1,4 @@
-USE [ad_verano]
+USE [adverano]
 GO
 /****** Object:  Table [dbo].[articulos]    Script Date: 21/02/2018 08:43:57 p.m. ******/
 SET ANSI_NULLS ON
@@ -12,8 +12,8 @@ CREATE TABLE [dbo].[articulos](
 	[art_precio_vta] [float] NOT NULL,
 	[art_cant_res] [int] NULL,
 	[art_cant_x_comprar] [int] NOT NULL,
-	[art_unidad] [int] NOT NULL, 
-	[art_presentacion] [nvarchar](50) NOT NULL
+	[art_unidad] [int] NOT NULL,
+	[art_presentacion] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_articulos] PRIMARY KEY CLUSTERED 
 (
 	[art_id] ASC
@@ -84,7 +84,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[items_pedidos](
 	[ite_id] [int] IDENTITY(1,1) NOT NULL,
-	[ite_ped] [int] NOT NULL,
+	[ite_ped] [int] NULL,
 	[ite_art] [int] NOT NULL,
 	[ite_cant] [int] NOT NULL,
 	[ite_cant_res] [int] NULL,
@@ -160,8 +160,9 @@ GO
 CREATE TABLE [dbo].[ordenes_compras](
 	[odc_id] [int] IDENTITY(1,1) NOT NULL,
 	[odc_art] [int] NOT NULL,
+	[odc_teo] [int] NULL,
 	[odc_cant_x_comprar] [int] NOT NULL,
-	[odc_fec_recepcion] [datetime] NOT NULL,
+	[odc_fec_recepcion] [datetime] NULL,
 	[odc_cant_res] [int],
 	[odc_fec_creacion] [datetime] NOT NULL,
 	[odc_estado] [nvarchar](50) NOT NULL,
@@ -185,7 +186,6 @@ CREATE TABLE [dbo].[pedidos](
 	[ped_fec_entrega] [datetime],
 	[ped_motivo_rechazo] [nvarchar](50) NULL,
 	[ped_direc] [nvarchar](50) NOT NULL,
-	[ped_tot] float NOT NULL,
  CONSTRAINT [PK_pedidos] PRIMARY KEY CLUSTERED 
 (
 	[ped_id] ASC

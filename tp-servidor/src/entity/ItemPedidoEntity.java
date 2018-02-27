@@ -3,7 +3,6 @@ package entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +23,7 @@ public class ItemPedidoEntity {
 	@Column(name="ite_id")
 	private Integer idItemPedido;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="ite_art")
 	private ArticuloEntity articulo;
 	
@@ -37,7 +36,7 @@ public class ItemPedidoEntity {
 	@Column(name="ite_sub_tot")
 	private float subTotal;
 	
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="ite_ped")
 	private PedidoEntity pedido;
 	
@@ -45,19 +44,6 @@ public class ItemPedidoEntity {
 	public ItemPedidoEntity() {}
 	
 	
-	
-	public PedidoEntity getPedido() {
-		return pedido;
-	}
-
-
-
-	public void setPedido(PedidoEntity pedido) {
-		this.pedido = pedido;
-	}
-
-
-
 	public ArticuloEntity getArticulo() {
 		return articulo;
 	}

@@ -2,30 +2,24 @@
 package dao;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import entity.ArticuloEntity;
-import entity.ClienteEntity;
 import entity.LoteEntity;
 import entity.MovimientoABEntity;
 import entity.MovimientoAjusteEntity;
 import entity.MovimientoEntity;
-import entity.OrdenDeCompraEntity;
+import entity.PedidoEntity;
 import excepcion.ArticuloException;
-import excepcion.ClienteException;
 import hibernate.HibernateUtil;
 import negocio.Articulo;
-import negocio.Cliente;
 import negocio.Lote;
 import negocio.Movimiento;
 import negocio.MovimientoAB;
 import negocio.MovimientoAjuste;
-import negocio.OrdenDeCompra;
 
 
 public class ArticuloDAO {
@@ -60,20 +54,19 @@ private static ArticuloDAO instancia;
 	
 	public ArticuloEntity toEntity(Articulo art){
 		ArticuloEntity artE = new ArticuloEntity();
+		//System.out.println("cant OC: " + art.getCantidadOrdenDeCompra());
 		artE.setCantidadOrdenDeCompra(art.getCantidadOrdenDeCompra());
 		artE.setCantidadReservada(art.getCantidadReservada());
 		artE.setCodigoBarra(art.getCodigoBarra());
 		artE.setDescripcion(art.getDescripcion());
-		Set<LoteEntity> lotesE = new HashSet<LoteEntity>();
-		artE.setLotes(lotesE);
+//		Set<LoteEntity> lotesE = new Set<LoteEntity>();
+//		artE.setLotes(lotesE);
+		
+		//System.out.println("Lotes tamaño: " + art.getLotes().size());
 		for(Lote lote: art.getLotes()) {
-			LoteEntity le = new LoteEntity();
-			le = LoteDAO.getInstancia().toEntity(lote);
-			le.setArt(artE);
+			LoteEntity le = LoteDAO.getInstancia().toEntity(lote);
 			artE.getLotes().add(le);
 		}
-		Set<MovimientoEntity> movsE = new HashSet<MovimientoEntity>();
-		artE.setMovimientos(movsE);
 		for(Movimiento m: art.getMovimientos()) {
 			if(m instanceof MovimientoAB){
 				MovimientoABEntity mabe = new MovimientoABEntity();
@@ -95,14 +88,6 @@ private static ArticuloDAO instancia;
 				artE.getMovimientos().add(mae);
 			}
 		}
-		Set<OrdenDeCompraEntity> odcsE = new HashSet<OrdenDeCompraEntity>();
-		artE.setOrdenes(odcsE);
-		for(OrdenDeCompra oc: art.getOrdenes()){
-			OrdenDeCompraEntity odcE = new OrdenDeCompraEntity();  
-			odcE = OrdenDeCompraDAO.getInstancia().toEntity(oc);
-			odcE.setArticulo(artE);
-			artE.getOrdenes().add(odcE);
-		}
 		artE.setPresentacion(art.getPresentacion());
 		artE.setPrecioVenta(art.getPrecioVenta());
 		artE.setTamaño(art.getTamaño());
@@ -117,23 +102,26 @@ private static ArticuloDAO instancia;
 		art.setCodigoBarra(artE.getCodigoBarra());
 		art.setDescripcion(artE.getDescripcion());
 		List<Lote> lotes = new ArrayList<Lote>();
-		art.setLotes(lotes);
+		
 		for(LoteEntity loteEnt: artE.getLotes()) {
 			Lote lote = new Lote();
 			lote.setNroLote(loteEnt.getNroLote());
 			lote.setVencimiento(loteEnt.getVencimiento());
 			lote.setIdLote(loteEnt.getIdLote());
-			lote.setArt(art);
-			art.getLotes().add(lote);
+//			art.getLotes().add(lote);
+			lotes.add(lote);
 		}
+		art.setLotes(lotes);
 		List<Movimiento> movimientos = new ArrayList<Movimiento>();
 		art.setMovimientos(movimientos);
+		
 		for(MovimientoEntity movEnt: artE.getMovimientos()) {
 			if(movEnt instanceof MovimientoABEntity){
 				MovimientoAB mab = new MovimientoAB();
 				mab.setCantidad(movEnt.getCantidad());
 				mab.setNroMovimiento(movEnt.getNroMovimiento());
 				mab.setTipo(movEnt.getTipo());
+				
 				art.getMovimientos().add(mab);
 			}
 			else if (movEnt instanceof MovimientoAjusteEntity){
@@ -148,19 +136,7 @@ private static ArticuloDAO instancia;
 				art.getMovimientos().add(ma);
 				
 			}
-		}
-		List<OrdenDeCompra> ordenes = new ArrayList<>();
-		art.setOrdenes(ordenes);
-		for(OrdenDeCompraEntity odcE: artE.getOrdenes()){
-			OrdenDeCompra odc = new OrdenDeCompra();
-			odc.setCantidadReservada(odcE.getCantidadReservada());
-			odc.setArticulo(art);
-			odc.setCantidadXcomprar(odcE.getCantidadXcomprar());
-			odc.setEstado(odcE.getEstado());
-			odc.setFechaCreacion(odcE.getFechaCreacion());
-			odc.setFechaRecepcion(odcE.getFechaRecepcion());
-			odc.setNroOrdenDeCompra(odcE.getNroOrdenDeCompra());
-			art.getOrdenes().add(odc);
+			
 		}
 		art.setPrecioVenta(artE.getPrecioVenta());
 		art.setPresentacion(artE.getPresentacion());
@@ -194,22 +170,52 @@ private static ArticuloDAO instancia;
 		a = this.toNegocio(auxArticulo);
 		return a;
 	}
-
-	public void save(Articulo a) throws ArticuloException {
-			ArticuloEntity ae = this.toEntity(a);
-			
-			SessionFactory sf = HibernateUtil.getSessionFactory();
-			Session s = sf.openSession();
-			s.beginTransaction();
-			try {
-			s.save(ae);
-			s.getTransaction().commit();
-			} catch (Exception e) {
-				s.getTransaction().rollback();
-				throw new ArticuloException("Error al grabar el articulo " + ae.getCodigoBarra());
-			}
-			s.close();
-			
+	
+	public Articulo findByIDsoloArt(int idArticulo) throws ArticuloException {
+		Articulo a;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		ArticuloEntity auxArticulo = (ArticuloEntity) s.createQuery("From ArticuloEntity ae where ae.codigoBarra = ?").setInteger(0, idArticulo).uniqueResult();
+		s.close();
+		if(auxArticulo == null) {
+				throw new ArticuloException("No existe un Articulo con el id " + idArticulo);
 		}
+		a = this.toNegocioSoloArt(auxArticulo);
+		return a;
+	}
+
+	private Articulo toNegocioSoloArt(ArticuloEntity ae) {
+		Articulo art = new Articulo();
+		art.setCantidadOrdenDeCompra(ae.getCantidadOrdenDeCompra());
+		art.setCantidadReservada(ae.getCantidadReservada());
+		art.setCodigoBarra(ae.getCodigoBarra());
+		art.setDescripcion(ae.getDescripcion());
+		art.setPrecioVenta(ae.getPrecioVenta());
+		art.setPresentacion(ae.getPresentacion());
+		art.setTamaño(ae.getTamaño());
+		art.setUnidad(ae.getUnidad());
+				
+		return art;
+	}
+
+	public void updateValores(Articulo a) {
+		int idArticulo = a.getCodigoBarra();
+		
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		ArticuloEntity ae = (ArticuloEntity) s.createQuery("From ArticuloEntity ae where ae.codigoBarra = ?").setInteger(0, idArticulo).uniqueResult();
+		ae.setCantidadOrdenDeCompra(a.getCantidadOrdenDeCompra());
+		ae.setCantidadReservada(a.getCantidadReservada());
+		
+		s.update(ae);
+		s.flush();
+		s.getTransaction().commit();
+
+		s.close();
+		
+	}
+
+
 }
 

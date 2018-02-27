@@ -4,43 +4,90 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.List;
 
-import excepcion.ComunicacionException;
-import interfaz.IPedido;
+import dto.ArticuloDTO;
+import dto.ClienteDTO;
+import dto.ItemPedidoDTO;
+import excepcion.ArticuloException;
+import excepcion.ClienteException;
+import excepcion.ItemPedidoException;
+import excepcion.PedidoException;
+import excepcion.SistemaException;
+import interfaz.INegocio;
 
-public class BusinessDelegate {
-
-	private IPedido referenciaRemota;
-	private static BusinessDelegate instancia;
+public class BusinessDelegate implements INegocio{
 	
-	private BusinessDelegate() throws ComunicacionException {
-		try {
-			referenciaRemota = (IPedido) Naming.lookup("//127.0.0.1/AdmPedidos");
-		} catch (MalformedURLException e2) {
-			throw new ComunicacionException("La ubicacion del servidor es incorrecta.");
-		} catch (RemoteException e2) {
-			throw new ComunicacionException("Se produjo un error en la comunicacion.");
-		} catch (NotBoundException e2) {
-			throw new ComunicacionException("No encontre a nadie que me responda.");
-		}
+	private static BusinessDelegate instancia;
+	private INegocio negocioRemoto;
+	
+	private BusinessDelegate() throws SistemaException   {
+		conectar();
 	}
 	
-	public static BusinessDelegate getInstancia() throws ComunicacionException {
+	private void conectar() throws SistemaException {
+		try {
+			negocioRemoto = (INegocio) Naming.lookup("//localhost/ver");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new SistemaException("Servidor no encontrado en URL");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new SistemaException("Problemas en la red");
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new SistemaException("Recurso no encontrado");
+		}
+		
+	}
+
+	public static BusinessDelegate getInstancia() throws SistemaException{
 		if(instancia == null)
 			instancia = new BusinessDelegate();
 		return instancia;
 	}
-	
-	public int crearCuenta() throws ComunicacionException {
+
+
+//	public ClienteDTO getClienteById(ClienteDTO cliDTO) throws SistemaException {
+//		try {
+//			return negocioRemoto.getClienteById(cliDTO);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			throw new SistemaException("Error en conexion");
+//		}
+//	}
+
+	@Override 
+	public List<ArticuloDTO> getAllArticulos() throws PedidoException  {
 		try {
-			return referenciaRemota.crearPedido();
+			return negocioRemoto.getAllArticulos();
 		} catch (RemoteException e) {
-			throw new ComunicacionException("Se produjo un error en la comunicacion.");
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			throw new PedidoException("Error al generar un pedido.");
+		}
+
+	}
+
+	@Override
+	public int generarNuevoPedido(int idCliente, String direccion, List<ItemPedidoDTO> items) throws PedidoException, ClienteException, ArticuloException, ItemPedidoException  {
+		try {
+			return negocioRemoto.generarNuevoPedido(idCliente, direccion, items);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			throw new PedidoException("Error al generar un pedido.");
 		}
 	}
-	
-	
-	
-	
-	
+
 }
+
+	
+	
+	
+	
+	
+

@@ -23,6 +23,7 @@ public class LoteDAO {
 		le.setIdLote(l.getIdLote());
 		le.setNroLote(l.getNroLote());
 		le.setVencimiento(l.getVencimiento());
+		le.setArt(ArticuloDAO.getInstancia().toEntity(l.getArt()));
 		
 		return le;
 		

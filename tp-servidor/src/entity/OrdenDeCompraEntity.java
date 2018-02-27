@@ -2,6 +2,12 @@ package entity;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import enumerator.EstadoOC;
 
 import javax.persistence.*;
@@ -14,6 +20,10 @@ public class OrdenDeCompraEntity {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="odc_id")
 	private Integer nroOrdenDeCompra;
+	
+	@ManyToOne
+	@JoinColumn(name="odc_art")
+	private ArticuloEntity articulo;
 	
 	@Column(name="odc_cant_x_comprar")
 	private int cantidadXcomprar;
@@ -30,40 +40,10 @@ public class OrdenDeCompraEntity {
 	
 	@Column(name="odc_fec_creacion")
 	private Date fechaCreacion;
-	
-	@ManyToOne
-	@JoinColumn(name="odc_art")
-	private ArticuloEntity artE;
 
 	public OrdenDeCompraEntity() {
 		
 	}
-	
-	
-
-	public Date getFechaCreacion() {
-		return fechaCreacion;
-	}
-
-
-
-	public void setFechaCreacion(Date fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-
-
-	public ArticuloEntity getArtE() {
-		return artE;
-	}
-
-
-
-	public void setArtE(ArticuloEntity artE) {
-		this.artE = artE;
-	}
-
-
 
 	public Integer getNroOrdenDeCompra() {
 		return nroOrdenDeCompra;
@@ -71,6 +51,14 @@ public class OrdenDeCompraEntity {
 
 	public void setNroOrdenDeCompra(Integer nroOrdenDeCompra) {
 		this.nroOrdenDeCompra = nroOrdenDeCompra;
+	}
+
+	public ArticuloEntity getArticulo() {
+		return articulo;
+	}
+
+	public void setArticulo(ArticuloEntity articulo) {
+		this.articulo = articulo;
 	}
 
 	public int getCantidadXcomprar() {
@@ -105,13 +93,12 @@ public class OrdenDeCompraEntity {
 		this.cantidadReservada = cantidadReservada;
 	}
 
-	public void setArticulo(ArticuloEntity entity) {
-		this.artE = entity;
-		
+	public Date getFechaCreacion() {
+		return fechaCreacion;
 	}
 
-	public ArticuloEntity getArticulo() {
-		return this.artE;
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
 	}
 	
 	

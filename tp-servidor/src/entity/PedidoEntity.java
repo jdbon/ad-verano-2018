@@ -1,6 +1,7 @@
 package entity;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,8 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import enumerator.EstadoPedido;
@@ -28,11 +29,11 @@ public class PedidoEntity {
 	@Column(name="ped_id")
 	private Integer idPedido;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="ite_ped")
 	private Set<ItemPedidoEntity> items;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="ped_cli")
 	private ClienteEntity cliente;
 	
@@ -52,26 +53,9 @@ public class PedidoEntity {
 	
 	@Column(name="ped_motivo_rechazo")
 	private String motivoRechazo;
+
 	
-	@Column(name="ped_tot")
-	private float total;
 	
-	public float getTotal() {
-		return total;
-	}
-
-	public void setTotal(float total) {
-		this.total = total;
-	}
-
-	public Set<ItemPedidoEntity> getItems() {
-		return items;
-	}
-
-	public void setItems(Set<ItemPedidoEntity> items) {
-		this.items = items;
-	}
-
 	public PedidoEntity() {
 		super();
 	}
@@ -130,6 +114,14 @@ public class PedidoEntity {
 
 	public void setMotivoRechazo(String motivoRechazo) {
 		this.motivoRechazo = motivoRechazo;
+	}
+
+	public Set<ItemPedidoEntity> getItems() {
+		return items;
+	}
+
+	public void setItems(Set<ItemPedidoEntity> items) {
+		this.items = items;
 	}
 	
 	
