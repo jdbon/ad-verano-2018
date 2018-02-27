@@ -8,6 +8,8 @@ import dao.ClienteDAO;
 import dao.PedidoDAO;
 import dto.ArticuloDTO;
 import dto.ItemPedidoDTO;
+import dto.PedidoDTO;
+import enumerator.EstadoPedido;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
@@ -43,6 +45,17 @@ public class ControladorDeClientes {
 			pedido.agregarItemPedido(item.getArticulo().getCodigoBarra(), item.getCantidadSolicitada());
 		}		
 		return PedidoDAO.getInstancia().save(pedido);
+	}
+	
+	public PedidoDTO obtenerEstadoPedido(int idPedido) throws PedidoException{
+		PedidoDTO pDTO = new PedidoDTO();
+		String estadoPedido = null;
+		estadoPedido = PedidoDAO.getInstancia().findEstadoById(idPedido);
+		System.out.println("obt est: " + estadoPedido);
+		
+		pDTO.setIdPedido(idPedido);
+		pDTO.setEstado(EstadoPedido.valueOf(estadoPedido));
+		return pDTO;
 	}
 }
 

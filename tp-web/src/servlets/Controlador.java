@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import delegado.BusinessDelegate;
 import dto.ArticuloDTO;
 import dto.ItemPedidoDTO;
+import dto.PedidoDTO;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
@@ -108,6 +109,24 @@ public class Controlador extends HttpServlet {
         	request.setAttribute("nroPedido", nroPedido);
             jspPage = "/darNroPedido.jsp";	
         	
+        }
+        else if("statusPedido".equals(action)){
+        	int nroPedido = Integer.valueOf(request.getParameter("nroPed"));
+        	System.out.println("nroPed: " + nroPedido);
+        	PedidoDTO pDTO;
+        	String status = null;
+        	try {
+        		pDTO = BusinessDelegate.getInstancia().obtenerEstadoPedido(nroPedido);
+				System.out.println("Estado pedido: " + pDTO.getEstado().toString());
+				status = pDTO.getEstado().toString();
+				
+			} catch (PedidoException | SistemaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+        	request.setAttribute("elEstadoEs", status);
+        	jspPage = "/statusPedido.jsp";
         }
         dispatch(jspPage, request, response);
         

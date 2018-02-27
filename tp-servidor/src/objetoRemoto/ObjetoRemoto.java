@@ -7,6 +7,7 @@ import java.util.List;
 import controlador.ControladorDeClientes;
 import dto.ArticuloDTO;
 import dto.ItemPedidoDTO;
+import dto.PedidoDTO;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
@@ -46,6 +47,14 @@ public class ObjetoRemoto extends UnicastRemoteObject implements INegocio {
 			throws RemoteException, PedidoException, ClienteException, ArticuloException, ItemPedidoException {
 		
 		return ControladorDeClientes.getInstancia().generarNuevoPedido(idCliente, direccion, items);
+	}
+
+
+
+	@Override
+	public PedidoDTO obtenerEstadoPedido(int idPedido) throws RemoteException, PedidoException {
+		
+		return ControladorDeClientes.getInstancia().obtenerEstadoPedido(idPedido);
 	}
 
 }

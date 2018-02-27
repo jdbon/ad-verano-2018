@@ -165,6 +165,19 @@ public class PedidoDAO {
 		return p;
 	}
 	
+	public String findEstadoById(int idPedido) throws PedidoException{
+		String estado;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		PedidoEntity pe = (PedidoEntity) s.createQuery("From PedidoEntity pe where pe.idPedido = ?").setInteger(0, idPedido).uniqueResult();
+		s.close();
+		if(pe == null) {
+				throw new PedidoException("No existe un pedido con el id " + idPedido);
+		}
+		estado = pe.getEstado().toString();
+		return estado;
+	}
+	
 	public List<Pedido> getPendientes() throws PedidoException{
 		List<Pedido> pedidos_pen = new ArrayList<Pedido>();
 		SessionFactory sf = HibernateUtil.getSessionFactory();

@@ -9,6 +9,7 @@ import java.util.List;
 import dto.ArticuloDTO;
 import dto.ClienteDTO;
 import dto.ItemPedidoDTO;
+import dto.PedidoDTO;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
@@ -80,6 +81,15 @@ public class BusinessDelegate implements INegocio{
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			throw new PedidoException("Error al generar un pedido.");
+		}
+	}
+
+	@Override
+	public PedidoDTO obtenerEstadoPedido(int idPedido) throws PedidoException {
+		try{
+			return negocioRemoto.obtenerEstadoPedido(idPedido);
+		} catch (RemoteException e){
+			throw new PedidoException("Error al recuperar un pedido.");
 		}
 	}
 
