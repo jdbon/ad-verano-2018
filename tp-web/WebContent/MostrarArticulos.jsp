@@ -21,6 +21,7 @@
 		<td><b>CODIGO</b></td>
 		<td><b>DESCRIPCION</b></td>
 		<td><b>PRECIO</b></td>
+		<td><b>CANTIDAD</b></td>
 	</tr>
 <%
 	ArticuloDTO aDTO;
@@ -34,8 +35,16 @@
 		<td><%=adto.getCodigoBarra()%></td>
 		<td><%=adto.getDescripcion()%></td>
 		<td><%=adto.getPrecioVenta()%></td>
+		<td><input type="text" name="cantidad"></td>
 	</tr>
 <% } %>
 </table>
+<b>Numero de Cliente</b>
+<input type="text" name="nroCliente">
+<br>
+<b>Direccion</b>
+<input type="text" name="direccion">
+<br>
+<input type="submit" value= "ENVIAR">
 </body>
 </html>
