@@ -9,7 +9,7 @@
 <body>
 <p>PANTALLA CLIENTE</p>
 	
-	<a href="Controlador?accion=traerArticulos"> Traer articulos </a>
+	<a href="Controlador?accion=traerArticulos"> Realizar pedido </a>
 	<br>
 	<a href="consultarPedido.jsp"> Consultar estado pedido </a>
 </body>

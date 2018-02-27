@@ -10,7 +10,7 @@
 <form action="Controlador" method="get">
 <table border="1">
 	<tr><td colspan="4"><b>Ingrese el numero de pedido</b></td></tr>
-    <tr><td>Nro de Pedido</td><td><input name="nroPed", size="50"/></td></tr>
+    <tr><td>Nro de Pedido</td><td><input name="nroPed" size="50"/></td></tr>
     <tr><td colspan="2" align="right"><input name="boton" type="submit" value="ENVIAR"  /></td></tr>    
 </table>
 <input type="hidden" name="accion" value="statusPedido">
