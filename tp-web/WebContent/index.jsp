@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>CLIENTE</title>
+<title>:PRINCIPAL:</title>
 </head>
 <body>
-<p>PANTALLA CLIENTE</p>
+<p>WEB DE ACCESO</p>
 	
-	<a href="Controlador?accion=traerArticulos"> Realizar pedido </a>
+	<a href="/tp-web/webCliente.jsp"> CLIENTE </a>
 	<br>
-	<a href="consultarPedido.jsp"> Consultar estado pedido </a>
+	<a href="/tp-web//webDespacho.jsp"> DESPACHO </a>
 </body>
 </html>

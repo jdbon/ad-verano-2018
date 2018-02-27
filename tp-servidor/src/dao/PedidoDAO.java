@@ -182,8 +182,8 @@ public class PedidoDAO {
 		List<Pedido> pedidos_pen = new ArrayList<Pedido>();
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
-		@SuppressWarnings("unchecked")
-		List<PedidoEntity> auxPedidos = s.createQuery("From PedidoEntity pe where pe.estado = ? order by pe.fechaCreacion asc").setString(0, EstadoPedido.Pendiente.name()).list();
+		
+		List<PedidoEntity> auxPedidos = (List<PedidoEntity>) s.createQuery("From PedidoEntity pe where pe.estado = ? order by pe.fechaCreacion asc").setString(0, EstadoPedido.Pendiente.name()).list();
 		s.close();
 		if(auxPedidos == null) {
 				throw new PedidoException("No existen Pedidos Pendientes");

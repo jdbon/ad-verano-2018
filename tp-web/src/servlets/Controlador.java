@@ -127,6 +127,23 @@ public class Controlador extends HttpServlet {
         	request.setAttribute("elEstadoEs", status);
         	jspPage = "/statusPedido.jsp";
         }
+        else if("aprobarPedidos".equals(action)){
+        	List<PedidoDTO> pedidosPendientes = null;
+        	try {
+				 pedidosPendientes = BusinessDelegate.getInstancia().buscarPedidosPendiente();
+			} catch (PedidoException | SistemaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	System.out.println("pedpend size: " + pedidosPendientes.size());
+        	request.setAttribute("pedPend", pedidosPendientes);
+            jspPage = "/aprobarPedidos.jsp";	
+        }
+        else if("aprobarPedidos".equals(action)){
+        	String parametro = (String) request.getAttribute("aprobarPedidoTEST");
+        	System.out.println("parametro: " + parametro);
+        }
+        
         dispatch(jspPage, request, response);
         
 	}

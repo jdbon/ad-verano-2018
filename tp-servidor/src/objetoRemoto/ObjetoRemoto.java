@@ -5,6 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 import controlador.ControladorDeClientes;
+import controlador.ControladorDeDespacho;
 import dto.ArticuloDTO;
 import dto.ItemPedidoDTO;
 import dto.PedidoDTO;
@@ -55,6 +56,14 @@ public class ObjetoRemoto extends UnicastRemoteObject implements INegocio {
 	public PedidoDTO obtenerEstadoPedido(int idPedido) throws RemoteException, PedidoException {
 		
 		return ControladorDeClientes.getInstancia().obtenerEstadoPedido(idPedido);
+	}
+
+
+
+	@Override
+	public List<PedidoDTO> buscarPedidosPendiente() throws RemoteException, PedidoException {
+		// TODO Auto-generated method stub
+		return ControladorDeDespacho.getInstancia().buscarPedidosPendiente();
 	}
 
 }

@@ -93,6 +93,19 @@ public class BusinessDelegate implements INegocio{
 		}
 	}
 
+	@Override
+	public List<PedidoDTO> buscarPedidosPendiente() throws PedidoException {
+		
+		try {
+			return negocioRemoto.buscarPedidosPendiente();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			throw new PedidoException("Error al recuperar lista de pedidos pendientes.");
+		}
+		
+	}
+
 }
 
 	
