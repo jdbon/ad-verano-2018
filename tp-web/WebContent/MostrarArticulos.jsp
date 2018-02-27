@@ -17,10 +17,10 @@
 		<td colspan="4"><b>Lista de Articulos</b></td>
 	</tr>
 	<tr>
-		<td><b>Id</b></td>
-		<td><b>Nombre</b></td>
-		<td><b>Apellido</b></td>
-		<td><b>Dirección</b></td>
+		
+		<td><b>CODIGO</b></td>
+		<td><b>DESCRIPCION</b></td>
+		<td><b>PRECIO</b></td>
 	</tr>
 <%
 	ArticuloDTO aDTO;
@@ -31,11 +31,6 @@
 		
 %>
 	<tr>
-		<td>
-		
-		</td>
-
- 
 		<td><%=adto.getCodigoBarra()%></td>
 		<td><%=adto.getDescripcion()%></td>
 		<td><%=adto.getPrecioVenta()%></td>
