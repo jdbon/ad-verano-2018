@@ -23,28 +23,34 @@
 		<td><b>PRECIO</b></td>
 		<td><b>CANTIDAD</b></td>
 	</tr>
+<form action="Controlador" method="get">
 <%
 	ArticuloDTO aDTO;
 	String id; 	
 	List<ArticuloDTO> losArticulosDTO = (List<ArticuloDTO>) request.getAttribute("articulosDTO");
 	for(ArticuloDTO adto : losArticulosDTO)
 	{
-		
+		int codigoArticulo = adto.getCodigoBarra();
 %>
 	<tr>
+		<input type="hidden" name="codigoBarra<%=codigoArticulo%>" value="<%=codigoArticulo%>">
 		<td><%=adto.getCodigoBarra()%></td>
 		<td><%=adto.getDescripcion()%></td>
 		<td><%=adto.getPrecioVenta()%></td>
-		<td><input type="text" name="cantidad"></td>
+		<td><input type="text" name="cantidad<%=codigoArticulo%>" value="0"></td>
 	</tr>
 <% } %>
 </table>
-<b>Numero de Cliente</b>
-<input type="text" name="nroCliente">
 <br>
-<b>Direccion</b>
-<input type="text" name="direccion">
 <br>
-<input type="submit" value= "ENVIAR">
+
+<table border="1">
+	<tr><td colspan="4"><b>Ingrese sus datos</b></td></tr>
+	<tr><td>Numero de Cliente</td><td><input name="nroCliente", size="10"/></td></tr>
+    <tr><td>Direccion</td><td><input name="direccion", size="50"/></td></tr>
+    <tr><td colspan="2" align="right"><input name="boton" type="submit" value="ENVIAR"  /></td></tr>    
+</table>
+<input type="hidden" name="accion" value="pedidoCliente">
+</form>
 </body>
 </html>

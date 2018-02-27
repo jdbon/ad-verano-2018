@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import delegado.BusinessDelegate;
 import dto.ArticuloDTO;
+import dto.ItemPedidoDTO;
+import excepcion.ArticuloException;
+import excepcion.ClienteException;
+import excepcion.ItemPedidoException;
 import excepcion.PedidoException;
 import excepcion.SistemaException;
 
@@ -59,6 +63,51 @@ public class Controlador extends HttpServlet {
     		
     		request.setAttribute("articulosDTO", articulosDTO);
             jspPage = "/MostrarArticulos.jsp";	
+        }
+        else if("pedidoCliente".equals(action)){
+        	
+        	List<ItemPedidoDTO> itemsTemp = new ArrayList<ItemPedidoDTO>();
+        	int idCliente = Integer.valueOf(request.getParameter("nroCliente"));
+        	String direccion = request.getParameter("direccion");
+        	int totalArticulos = 7;
+
+        	for(int a=1; a < totalArticulos+1; a++){
+        		System.out.println(String.valueOf(a));
+        		
+        		int codigoArticulo = Integer.valueOf(request.getParameter("codigoBarra"+String.valueOf(a)));
+        		int cantidadIngresada = Integer.valueOf(request.getParameter("cantidad"+String.valueOf(a)));
+        		System.out.println("codigoArt, cant: " + codigoArticulo + ", " + cantidadIngresada); 
+        		ArticuloDTO aDTO = new ArticuloDTO();
+        		aDTO.setCodigoBarra(codigoArticulo);
+        		
+        		ItemPedidoDTO ipDTO = new ItemPedidoDTO();
+        		ipDTO.setArticulo(aDTO);
+        		ipDTO.setCantidadSolicitada(cantidadIngresada);
+        		itemsTemp.add(ipDTO);
+        	}
+        	List<ItemPedidoDTO> items = new ArrayList<ItemPedidoDTO>();
+        	for(ItemPedidoDTO ipDTO2 : itemsTemp){
+        		if(ipDTO2.getCantidadSolicitada() > 0)
+        			items.add(ipDTO2);
+        	}
+        	System.out.println("items sizee: " + items.size());
+        	int nroPedido = 0;
+			try {
+				nroPedido = BusinessDelegate.getInstancia().generarNuevoPedido(idCliente, direccion, items);
+			} catch (PedidoException | ClienteException | ArticuloException | ItemPedidoException
+					| SistemaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//        	String codigoBarra1 = request.getParameter("codigoBarra1");
+//        	String cantidad1 = request.getParameter("cantidad1");
+//        	System.out.println("Servlet: idcliente, direccion, cod, cant --> " 
+//        			+ idCliente + ", " + direccion + ", "+ codigoBarra1 + ", " + cantidad1);
+        	System.out.println("nroPedido: " + nroPedido);
+        	
+        	request.setAttribute("nroPedido", nroPedido);
+            jspPage = "/darNroPedido.jsp";	
+        	
         }
         dispatch(jspPage, request, response);
         
