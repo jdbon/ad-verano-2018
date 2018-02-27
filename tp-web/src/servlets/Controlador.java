@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -57,12 +58,20 @@ public class Controlador extends HttpServlet {
     		//System.out.println("cant art: " + articulosDTO.size());
     		
     		request.setAttribute("articulosDTO", articulosDTO);
-            jspPage = "/MostrarArticulos.jsp";
-        	
-        	
+            jspPage = "/MostrarArticulos.jsp";	
         }
+        dispatch(jspPage, request, response);
         
 	}
+
+	private void dispatch(String jspPage, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (jspPage != null)
+        {
+            RequestDispatcher rd = request.getRequestDispatcher(jspPage);
+            rd.forward(request, response);
+        }
+    }
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

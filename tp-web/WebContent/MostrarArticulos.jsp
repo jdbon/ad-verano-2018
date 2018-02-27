@@ -10,15 +10,7 @@
 <title>MOSTRAR ARTICULOS</title>
 </head>
 <body>
-	<%
-	List<ArticuloDTO> articulosDTO = (List<ArticuloDTO>) request.getAttribute("articulosDTO");
-	
-	for(ArticuloDTO aDTO : articulosDTO){
-		
-	}
-	
-	
-	%>
+
 	
 	<table cellspacing="3" cellpadding="3" border="1" width="500">
 	<tr>
