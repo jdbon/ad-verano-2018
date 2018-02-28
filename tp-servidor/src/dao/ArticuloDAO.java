@@ -59,10 +59,10 @@ private static ArticuloDAO instancia;
 		artE.setCantidadReservada(art.getCantidadReservada());
 		artE.setCodigoBarra(art.getCodigoBarra());
 		artE.setDescripcion(art.getDescripcion());
-<<<<<<< HEAD
+
 		/*Set<LoteEntity> lotesE = new HashSet<LoteEntity>();
 		artE.setLotes(lotesE);
-=======
+
 //		Set<LoteEntity> lotesE = new Set<LoteEntity>();
 //		artE.setLotes(lotesE);
 		
@@ -107,8 +107,7 @@ private static ArticuloDAO instancia;
 			odcE.setNroOrdenDeCompra(oc.getNroOrdenDeCompra());
 			artE.getOrdenes().add(odcE);
 		}*/
-=======
->>>>>>> c0eea729bfd48be0eb3558c3c781d3b301c019b9
+
 		artE.setPresentacion(art.getPresentacion());
 		artE.setPrecioVenta(art.getPrecioVenta());
 		artE.setTamaño(art.getTamaño());

@@ -59,15 +59,11 @@ public class ArticuloEntity {
 	@JoinColumn(name="mov_art")
 	private List<MovimientoEntity> movimientos;
 	
-<<<<<<< HEAD
+
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="odc_art")
 	private Set<OrdenDeCompraEntity> ordenes;
-=======
-	@OneToMany
-	@JoinColumn(name="art_id")
-	private List<OrdenDeCompraEntity> ordenes;
->>>>>>> c0eea729bfd48be0eb3558c3c781d3b301c019b9
+
 	
 	
 	
@@ -145,15 +141,6 @@ public class ArticuloEntity {
 
 
 
-	public List<OrdenDeCompraEntity> getOrdenes() {
-		return ordenes;
-	}
-
-
-
-	public void setOrdenes(List<OrdenDeCompraEntity> ordenes) {
-		this.ordenes = ordenes;
-	}
 
 
 
