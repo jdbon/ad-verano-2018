@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Die Verrückte Dose</title>
@@ -41,20 +40,21 @@
           <h1>Die Verruckte Dose</h1>
           <hr>
           <font color="red"><p>Consultar Estado de un Pedido</p></font>
+ 		  <form action="Controlador" method="get">
+		  <table border="1">
+		  <tr><td colspan="4"><b>Ingrese el numero de pedido</b></td></tr>
+    	  <tr><td>Nro de Pedido</td><td><input name="nroPed" size="50"/></td></tr>
+    	  <tr><td colspan="2" align="right"><input name="boton" type="submit" value="ENVIAR"  /></td></tr>    
+		  </table>
+<input type="hidden" name="accion" value="statusPedido">
+</form> 
 <p></p>
 		   <a href="index.jsp" class="btn btn-default btn-lg page-scroll"> < VOLVER </a></div>
       </div>
     </div>
   </div>
 </header>
-		<form action="Controlador" method="get">
-			  <table border="1">
-				  <tr><td colspan="4"><b>Ingrese el numero de pedido</b></td></tr>
-		    	  <tr><td>Nro de Pedido</td><td><input name="nroPed" size="50"/></td></tr>
-		    	  <tr><td colspan="2" align="right"><input name="boton" type="submit" value="ENVIAR"/></td></tr>    
-			  </table>
-		<input type="hidden" name="accion" value="statusPedido">
-		</form> 
+
 <div id="footer">
   <div class="container text-center">
     <div class="fnav">
@@ -62,6 +62,13 @@
     </div>
   </div>
 </div>
-
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script> 
+<script type="text/javascript" src="js/bootstrap.js"></script> 
+<script type="text/javascript" src="js/SmoothScroll.js"></script> 
+<script type="text/javascript" src="js/nivo-lightbox.js"></script> 
+<script type="text/javascript" src="js/jquery.isotope.js"></script> 
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
+<script type="text/javascript" src="js/contact_me.js"></script> 
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
