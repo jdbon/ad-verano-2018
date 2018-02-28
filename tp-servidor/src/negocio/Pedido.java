@@ -7,7 +7,9 @@ import java.util.List;
 
 import dao.PedidoDAO;
 import dto.PedidoDTO;
+import enumerator.EstadoOC;
 import enumerator.EstadoPedido;
+import enumerator.TipoMovimiento;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
@@ -24,7 +26,6 @@ public class Pedido {
 	private Date fechaCreacion;
 	private Date fechaEntregaEstimada;
 	private String motivoRechazo;
-	private float total;
 	
 	public Pedido () {}
 	
@@ -34,8 +35,7 @@ public class Pedido {
 		this.items = new ArrayList<ItemPedido>();
 		this.estado = EstadoPedido.Pendiente;
 		this.fechaCreacion = Date.valueOf(LocalDate.now());
-		this.cliente = cliente;	
-		this.total=0;
+		this.cliente = cliente;		
 		
 	}
 	
@@ -69,16 +69,6 @@ public class Pedido {
 			}
 		}
 		return parcial;
-	}
-	
-	
-
-	public float getTotal() {
-		return total;
-	}
-
-	public void setTotal(float total) {
-		this.total = total;
 	}
 
 	public int getIdPedido() {
@@ -151,10 +141,10 @@ public class Pedido {
 		
 	}
 
-	public void calcularTotal() {
-		for(ItemPedido item: this.items){
-			this.total = this.total + item.getSubTotal();
-		}
+	
+
+	private void update() throws PedidoException, ArticuloException {
+		PedidoDAO.getInstancia().update(this);
 		
 	}
 	

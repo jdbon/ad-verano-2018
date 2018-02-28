@@ -135,4 +135,8 @@ public class PedidoDTO implements Serializable {
 		this.clienteDTO = clienteDTO;
 	}
 	
+	public String toString(){
+		return "idPedido: " + this.getIdPedido() + " - Cliente : " + this.getClienteDTO().getApellido();
+	}
+	
 }

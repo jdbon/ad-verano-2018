@@ -31,6 +31,7 @@ public class PedidoDAO {
 		
 	}
 	
+	
 		
 	public PedidoEntity toEntity(Pedido p) throws ArticuloException{
 		
@@ -42,38 +43,35 @@ public class PedidoDAO {
 		pe.setFechaEntregaEstimada(p.getFechaEntregaEstimada());
 		pe.setMotivoRechazo(p.getMotivoRechazo());
         pe.setCliente(ClienteDAO.getInstancia().toEntity(p.getCliente()));
-        pe.setTotal(p.getTotal());
-        Set<ItemPedidoEntity> itemsE = new HashSet<ItemPedidoEntity>();
-        pe.setItems(itemsE);
-        for (ItemPedido item: p.getItems()){
-			ItemPedidoEntity itemE = new ItemPedidoEntity();
-			itemE.setArticulo(ArticuloDAO.getInstancia().toEntity(item.getArticulo()));
-			itemE.setCantidadSolicitada(item.getCantidadSolicitada());
-			itemE.setCantidadReservada(item.getCantidadReservada());
-			itemE.setSubTotal(item.getSubTotal());
-			itemE.setPedido(pe);
-			itemE.setIdItemPedido(item.getIdItemPedido());
-			pe.getItems().add(itemE);
+        List<ItemPedidoEntity> itemsE = new ArrayList<ItemPedidoEntity>();
+		for (ItemPedido item: p.getItems()){
+			itemsE.add(ItemPedidoDAO.getInstancia().toEntity(item));
 		}
+		Set<ItemPedidoEntity> setItemE  = new HashSet<ItemPedidoEntity>();
+		for(ItemPedidoEntity ipe : itemsE){
+			setItemE.add(ipe);
+		}
+		pe.setItems(setItemE);
 		return pe;
 		
 	}
 	
 	
-	public void save(Pedido p) throws PedidoException, ItemPedidoException, ArticuloException{
+	public Integer save(Pedido p) throws PedidoException, ItemPedidoException, ArticuloException{
 		PedidoEntity pe = this.toEntity(p);
+		Integer idPedidoDevuelta;
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
 		s.beginTransaction();
 		try {
-		s.save(pe);
+		idPedidoDevuelta = (int) s.save(pe);
 		s.getTransaction().commit();
-		p.setIdPedido(pe.getIdPedido());
 		} catch (Exception e) {
 			s.getTransaction().rollback();
 			throw new PedidoException("Error al grabar pedido, o el pedido " + pe.getIdPedido() + " ya existe.");
 		}
-		s.close();		
+		s.close();	
+		return idPedidoDevuelta;
 	}
 	
 	public void update(Pedido p) throws PedidoException, ArticuloException{
@@ -82,13 +80,48 @@ public class PedidoDAO {
 		Session s = sf.openSession();
 		s.beginTransaction();
 		try {
-		s.merge(pe);
+		s.update(pe);
+		s.flush();
 		s.getTransaction().commit();
 		} catch (Exception e) {
 			s.getTransaction().rollback();
 			throw new PedidoException("Error al actualizar el pedido" + pe.getIdPedido());
 		}
 		s.close();
+		
+	}
+	
+	public void updateEstado(Pedido p) throws PedidoException, ArticuloException{
+		int idPedido = p.getIdPedido();
+		
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		s.beginTransaction();
+		PedidoEntity pe = (PedidoEntity) s.createQuery("From PedidoEntity pe where pe.idPedido = ?").setInteger(0, idPedido).uniqueResult();
+		pe.setEstado(p.getEstado());
+		s.update(pe);
+		s.flush();
+		s.getTransaction().commit();
+
+		s.close();
+		
+		///////////
+//		PedidoEntity pe = new PedidoEntity();
+//		pe = this.toEntity(p);
+////		pe.setIdPedido(p.getIdPedido());
+////		pe.setEstado(p.getEstado());
+////				
+//		SessionFactory sf = HibernateUtil.getSessionFactory();
+//		Session s = sf.openSession();
+//		s.beginTransaction();
+//		try {
+//		s.update(pe);
+//		s.getTransaction().commit();
+//		} catch (Exception e) {
+//			s.getTransaction().rollback();
+//			//throw new PedidoException("Error al actualizar el pedido" + pe.getIdPedido());
+//		}
+//		s.close();
 		
 	}
 
@@ -100,19 +133,22 @@ public class PedidoDAO {
 		p.setEstado(pe.getEstado());
 		p.setFechaCreacion(pe.getFechaCreacion());
 		p.setFechaEntregaEstimada(pe.getFechaEntregaEstimada());
+		
 		p.setMotivoRechazo(pe.getMotivoRechazo());
+		
 		p.setCliente(ClienteDAO.getInstancia().toNegocio(pe.getCliente()));
+		
 		List<ItemPedido> items = new ArrayList<ItemPedido>();
-        p.setItems(items);
-        for (ItemPedidoEntity itemE: pe.getItems()){
-			ItemPedido item = new ItemPedido();
-			item.setArticulo(ArticuloDAO.getInstancia().toNegocio(itemE.getArticulo()));
-			item.setCantidadSolicitada(itemE.getCantidadSolicitada());
-			item.setCantidadReservada(itemE.getCantidadReservada());
-			item.setSubTotal(itemE.getSubTotal());
-			item.setIdItemPedido(itemE.getIdItemPedido());
-			p.getItems().add(item);
+		for(ItemPedidoEntity ipe : pe.getItems()){
+			ItemPedido ip = new ItemPedido();
+			ip.setArticulo(ArticuloDAO.getInstancia().toNegocio(ipe.getArticulo()));
+			ip.setCantidadReservada(ipe.getCantidadReservada());
+			ip.setCantidadSolicitada(ipe.getCantidadSolicitada());
+			ip.setSubTotal(ipe.getSubTotal());
+			items.add(ip);
 		}
+		p.setItems(items);
+		
 		return p;
 	}
 	
@@ -129,12 +165,25 @@ public class PedidoDAO {
 		return p;
 	}
 	
+	public String findEstadoById(int idPedido) throws PedidoException{
+		String estado;
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		PedidoEntity pe = (PedidoEntity) s.createQuery("From PedidoEntity pe where pe.idPedido = ?").setInteger(0, idPedido).uniqueResult();
+		s.close();
+		if(pe == null) {
+				throw new PedidoException("No existe un pedido con el id " + idPedido);
+		}
+		estado = pe.getEstado().toString();
+		return estado;
+	}
+	
 	public List<Pedido> getPendientes() throws PedidoException{
 		List<Pedido> pedidos_pen = new ArrayList<Pedido>();
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session s = sf.openSession();
-		@SuppressWarnings("unchecked")
-		List<PedidoEntity> auxPedidos = s.createQuery("From PedidoEntity pe where pe.estado = ? order by pe.fechaCreacion asc").setString(0, EstadoPedido.Pendiente.name()).list();
+		
+		List<PedidoEntity> auxPedidos = (List<PedidoEntity>) s.createQuery("From PedidoEntity pe where pe.estado = ? order by pe.fechaCreacion asc").setString(0, EstadoPedido.Pendiente.name()).list();
 		s.close();
 		if(auxPedidos == null) {
 				throw new PedidoException("No existen Pedidos Pendientes");
@@ -176,6 +225,22 @@ public class PedidoDAO {
 		}
 		
 		return pedidos_des;
+	}
+	
+	public List<Pedido> getAll() throws PedidoException{
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		List<PedidoEntity> pedidosEnt = (List<PedidoEntity>) s.createQuery("From PedidoEntity").list();
+		s.close();
+		
+		if(pedidosEnt == null) {
+			throw new PedidoException("Error al obtener todos los pedidos.");
+		}
+		List<Pedido> pedidos = new ArrayList<Pedido>();
+		for (PedidoEntity pe : pedidosEnt) {
+			pedidos.add(this.toNegocio(pe));
+		}
+		return pedidos;
 	}
 	
 

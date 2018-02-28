@@ -5,13 +5,16 @@ import java.util.List;
 
 import dao.ArticuloDAO;
 import dao.OrdenDeCompraDAO;
+import dao.PedidoDAO;
 import dto.ArticuloDTO;
 import dto.LoteDTO;
 import dto.MovimientoDTO;
+import enumerator.EstadoOC;
 import enumerator.Presentacion;
 import enumerator.TipoMovimiento;
 import excepcion.ArticuloException;
 import excepcion.OrdenDeCompraException;
+import excepcion.PedidoException;
 
 public class Articulo {
 
@@ -28,17 +31,16 @@ public class Articulo {
 	private List<OrdenDeCompra> ordenes;
 
 	public Articulo() {
+		lotes = new ArrayList<Lote>();
+		movimientos = new ArrayList<Movimiento>();
+		ordenes = new ArrayList<OrdenDeCompra>();
 	}
-	
-	
-
-	
 
 	public int getCodigoBarra() {
 		return codigoBarra;
 	}
 
-	public void setCodigoBarra(int codigoBarra) {
+	public void setCodigoBarra(Integer codigoBarra) {
 		this.codigoBarra = codigoBarra;
 	}
 
@@ -171,6 +173,8 @@ public class Articulo {
 			return false;
 		return true;
 	}
+	
+	
 
 	public boolean calcularStock(int cantidadSolicitada) throws ArticuloException, OrdenDeCompraException {
 		
@@ -235,7 +239,7 @@ public class Articulo {
 				resultado = false;
 			}						
 		}
-		ArticuloDAO.getInstancia().update(this);
+		ArticuloDAO.getInstancia().updateValores(this);
 		return resultado;
 	}
 
@@ -285,32 +289,6 @@ public class Articulo {
 		
 		}
 
-	public void save() throws ArticuloException {
-		ArticuloDAO.getInstancia().save(this);
-		
-	}
-
-
 	
-
-	public void setTamaño(int tamaño) {
-		this.tamaño = tamaño;
-	}
-
-
-
-
-
-	public void setOrdenes(List<OrdenDeCompra> ordenes) {
-		this.ordenes = ordenes;
-	}
-
-
-
-
-
-	public List<OrdenDeCompra> getOrdenes() {
-		return this.ordenes;
-	}
 
 }
