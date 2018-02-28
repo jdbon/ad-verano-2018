@@ -30,14 +30,15 @@
 	List<PedidoDTO> losPedidosDTO = (List<PedidoDTO>) request.getAttribute("pedPend");
 	for(PedidoDTO pdto : losPedidosDTO)
 	{
-		int codigoPedido = pdto.getIdPedido();
+		int codigoPed1 = pdto.getIdPedido();
 %>
 	<tr>
-		<input type="hidden" name="codigoPedido" value="<%=codigoPedido%>">
+		<input type="hidden" name="codigoPedido" value="<%=codigoPed1%>">
 		<td><%=pdto.getIdPedido()%></td>
 		<td><%=pdto.getClienteDTO().getApellido()%>, <%=pdto.getClienteDTO().getNombre()%></td>
-		<td><input type="submit" value="APROBAR" name="accion" ></td>
-		<td><input type="submit" value="RECHAZAR" name="rechazar<%=codigoPedido%>" ></td>
+		<input type="hidden" name="accion" value="aprobarPedidos33">
+		<td><input type="submit" value="<%=codigoPed1 %>" name="apPed" ></td>
+		<td><input type="submit" value="<%=codigoPed1 %>" name="rePed" ></td>
 	</tr>
 <% } %>
 </table>
