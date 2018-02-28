@@ -44,7 +44,7 @@
           <hr>
           <font color="red"><p>Acceso de Cliente</p></font>
 		  
-		  <table cellspacing="3" cellpadding="3" border="1" width="500">
+		  <table cellspacing="3" cellpadding="3" border="1" width="500" style="margin: 0 auto;">
 	<tr>
 		<td colspan="4"><b>Lista de Articulos</b></td>
 	</tr>
@@ -76,7 +76,7 @@
 <br>
 <br>
 
-<table border="1">
+<table border="1" style="margin: 0 auto;">
 	<tr><td colspan="4"><b>Ingrese sus datos</b></td></tr>
 	<tr><td>Numero de Cliente</td><td><input name="nroCliente", size="10"/></td></tr>
     <tr><td>Direccion</td><td><input name="direccion", size="50"/></td></tr>

@@ -42,7 +42,7 @@
           <hr>
           <font color="red"><p>Consultar Estado de un Pedido</p></font>
  		  <form action="Controlador" method="get">
-		  <table border="1">
+		  <table border="1" style="margin: 0 auto;">
 		  <tr><td colspan="4"><b>Ingrese el numero de pedido</b></td></tr>
     	  <tr><td>Nro de Pedido</td><td><input name="nroPed" size="50"/></td></tr>
     	  <tr><td colspan="2" align="right"><input name="boton" type="submit" value="ENVIAR"/></td></tr>    
