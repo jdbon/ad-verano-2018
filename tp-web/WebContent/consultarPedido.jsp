@@ -41,7 +41,6 @@
           <h1>Die Verruckte Dose</h1>
           <hr>
           <font color="red"><p>Consultar Estado de un Pedido</p></font>
- 		  
 <p></p>
 		   <a href="index.jsp" class="btn btn-default btn-lg page-scroll"> < VOLVER </a></div>
       </div>
