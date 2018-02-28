@@ -12,6 +12,7 @@ import dto.PedidoDTO;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
+import excepcion.OrdenDeCompraException;
 import excepcion.PedidoException;
 import interfaz.INegocio;
 
@@ -64,6 +65,22 @@ public class ObjetoRemoto extends UnicastRemoteObject implements INegocio {
 	public List<PedidoDTO> buscarPedidosPendiente() throws RemoteException, PedidoException {
 		// TODO Auto-generated method stub
 		return ControladorDeDespacho.getInstancia().buscarPedidosPendiente();
+	}
+
+
+
+	@Override
+	public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws RemoteException, PedidoException, ArticuloException {
+			ControladorDeDespacho.getInstancia().rechazarPedidoPendiente(pedidoPendiente);
+		
+	}
+
+
+
+	@Override
+	public void aprobarPedidoPendiente(PedidoDTO pedidoPendiente) throws RemoteException, PedidoException, ArticuloException, OrdenDeCompraException, ItemPedidoException {
+		ControladorDeDespacho.getInstancia().aceptarPedidoPendiente(pedidoPendiente);
+		
 	}
 
 }

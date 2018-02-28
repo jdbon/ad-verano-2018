@@ -13,6 +13,7 @@ import dto.PedidoDTO;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
+import excepcion.OrdenDeCompraException;
 import excepcion.PedidoException;
 import excepcion.SistemaException;
 import interfaz.INegocio;
@@ -103,6 +104,32 @@ public class BusinessDelegate implements INegocio{
 			//e.printStackTrace();
 			throw new PedidoException("Error al recuperar lista de pedidos pendientes.");
 		}
+		
+	}
+
+	@Override
+	public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException, ArticuloException, OrdenDeCompraException, ItemPedidoException {
+		try {
+			negocioRemoto.aprobarPedidoPendiente(pedidoPendiente);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			throw new PedidoException("Error al rechazar un pedido.");
+		}
+		
+		
+	}
+
+	@Override
+	public void aprobarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException, ArticuloException, OrdenDeCompraException, ItemPedidoException  {
+			try {
+				negocioRemoto.rechazarPedidoPendiente(pedidoPendiente);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new PedidoException("Error al rechazar un pedido.");
+			}
+			
 		
 	}
 

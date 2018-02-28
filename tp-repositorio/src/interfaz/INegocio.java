@@ -12,6 +12,7 @@ import dto.PedidoDTO;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
+import excepcion.OrdenDeCompraException;
 import excepcion.PedidoException;
 
 
@@ -26,4 +27,8 @@ public interface INegocio extends Remote {
 	public PedidoDTO obtenerEstadoPedido(int idPedido) throws RemoteException, PedidoException;
 
 	public List<PedidoDTO> buscarPedidosPendiente() throws RemoteException, PedidoException;
+	
+	public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws RemoteException, PedidoException, ArticuloException, OrdenDeCompraException, ItemPedidoException;
+	
+	public void aprobarPedidoPendiente(PedidoDTO pedidoPendiente) throws RemoteException, PedidoException, ArticuloException, OrdenDeCompraException, ItemPedidoException;
 }

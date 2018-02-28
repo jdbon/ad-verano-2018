@@ -18,6 +18,7 @@ import dto.PedidoDTO;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
+import excepcion.OrdenDeCompraException;
 import excepcion.PedidoException;
 import excepcion.SistemaException;
 
@@ -135,13 +136,47 @@ public class Controlador extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        	System.out.println("pedpend size: " + pedidosPendientes.size());
+        	//System.out.println("pedpend size: " + pedidosPendientes.size());
         	request.setAttribute("pedPend", pedidosPendientes);
             jspPage = "/aprobarPedidos.jsp";	
         }
-        else if("aprobarPedidos".equals(action)){
-        	String parametro = (String) request.getAttribute("aprobarPedidoTEST");
-        	System.out.println("parametro: " + parametro);
+        else if("aprobarPedidos33".equals(action)){
+        	int codPedido = Integer.valueOf(request.getParameter("codigoPedido"));
+        	String aprueba = request.getParameter("apPed");
+        	String rechaza = request.getParameter("rePed");
+        	System.out.println("codPedido, ap, re: " + codPedido + ", " + aprueba + ", " + rechaza); 
+        	
+        	
+        	
+        	if(aprueba != null){
+        		PedidoDTO pedidoDTO = new PedidoDTO();
+            	pedidoDTO.setIdPedido(Integer.valueOf(aprueba));
+            	
+            	try {
+					BusinessDelegate.getInstancia().aprobarPedidoPendiente(pedidoDTO);
+					System.out.println("Pedido a aprobar: " + aprueba);
+				} catch (PedidoException | ArticuloException | OrdenDeCompraException | ItemPedidoException
+						| SistemaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
+        	else{
+        		PedidoDTO pedidoDTO = new PedidoDTO();
+            	pedidoDTO.setIdPedido(Integer.valueOf(rechaza));
+            	
+            	try {
+					BusinessDelegate.getInstancia().rechazarPedidoPendiente(pedidoDTO);
+					System.out.println("Pedido a rechazar: " + rechaza);
+				} catch (PedidoException | ArticuloException | OrdenDeCompraException | ItemPedidoException
+						| SistemaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
+//        	request.setAttribute("confirmacion", aprueba);
+            jspPage = "/index.jsp";
+        	
         }
         
         dispatch(jspPage, request, response);
