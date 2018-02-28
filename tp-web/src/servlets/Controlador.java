@@ -149,6 +149,7 @@ public class Controlador extends HttpServlet {
         	
         	
         	if(aprueba != null){
+
         		PedidoDTO pedidoDTO = new PedidoDTO();
             	pedidoDTO.setIdPedido(Integer.valueOf(aprueba));
             	
@@ -159,9 +160,11 @@ public class Controlador extends HttpServlet {
 						| SistemaException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					System.out.println("Error al aprobar pedido nro: " + aprueba);
 				}
         	}
-        	else{
+        	else if(rechaza != null){
+        		
         		PedidoDTO pedidoDTO = new PedidoDTO();
             	pedidoDTO.setIdPedido(Integer.valueOf(rechaza));
             	
@@ -172,10 +175,31 @@ public class Controlador extends HttpServlet {
 						| SistemaException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					System.out.println("Error al rechazar pedido nro: " + rechaza);
 				}
         	}
-//        	request.setAttribute("confirmacion", aprueba);
-            jspPage = "/index.jsp";
+        	
+        	int nroPedido;
+        	if(aprueba != null)
+        		nroPedido = Integer.valueOf(aprueba);
+        	else
+        		nroPedido = Integer.valueOf(rechaza);
+        			
+
+        	PedidoDTO pDTO;
+        	String status = null;
+        	try {
+        		pDTO = BusinessDelegate.getInstancia().obtenerEstadoPedido(nroPedido);
+				System.out.println("Estado pedido: " + pDTO.getEstado().toString());
+				status = pDTO.getEstado().toString();
+				
+			} catch (PedidoException | SistemaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+        	request.setAttribute("elEstadoEs", status);
+            jspPage = "/statusPedido.jsp";
         	
         }
         

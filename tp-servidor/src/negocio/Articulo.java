@@ -5,13 +5,16 @@ import java.util.List;
 
 import dao.ArticuloDAO;
 import dao.OrdenDeCompraDAO;
+import dao.PedidoDAO;
 import dto.ArticuloDTO;
 import dto.LoteDTO;
 import dto.MovimientoDTO;
+import enumerator.EstadoOC;
 import enumerator.Presentacion;
 import enumerator.TipoMovimiento;
 import excepcion.ArticuloException;
 import excepcion.OrdenDeCompraException;
+import excepcion.PedidoException;
 
 public class Articulo {
 
@@ -170,6 +173,8 @@ public class Articulo {
 			return false;
 		return true;
 	}
+	
+	
 
 	public boolean calcularStock(int cantidadSolicitada) throws ArticuloException, OrdenDeCompraException {
 		
@@ -283,5 +288,7 @@ public class Articulo {
 			
 		
 		}
+
+	
 
 }

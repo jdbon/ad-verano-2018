@@ -1,5 +1,7 @@
 package negocio;
 
+import dao.MovimientoDAO;
+
 public class MovimientoAB extends Movimiento{
 
 	public MovimientoAB() {
@@ -11,6 +13,11 @@ public class MovimientoAB extends Movimiento{
 		
 		return "MovAB: " + this.getNroMovimiento() + " - Tipo: " + this.getTipo() + " - Cant: " + 
 				this.getCantidad();
+	}
+
+	public void save() {
+		MovimientoDAO.getInstancia().save(this);
+		
 	}
 	
 	

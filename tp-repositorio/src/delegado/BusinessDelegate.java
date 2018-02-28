@@ -110,10 +110,11 @@ public class BusinessDelegate implements INegocio{
 	@Override
 	public void rechazarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException, ArticuloException, OrdenDeCompraException, ItemPedidoException {
 		try {
-			negocioRemoto.aprobarPedidoPendiente(pedidoPendiente);
+			negocioRemoto.rechazarPedidoPendiente(pedidoPendiente);
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
-//			e.printStackTrace();
+			e.printStackTrace();
 			throw new PedidoException("Error al rechazar un pedido.");
 		}
 		
@@ -123,11 +124,11 @@ public class BusinessDelegate implements INegocio{
 	@Override
 	public void aprobarPedidoPendiente(PedidoDTO pedidoPendiente) throws PedidoException, ArticuloException, OrdenDeCompraException, ItemPedidoException  {
 			try {
-				negocioRemoto.rechazarPedidoPendiente(pedidoPendiente);
+				negocioRemoto.aprobarPedidoPendiente(pedidoPendiente);
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				throw new PedidoException("Error al rechazar un pedido.");
+				throw new PedidoException("Error al aprobar un pedido.");
 			}
 			
 		

@@ -40,14 +40,14 @@
           <h1>Die Verruckte Dose</h1>
           <hr>
           <font color="red"><p>Estado de pedido</p></font>
-		  
-		  <h1>El estado de su pedido es:</h1>
+		  <font size="9">
+		  El estado de su pedido es:
 <%
 	String estadoPedido = (String) request.getAttribute("elEstadoEs");
 %>
 <br>
 <b><%=estadoPedido %></b>
- 		 
+ 		 </font>
 <p></p>  <a href="index.jsp" class="btn btn-default btn-lg page-scroll"> < VOLVER </a></div>
       </div>
     </div>

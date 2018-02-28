@@ -95,6 +95,8 @@ public class ControladorDeDespacho {
 				pedido.setEstado(EstadoPedido.Completo);
 				PedidoDAO.getInstancia().updateEstado(pedido);
 			}
+
+			
 		}
 }
 

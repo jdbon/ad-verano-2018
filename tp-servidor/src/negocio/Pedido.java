@@ -7,7 +7,9 @@ import java.util.List;
 
 import dao.PedidoDAO;
 import dto.PedidoDTO;
+import enumerator.EstadoOC;
 import enumerator.EstadoPedido;
+import enumerator.TipoMovimiento;
 import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
@@ -136,6 +138,13 @@ public class Pedido {
 	public void save() throws PedidoException, ItemPedidoException, ArticuloException {
 		// TODO Auto-generated method stub
 		PedidoDAO.getInstancia().save(this);
+		
+	}
+
+	
+
+	private void update() throws PedidoException, ArticuloException {
+		PedidoDAO.getInstancia().update(this);
 		
 	}
 	

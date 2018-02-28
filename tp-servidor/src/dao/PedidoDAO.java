@@ -227,6 +227,22 @@ public class PedidoDAO {
 		return pedidos_des;
 	}
 	
+	public List<Pedido> getAll() throws PedidoException{
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session s = sf.openSession();
+		List<PedidoEntity> pedidosEnt = (List<PedidoEntity>) s.createQuery("From PedidoEntity").list();
+		s.close();
+		
+		if(pedidosEnt == null) {
+			throw new PedidoException("Error al obtener todos los pedidos.");
+		}
+		List<Pedido> pedidos = new ArrayList<Pedido>();
+		for (PedidoEntity pe : pedidosEnt) {
+			pedidos.add(this.toNegocio(pe));
+		}
+		return pedidos;
+	}
+	
 
 	
 }

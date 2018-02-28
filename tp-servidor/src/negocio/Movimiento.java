@@ -47,6 +47,8 @@ public abstract class Movimiento {
 		return null;
 	}
 	
+	public abstract void save();
+	
 	
 
 }

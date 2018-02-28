@@ -216,6 +216,7 @@ private static ArticuloDAO instancia;
 		
 	}
 
+	
 
 }
 

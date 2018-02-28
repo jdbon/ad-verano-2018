@@ -1,5 +1,7 @@
 package negocio;
 
+import dao.MovimientoDAO;
+
 public class MovimientoAjuste extends Movimiento{
 
 	private String encargado;
@@ -41,6 +43,12 @@ public class MovimientoAjuste extends Movimiento{
 
 	public void setDestinoArticulos(String destinoArticulos) {
 		this.destinoArticulos = destinoArticulos;
+	}
+
+	@Override
+	public void save() {
+		MovimientoDAO.getInstancia().save(this);
+		
 	}
 	
 	

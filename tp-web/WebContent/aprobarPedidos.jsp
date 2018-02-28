@@ -43,7 +43,7 @@
           <h1>Die Verruckte Dose</h1>
           <hr>
           <font color="red"><p>Pedidos pendientes de aprobación</p></font>
- 		 <table cellspacing="3" cellpadding="3" border="1" width="500">
+ 		 <table cellspacing="3" cellpadding="3" border="1" width="500" style="margin: 0 auto;">
 	<tr>
 		<td colspan="4"><b>Lista de Pedidos Pendientes de Aprobacion</b></td>
 	</tr>
