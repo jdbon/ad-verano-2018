@@ -26,6 +26,8 @@ hs_err_pid*
 **/.classpath
 **/.project
 **/.settings/
+**/META-INF/
+**/.tern-project
 
 # Intellij
 .idea/
