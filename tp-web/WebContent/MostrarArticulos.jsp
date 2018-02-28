@@ -55,7 +55,7 @@
 		<td><b>PRECIO</b></td>
 		<td><b>CANTIDAD</b></td>
 	</tr>
-<form action="Controlador" method="get">
+<form action="Controlador" method="get"/>
 <%
 	ArticuloDTO aDTO;
 	String id; 	

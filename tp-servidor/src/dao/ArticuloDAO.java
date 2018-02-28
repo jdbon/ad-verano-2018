@@ -12,7 +12,6 @@ import entity.LoteEntity;
 import entity.MovimientoABEntity;
 import entity.MovimientoAjusteEntity;
 import entity.MovimientoEntity;
-import entity.PedidoEntity;
 import excepcion.ArticuloException;
 import hibernate.HibernateUtil;
 import negocio.Articulo;

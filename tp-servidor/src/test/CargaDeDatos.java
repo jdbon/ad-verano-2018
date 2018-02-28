@@ -1,14 +1,8 @@
 package test;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
-import enumerator.EstadoPedido;
 import enumerator.TipoFactura;
 import excepcion.ClienteException;
-import excepcion.PedidoException;
 import negocio.Cliente;
-import negocio.Pedido;
 
 public class CargaDeDatos {
 	

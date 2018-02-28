@@ -10,7 +10,6 @@ import excepcion.ArticuloException;
 import excepcion.ClienteException;
 import excepcion.ItemPedidoException;
 import excepcion.PedidoException;
-import negocio.ItemPedido;
 
 public class TestCliente1 {
 

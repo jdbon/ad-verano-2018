@@ -5,9 +5,7 @@ import org.hibernate.SessionFactory;
 
 import entity.MovimientoABEntity;
 import entity.MovimientoAjusteEntity;
-import entity.MovimientoEntity;
 import hibernate.HibernateUtil;
-import negocio.Movimiento;
 import negocio.MovimientoAB;
 import negocio.MovimientoAjuste;
 

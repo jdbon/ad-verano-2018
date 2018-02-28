@@ -160,10 +160,7 @@ GO
 CREATE TABLE [dbo].[ordenes_compras](
 	[odc_id] [int] IDENTITY(1,1) NOT NULL,
 	[odc_art] [int] NOT NULL,
-<<<<<<< HEAD
-=======
 	[odc_teo] [int] NULL,
->>>>>>> c0eea729bfd48be0eb3558c3c781d3b301c019b9
 	[odc_cant_x_comprar] [int] NOT NULL,
 	[odc_fec_recepcion] [datetime] NULL,
 	[odc_cant_res] [int],

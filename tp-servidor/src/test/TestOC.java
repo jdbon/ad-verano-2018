@@ -1,7 +1,5 @@
 package test;
 
-import java.util.Date;
-
 import dao.ArticuloDAO;
 import enumerator.EstadoOC;
 import excepcion.ArticuloException;

@@ -1,7 +1,6 @@
 package entity;
 
 import java.sql.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;

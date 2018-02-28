@@ -7,7 +7,6 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import dto.ArticuloDTO;
-import dto.ClienteDTO;
 import dto.ItemPedidoDTO;
 import dto.PedidoDTO;
 import excepcion.ArticuloException;
