@@ -190,14 +190,17 @@ public class Articulo {
 		cantLibre = sumaMovimientos - this.cantidadReservada;
 		if (cantLibre <  cantidadSolicitada & cantLibre >= 0){
 			cantFaltante = cantidadSolicitada - cantLibre;
-			cantParaPedir = (int) Math.ceil(cantFaltante/this.cantidadOrdenDeCompra);
-			for (int i = 1; i > cantParaPedir ; i++){
+			cantParaPedir = (int) Math.ceil((double)cantFaltante/this.cantidadOrdenDeCompra);
+			for (int i = 1; i <= cantParaPedir ; i++){
 				if (i == cantParaPedir){
 					this.generarOC(cantFaltante);
 					cantFaltante = 0;
 				}
-				this.generarOC(this.cantidadOrdenDeCompra);
-				cantFaltante = cantFaltante - this.cantidadOrdenDeCompra;
+				else{
+					this.generarOC(this.cantidadOrdenDeCompra);
+					cantFaltante = cantFaltante - this.cantidadOrdenDeCompra;	
+				}
+				
 			}
 			this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;
 			resultado = false;
@@ -211,6 +214,8 @@ public class Articulo {
 							& (oc.getCantidadXcomprar() - oc.getCantidadReservada()) >= cantidadSolicitada){
 						oc.setCantidadReservada(oc.getCantidadReservada()+cantidadSolicitada);
 						//update
+						
+						OrdenDeCompraDAO.getInstancia().update(oc);
 						cantFaltante = 0;
 					}else{
 						if((oc.getCantidadXcomprar() - oc.getCantidadReservada()) > 0 
@@ -222,14 +227,16 @@ public class Articulo {
 					}
 				}
 				if (cantFaltante > 0){
-					cantParaPedir = (int) Math.ceil(cantFaltante/this.cantidadOrdenDeCompra);
-					for (int i=1; i>cantParaPedir ;i++){
+					cantParaPedir = (int) Math.ceil((double)cantFaltante/this.cantidadOrdenDeCompra);
+					for (int i=1; i <= cantParaPedir ;i++){
 						if (i==cantParaPedir){
 							this.generarOC(cantFaltante);
 							cantFaltante = 0;
 						}
-						this.generarOC(this.cantidadOrdenDeCompra);
-						cantFaltante = cantFaltante - this.cantidadOrdenDeCompra;
+						else{
+							this.generarOC(this.cantidadOrdenDeCompra);
+							cantFaltante = cantFaltante - this.cantidadOrdenDeCompra;	
+						}
 					}
 				}
 				this.cantidadReservada = this.cantidadReservada + cantidadSolicitada;

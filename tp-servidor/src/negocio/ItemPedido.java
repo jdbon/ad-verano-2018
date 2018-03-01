@@ -56,7 +56,7 @@ public class ItemPedido {
 		
 		if (this.articulo.calcularStock(this.cantidadSolicitada) == false){
 			this.cantidadReservada = this.cantidadSolicitada;
-			ItemPedidoDAO.getInstancia().update(this);
+//			ItemPedidoDAO.getInstancia().update(this);
 			return false;
 		}
 		return true;

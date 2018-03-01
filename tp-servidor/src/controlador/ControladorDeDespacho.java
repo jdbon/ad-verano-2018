@@ -89,7 +89,7 @@ public class ControladorDeDespacho {
 			pedido = PedidoDAO.getInstancia().findById(pedidoPendiente.getIdPedido());
 			//System.out.println("cant itemped: " + pedido.getItems().size());
 			if (pedido.verificarStock() == false){
-				pedido.setEstado(EstadoPedido.Pendiente);
+				pedido.setEstado(EstadoPedido.EsperaMercaderia);
 				PedidoDAO.getInstancia().updateEstado(pedido);
 			}else{
 				pedido.setEstado(EstadoPedido.Completo);
